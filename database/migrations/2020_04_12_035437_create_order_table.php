@@ -13,13 +13,18 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_store');
-            $table->json('salsas');
+            $table->string('code');
+            $table->unsignedBigInteger('store_id');
+            $table->unsignedBigInteger('seller_id');
             $table->decimal('mount', 8, 2);
+            $table->text('notes');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('seller_id')->references('id')->on('sellers');
+            $table->foreign('store_id')->references('id')->on('store');
         });
     }
 
