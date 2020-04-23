@@ -37,6 +37,6 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sell');
+        Schema::dropIfExists('deliveries');
     }
 }

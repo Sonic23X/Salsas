@@ -13,9 +13,14 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
+<<<<<<< HEAD
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0"
+=======
+        "laravel/tinker": "^2.0",
+        "simplesoftwareio/simple-qrcode": "^2.0"
+>>>>>>> 57acc23fde64b85a5506390e6f4c24dc81677865
     },
     "require-dev": {
         "facade/ignition": "^2.0",

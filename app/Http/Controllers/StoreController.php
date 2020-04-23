@@ -35,7 +35,33 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            //validaciones con unique ¿? | busqueda de usuario existente
+            $input = $request->validate(
+            [
+              'name' => 'required|string',
+              'address' => 'required|string',
+              'phone' => 'required|string',
+              'user_id' => 'required|int',
+              'qr_path' => '',
+            ]);
+
+            //adaptar para que el campo qr_path permita ser null al crear el registro
+            //en caso de que el QR contenga el ID de la tienda
+            $input['qr_path'] = 'path';
+
+            //save the store
+            $store = Store::create($input);
+
+            //generate the QR
+            \QrCode::size(500)
+                  ->format('png')
+                  ->generate($store->id, public_path('stores/'. $store->name .'.png'));
+
+            //update the qr_path of the store
+            $input['qr_path'] = 'stores/'. $store->name .'.png';
+            $store->update($input);
+
     }
 
     /**

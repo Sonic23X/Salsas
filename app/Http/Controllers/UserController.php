@@ -35,7 +35,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $create = $request->validate(
+      [
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+        'c_password' => 'required|same:password',
+        'rol' => 'required|in:admin,vendedor,repartidor,tienda',
+      ]);
+
+      if ($create->fails())
+        return json_encode(['error' => $create->errors()]);
+
+      $input = $request->all();
+      $input['password'] = bcrypt($input['password']);
+      $user = User::create($input);
+
+      return json_encode(['message'=> 'User added!']);
     }
 
     /**
@@ -69,7 +85,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+      $update = $request->validate(
+      [
+        'name' => 'required',
+        'email' => 'required|email',
+        'rol' => 'required|in:admin,vendedor,repartidor,tienda',
+      ]);
+
+      if ($update->fails())
+        return json_encode(['error' => $update->errors()]);
+
+      $input = $request->all();
+      $user = User::where('id', $id)->update($input);
+
+      return json_encode(['message' => 'User updated!']);
+
     }
 
     /**
@@ -80,6 +110,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+      if (User::where('id', $id)->delete())
+        return json_encode(['message' => 'User deleted!']);
+      else
+        return json_encode(['message' => 'Error on delete the user']);
+
     }
 }
