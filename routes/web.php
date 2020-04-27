@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Routes for Auth
 Auth::routes();
 
+//redireccionar cuando se llama al proyecto
+Route::get('/', function()
+{
+  return redirect('login');
+});
+
+//ruta al acceder al login
 Route::get('/dashboard', 'DashboardController@index');
 
+//routes
 Route::resources([
     'deliveries' => 'DeliveryController',
     'orders' => 'OrderController',
