@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Salsa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SalsaController extends Controller
 {
@@ -35,7 +36,19 @@ class SalsaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required'],
+            'description' => ['required'],
+            'price' => ['required'],
+        ]);
+        
+        $salsa = new Salsa([
+           'name' => $request->get('name'), 
+           'description' => $request->get('description'), 
+           'price' => $request->get('price'), 
+        ]);
+        $salsa->save();
+        return response()->json($salsa);
     }
 
     /**
@@ -69,7 +82,19 @@ class SalsaController extends Controller
      */
     public function update(Request $request, Salsa $salsa)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required'],
+            'description' => ['required'],
+            'price' => ['required'],
+        ]);
+       
+        $update = Salsa::find($salsa);
+        $update->name = $request->get('name');
+        $update->description = $request->get('description');
+        $update->price = $request->get('price');
+        $update->save();
+        
+        return response()->json($update);
     }
 
     /**
@@ -80,6 +105,9 @@ class SalsaController extends Controller
      */
     public function destroy(Salsa $salsa)
     {
-        //
+        $delete = Salsa::find($salsa);
+        $delete->delete();
+        
+        return response()->json($delete);
     }
 }

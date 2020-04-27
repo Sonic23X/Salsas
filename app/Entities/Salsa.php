@@ -6,6 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salsa extends Model
 {
+  use SoftDeletes;
+
+  protected $dates = ['deleted_at'];
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+      'name', 'description', 'price',
+  ];
+  
   public function Order(){
     return $this->belongsToMany('App\Entities\Order');
   }
