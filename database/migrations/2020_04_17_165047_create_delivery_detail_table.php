@@ -35,6 +35,8 @@ class CreateDeliveryDetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deliverys_detail');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('deliveries_detail');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

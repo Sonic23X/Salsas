@@ -22,7 +22,7 @@ class CreateOrderDetailTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('salsa_id')->references('id')->on('salsas');
 
         });
@@ -35,6 +35,8 @@ class CreateOrderDetailTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('orders_detail');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

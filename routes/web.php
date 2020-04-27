@@ -13,12 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Routes for Auth
 Auth::routes();
 
-Route::resources([
-    'deliveries' => 'DeliveryController',
-    'orders' => 'OrderController',
-    'salsas' => 'SalsaController',
-    'stores' => 'StoreController',
-    'users' => 'UserController'
-]);
+//redireccionar cuando se llama al proyecto
+Route::get('/', function()
+{
+  return redirect('login');
+});
+
+//rutas protegidas
+Route::middleware('auth')->group(function()
+{
+  //ruta al acceder al login
+  Route::get('/dashboard', 'DashboardController@index');
+  
+  //routes
+  Route::resources([
+      'deliveries' => 'DeliveryController',
+      'orders' => 'OrderController',
+      'salsas' => 'SalsaController',
+      'stores' => 'StoreController',
+      'users' => 'UserController'
+  ]);
+});
