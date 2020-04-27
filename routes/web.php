@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/dashboard', 'DashboardController@index');
+
 Route::resources([
     'deliveries' => 'DeliveryController',
     'orders' => 'OrderController',
