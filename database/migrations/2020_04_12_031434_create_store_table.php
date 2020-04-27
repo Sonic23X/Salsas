@@ -34,6 +34,8 @@ class CreateStoreTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('stores');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

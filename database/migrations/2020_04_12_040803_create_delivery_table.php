@@ -24,7 +24,7 @@ class CreateDeliveryTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('delivery_man')->references('id')->on('users');
 
         });
@@ -37,6 +37,8 @@ class CreateDeliveryTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('deliveries');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -23,8 +23,8 @@ class CreateOrderTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->foreign('store_id')->references('id')->on('store');
+            $table->foreign('seller_id')->references('id')->on('users');
+            $table->foreign('store_id')->references('id')->on('stores');
         });
     }
 
@@ -35,6 +35,8 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        Schema::dropIfExists('orders');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
