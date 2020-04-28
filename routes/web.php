@@ -19,21 +19,22 @@ Auth::routes();
 //redireccionar cuando se llama al proyecto
 Route::get('/', function()
 {
-  return redirect('login');
+  return redirect('dashboard');
 });
 
 //rutas protegidas
-Route::middleware('auth')->group(function()
+/*Route::middleware('auth')->group(function()
 {
-  //ruta al acceder al login
-  Route::get('/dashboard', 'DashboardController@index');
-  
-  //routes
-  Route::resources([
-      'deliveries' => 'DeliveryController',
-      'orders' => 'OrderController',
-      'salsas' => 'SalsaController',
-      'stores' => 'StoreController',
-      'users' => 'UserController'
-  ]);
-});
+
+});*/
+//ruta al acceder al login
+Route::get('/dashboard', 'DashboardController@index');
+
+//routes
+Route::resources([
+    'deliveries' => 'DeliveryController',
+    'orders' => 'OrderController',
+    'salsas' => 'SalsaController',
+    'stores' => 'StoreController',
+    'users' => 'UserController'
+]);

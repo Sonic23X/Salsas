@@ -27,7 +27,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              Bienvenido {{ Auth::user()->name }}! <span class="caret"></span>
+              Bienvenido <span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -65,7 +65,7 @@
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="../admin/usuario/listaUsuario.blade.php" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
