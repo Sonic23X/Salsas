@@ -37,4 +37,7 @@ Route::middleware('auth:api')->group(function()
 });
 */
 
-Route::post('store/new', 'web\StoreController@store');
+Route::get('store/{id}', 'StoreController@get');
+Route::post('store/new', 'StoreController@store');
+Route::put('store/{id}', 'StoreController@update');
+Route::delete('store/{id}', 'StoreController@destroy');

@@ -61,7 +61,7 @@ Route::get('/editarSalsa', function()
 //Rutas temporales usuario
 Route::get('/listaUsuario', function()
 {
-    return view('admin.salsas.listaUsuario');
+    return view('admin.usuario.listaUsuario');
 
 });
 
@@ -74,13 +74,5 @@ Route::get('/crearUsuario', function()
 Route::get('/editarUsuario', function()
 {
     return view('admin.salsas.editarUsuario');
-
-});
-
-//rutas temporales Tienda
-
-Route::get('/listaTienda', function()
-{
-    return view('admin.salsas.listaTienda');
 
 });

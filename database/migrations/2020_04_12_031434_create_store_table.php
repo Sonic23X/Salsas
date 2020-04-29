@@ -18,7 +18,7 @@ class CreateStoreTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone');
-            $table->string('qr_path');
+            $table->string('qr_path')->default(null)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

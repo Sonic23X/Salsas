@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Store;
 use Illuminate\Http\Request;
+use App\Entities\Store;
 
 class StoreController extends Controller
 {
@@ -14,7 +14,13 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+
+    }
+
+    //Ejemplo de busqueda
+    public function get($id)
+    {
+      return Store::findOrFail($id);
     }
 
     /**
@@ -35,33 +41,31 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
+      //validaciones con unique ¿? | busqueda de usuario existente
+      $input = $request->validate(
+      [
+        'name' => 'required|string',
+        'address' => 'required|string',
+        'phone' => 'required|string',
+        'user_id' => 'required|int',
+      ]);
 
-            //validaciones con unique ¿? | busqueda de usuario existente
-            $input = $request->validate(
-            [
-              'name' => 'required|string',
-              'address' => 'required|string',
-              'phone' => 'required|string',
-              'user_id' => 'required|int',
-              'qr_path' => '',
-            ]);
+      //adaptar para que el campo qr_path permita ser null al crear el registro
+      //en caso de que el QR contenga el ID de la tienda
+      $input['qr_path'] = 'path';
 
-            //adaptar para que el campo qr_path permita ser null al crear el registro
-            //en caso de que el QR contenga el ID de la tienda
-            $input['qr_path'] = 'path';
+      //save the store
+      $store = Store::create($input);
 
-            //save the store
-            $store = Store::create($input);
+      //generate the QR
+      \QrCode::size(500)
+            ->generate(''.$store->id.'', public_path('images\qr\qr_'.$store->name.'.svg'));
 
-            //generate the QR
-            \QrCode::size(500)
-                  ->format('png')
-                  ->generate($store->id, public_path('stores/'. $store->name .'.png'));
+      //update the qr_path of the store
+      $store->qr_path = 'images\qr\qr_'.$store->name.'.svg';
+      $store->save();
 
-            //update the qr_path of the store
-            $input['qr_path'] = 'stores/'. $store->name .'.png';
-            $store->update($input);
-
+      return $store;
     }
 
     /**
@@ -95,7 +99,17 @@ class StoreController extends Controller
      */
     public function update(Request $request, Store $store)
     {
-        //
+      $store->fill($request->validate(
+      [
+        'name' => 'required|string',
+        'address' => 'required|string',
+        'phone' => 'required|string',
+        'user_id' => 'required|int',
+      ]));
+
+      $store->save();
+
+      return $store;
     }
 
     /**
@@ -106,6 +120,8 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        $store->delete();
+
+        return array('status' => 200, 'message' => '¡Tienda borrada!');
     }
 }

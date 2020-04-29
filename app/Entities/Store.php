@@ -16,11 +16,23 @@ class Store extends Model
     'name', 'address', 'phone', 'user_id'
   ];
 
-    public function orders(){
-         return $this->hasMany('App\Entities\Order');
-    }
-    public function owner(){
-         return $this->belongsTo('App\User');
-    }
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden =
+  [
+    'updated_at', 'created_at', 'deleted_at'
+  ];
+
+  //relaciones
+  public function orders(){
+       return $this->hasMany('App\Entities\Order');
+  }
+
+  public function owner(){
+       return $this->belongsTo('App\User');
+  }
 
 }
