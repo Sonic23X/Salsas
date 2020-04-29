@@ -12,6 +12,13 @@ try {
 
     require('bootstrap');
     require('admin-lte');
+
+    //Sam
+    require('bs-custom-file-input');
+    require('sweetalert2');
+    require('toastr');
+    require('jquery-validation');
+    require('datatables.net-dt');
 } catch (e) {}
 
 /**
