@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+    {{--
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +22,7 @@
         <!-- SweetAlert2 -->
         <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     </head>
+    --}}
 
     <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -181,6 +183,7 @@
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
+    {{--
     <!-- page script -->
     <script>
         $(function () {
@@ -226,6 +229,7 @@
         });
 
     </script>
+    --}}
 
     </body>
 

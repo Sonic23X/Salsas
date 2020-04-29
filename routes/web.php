@@ -38,3 +38,49 @@ Route::resources([
     'stores' => 'StoreController',
     'users' => 'UserController'
 ]);
+
+//rutas temporales
+Route::get('/listaSalsa', function()
+{
+    return view('admin.salsas.listaSalsa');
+
+});
+
+Route::get('/crearSalsa', function()
+{
+    return view('admin.salsas.crearSalsa');
+
+});
+
+Route::get('/editarSalsa', function()
+{
+    return view('admin.salsas.editarSalsa');
+
+});
+
+//Rutas temporales usuario
+Route::get('/listaUsuario', function()
+{
+    return view('admin.salsas.listaUsuario');
+
+});
+
+Route::get('/crearUsuario', function()
+{
+    return view('admin.salsas.crearUsuario');
+
+});
+
+Route::get('/editarUsuario', function()
+{
+    return view('admin.salsas.editarUsuario');
+
+});
+
+//rutas temporales Tienda
+
+Route::get('/listaTienda', function()
+{
+    return view('admin.salsas.listaTienda');
+
+});

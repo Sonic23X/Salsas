@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <head>
+    {{--<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
@@ -18,6 +18,7 @@
         <!-- SweetAlert2 -->
         <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     </head>
+    --}}
 
     <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -56,7 +57,7 @@
 
                                 <!-- form start -->
                                 <div class="card-body">
-                                    <form role="form" id="quickForm">
+                                    <form role="form">
 
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -111,7 +112,7 @@
 
     </div>
     <!-- ./wrapper -->
-
+{{--
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -214,6 +215,7 @@
             });
         });
     </script>
+    --}}
 
     </body>
 @endsection
