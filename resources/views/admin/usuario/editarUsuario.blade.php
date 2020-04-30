@@ -21,108 +21,90 @@
     </head>
     --}}
 
-    <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+      <section class="content-header">
+          <div class="container-fluid">
+              <div class="row mb-2">
+                  <div class="col-sm-6">
+                      <h1>Editar Usuario</h1>
+                  </div>
+              </div>
+          </div><!-- /.container-fluid -->
+      </section>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Editar Usuario</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+      <!-- Main content -->
+      <section class="content">
+          <div class="container-fluid">
+              <div class="row">
+                  <!-- left column -->
+                  <div class="col-12">
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-12">
+                      <!-- general form elements -->
+                      <div class="card card-primary">
+                          <div class="card-header">
+                              <h3 class="card-title float-left">Editar Usuario</h3>
 
-                            <!-- general form elements -->
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title float-left">Editar Usuario</h3>
+                              <button type="button" class="btn btn-primary  .btn-sm float-right"
+                                      onclick="location.href='{{ url('/users') }}'">Regresar
+                              </button>
 
-                                    <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                            onclick="location.href='./listaUsuarios.html'">Regresar
-                                    </button>
+                          </div>
+                          <!-- /.card-header -->
 
+                          <!-- form start -->
+                          <div class="card-body">
+                            <form role="form" action="{{ url('/users/'.$user->id) }}" id="quickForm" method="post">
+                                @csrf
+                                {{method_field('PUT')}}
+                                <div class="row">
+                                    <div class="col-sm-6">
+
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Nombre</label>
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="Ingrese Nombre de Usuario"
+                                                   value="{{ $user->name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>E-mail</label>
+                                            <input type="email" name="email" class="form-control"
+                                                   placeholder="Ingrese E-mail"
+                                                   value="{{ $user->email }}">
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- /.card-header -->
 
-                                <!-- form start -->
-                                <div class="card-body">
-                                    <form role="form" id="quickForm">
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Usuario</label>
-                                                    <input type="text" name="user" class="form-control"
-                                                           placeholder="Ingrese Nombre de Usuario">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>E-mail</label>
-                                                    <input type="email" name="email" class="form-control"
-                                                           placeholder="Ingrese E-mail">
-                                                </div>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Tipo de Usuario</label>
+                                            <select class="form-control" name="rol">
+                                                <option value="repartidor" {{ ($user->rol == 'repartidor') ? 'selected' : '' }}>Repartidor</option>
+                                                <option value="admin" {{ ($user->rol == 'admin') ? 'selected' : '' }}>Administrador</option>
+                                                <option value="vendedor" {{ ($user->rol == 'vendedor') ? 'selected' : '' }}>Vendedor</option>
+                                                <option value="tienda" {{ ($user->rol == 'tienda') ? 'selected' : '' }}>Tienda</option>
+                                            </select>
                                         </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Contraseña</label>
-                                                    <input type="password" name="password" class="form-control"
-                                                           placeholder="Ingrese Contraseña">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Tipo de Usuario</label>
-                                                    <select class="form-control">
-                                                        <option>Repartidor</option>
-                                                        <option>Administrador</option>
-                                                        <option>Vendedor</option>
-                                                        <option>Tienda</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- /.card-body -->
-
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- /.card -->
 
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
+                                <!-- /.card-body -->
 
-    </div>
-    <!-- ./wrapper -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+                                </div>
+                            </form>
+                          </div>
+                      </div>
+                      <!-- /.card -->
+
+                  </div>
+              </div>
+              <!-- /.row -->
+          </div><!-- /.container-fluid -->
+      </section>
 
     {{--
     <!-- jQuery -->
@@ -232,6 +214,5 @@
         });
     </script>
     --}}
-    </body>
 
 @endsection

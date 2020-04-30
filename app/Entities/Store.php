@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Store extends Model
 {
@@ -34,5 +35,12 @@ class Store extends Model
   public function owner(){
        return $this->belongsTo('App\User');
   }
+
+  public function user()
+  {
+      return User::find($this->user_id)->select('name')->first();
+  }
+
+
 
 }

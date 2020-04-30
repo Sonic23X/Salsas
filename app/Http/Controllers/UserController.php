@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.usuario.listaUsuario', compact('users'));
     }
 
     /**
@@ -24,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.usuario.crearUsuario');
     }
 
     /**
@@ -44,14 +45,11 @@ class UserController extends Controller
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ]);
 
-      if ($create->fails())
-        return json_encode(['error' => $create->errors()]);
-
       $input = $request->all();
       $input['password'] = bcrypt($input['password']);
       $user = User::create($input);
 
-      return json_encode(['message'=> 'User added!']);
+      return redirect('/users');
     }
 
     /**
@@ -73,7 +71,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.usuario.editarUsuario', compact('user'));
     }
 
     /**
@@ -83,7 +81,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
       $update = $request->validate(
       [
@@ -92,13 +90,10 @@ class UserController extends Controller
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ]);
 
-      if ($update->fails())
-        return json_encode(['error' => $update->errors()]);
-
       $input = $request->all();
-      $user = User::where('id', $id)->update($input);
+      $user = User::where('id', $id)->update($update);
 
-      return json_encode(['message' => 'User updated!']);
+      return redirect('/users');
 
     }
 
@@ -108,12 +103,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-      if (User::where('id', $id)->delete())
-        return json_encode(['message' => 'User deleted!']);
-      else
-        return json_encode(['message' => 'Error on delete the user']);
-
+      User::where('id', $id)->delete();
+      return redirect('/users');
     }
 }

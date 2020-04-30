@@ -22,108 +22,119 @@
     </head>
     --}}
 
-    <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+          <div class="container-fluid">
+              <div class="row mb-2">
+                  <div class="col-sm-6">
+                      <h1>Agregar Usuario</h1>
+                  </div>
+              </div>
+          </div><!-- /.container-fluid -->
+      </section>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Agregar Usuario</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+      <!-- Main content -->
+      <section class="content">
+          <div class="container-fluid">
+              <div class="row">
+                  <!-- left column -->
+                  <div class="col-12">
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-12">
+                      <!-- general form elements -->
+                      <div class="card card-primary">
+                          <div class="card-header">
+                              <h3 class="card-title float-left">Nuevo Usuario</h3>
 
-                            <!-- general form elements -->
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title float-left">Nuevo Usuario</h3>
+                              <button type="button" class="btn btn-primary  .btn-sm float-right"
+                                      onclick="location.href='{{ url('/users') }}'">Regresar
+                              </button>
 
-                                    <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                            onclick="location.href='./listaUsuarios.html'">Regresar
-                                    </button>
+                          </div>
+                          <!-- /.card-header -->
 
-                                </div>
-                                <!-- /.card-header -->
+                          <!-- form start -->
+                          <div class="card-body">
+                              <form role="form" action="{{ url('/users') }}" id="quickForm" method="post">
+                                  @csrf
+                                  <div class="row">
+                                      <div class="col-sm-6">
 
-                                <!-- form start -->
-                                <div class="card-body">
-                                    <form role="form" id="quickForm">
+                                          <!-- text input -->
+                                          <div class="form-group">
+                                              <label>Nombre</label>
+                                              <input type="text" name="name" class="form-control"
+                                                     placeholder="Ingrese Nombre de Usuario">
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <div class="form-group">
+                                              <label>E-mail</label>
+                                              <input type="email" name="email" class="form-control"
+                                                     placeholder="Ingrese E-mail">
+                                          </div>
+                                      </div>
+                                  </div>
 
-                                        <div class="row">
-                                            <div class="col-sm-6">
+                                  <div class="row">
+                                      <div class="col-sm-6">
+                                          <!-- text input -->
+                                          <div class="form-group">
+                                              <label>Contraseña</label>
+                                              <input type="password" name="password" class="form-control"
+                                                     placeholder="Ingrese Contraseña">
+                                          </div>
+                                      </div>
+                                      <div class="col-sm-6">
+                                          <!-- text input -->
+                                          <div class="form-group">
+                                              <label>Confirmar contraseña</label>
+                                              <input type="password" name="c_password" class="form-control"
+                                                     placeholder="Ingrese Contraseña">
+                                          </div>
+                                      </div>
+                                  </div>
 
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Usuario</label>
-                                                    <input type="text" name="user" class="form-control"
-                                                           placeholder="Ingrese Nombre de Usuario">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>E-mail</label>
-                                                    <input type="email" name="email" class="form-control"
-                                                           placeholder="Ingrese E-mail">
-                                                </div>
-                                            </div>
-                                        </div>
+                                  <div class="row">
+                                      <div class="col-sm-6">
+                                          <div class="form-group">
+                                              <label>Tipo de Usuario</label>
+                                              <select class="form-control" name="rol">
+                                                  <option value="repartidor">Repartidor</option>
+                                                  <option value="admin">Administrador</option>
+                                                  <option value="vendedor">Vendedor</option>
+                                                  <option value="tienda">Tienda</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
 
-                                        <div class="row">
-                                            <div class="col-sm-6">
+                                  <!-- /.card-body -->
 
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Contraseña</label>
-                                                    <input type="password" name="password" class="form-control"
-                                                           placeholder="Ingrese Contraseña">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Tipo de Usuario</label>
-                                                    <select class="form-control">
-                                                        <option>Repartidor</option>
-                                                        <option>Administrador</option>
-                                                        <option>Vendedor</option>
-                                                        <option>Tienda</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                                  <div class="card-footer">
+                                      <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                      <!-- /.card -->
 
-                                        <!-- /.card-body -->
+                  </div>
+              </div>
+              <!-- /.row -->
+          </div><!-- /.container-fluid -->
+      </section>
 
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.card -->
 
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
+
+    @if ($errors->any())
+        <div>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-        <!-- /.content-wrapper -->
-
-    </div>
-    <!-- ./wrapper -->
+    @endif
 
     {{--
     <!-- jQuery -->
@@ -233,7 +244,5 @@
         });
     </script>
     --}}
-
-    </body>
 
 @endsection

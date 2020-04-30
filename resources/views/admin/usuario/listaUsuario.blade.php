@@ -24,154 +24,114 @@
     </head>
     --}}
 
-    <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+          <!-- Content Header (Page header) -->
+      <section class="content-header">
+          <div class="container-fluid">
+              <div class="row mb-2">
+                  <div class="col-sm-6">
+                      <h1>Usuarios</h1>
+                  </div>
+              </div>
+          </div><!-- /.container-fluid -->
+      </section>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Usuarios</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+      <!-- Main content -->
+      <section class="content">
+          <div class="row">
+              <div class="col-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">Listado de Usuarios</h3>
+                          <button type="button" class="btn btn-primary .btn-sm float-right"
+                                  onclick="location.href='{{ url('/users/create') }}'">Nuevo Usuario
+                          </button>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                          <table id="example2" class="table table-bordered table-striped">
+                              <thead>
+                              <tr>
+                                  <th>Usuario</th>
+                                  <th>E-mail</th>
+                                  <th>Rol</th>
+                                  <th>Acciones</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                @forelse ($users as $user)
+                                  <tr>
+                                      <td>{{ $user->name }}</td>
+                                      <td>{{ $user->email }}</td>
+                                      <td>{{ $user->rol }}</td>
+                                      <td>
+                                          <button type="button" class="btn btn-block btn-info btn-xs"
+                                                  onclick="location.href='{{ url('/users/'.$user->id.'/edit') }}'">Editar
+                                          </button>
+                                          <button type="button" class="btn btn-block btn-danger btn-xs"
+                                                  data-toggle="modal"
+                                                  data-target="#modal-danger">Eliminar
+                                          </button>
+                                      </td>
+                                  </tr>
+                                @empty
+                                    <tr>
+                                        <td>No hay usuarios</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                @endforelse
+                              <tr>
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Listado de Usuarios</h3>
-                                <button type="button" class="btn btn-primary .btn-sm float-right"
-                                        onclick="location.href='./crearUsuario.html'">Nuevo Usuario
-                                </button>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>E-mail</th>
-                                        <th>Contraseña</th>
-                                        <th>Rol</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>Ismael Gonzales</td>
-                                        <td>ytattihu-6669@yopmail.com
-                                        </td>
-                                        <td>W******js</td>
-                                        <td>Repartidor</td>
-                                        <td>
-                                            <button type="button" class="btn btn-block btn-info btn-xs"
-                                                    onclick="location.href='./editarUsuario.html'">Editar
-                                            </button>
-                                            <button type="button" class="btn btn-block btn-danger btn-xs"
-                                                    data-toggle="modal"
-                                                    data-target="#modal-danger">Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brayan Asault</td>
-                                        <td>ytattihu-6669@yopmail.com
-                                        </td>
-                                        <td>W******js</td>
-                                        <td>Administrador</td>
-                                        <td>
-                                            <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                            <button type="button" class="btn btn-block btn-danger btn-xs"
-                                                    data-toggle="modal"
-                                                    data-target="#modal-danger">Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sofía Revoa</td>
-                                        <td>ytattihu-6669@yopmail.com
-                                        </td>
-                                        <td>W******js</td>
-                                        <td>Vendedor</td>
-                                        <td>
-                                            <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                            <button type="button" class="btn btn-block btn-danger btn-xs"
-                                                    data-toggle="modal"
-                                                    data-target="#modal-danger">Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sam Cruz</td>
-                                        <td>ytattihu-6669@yopmail.com
-                                        </td>
-                                        <td>W******js</td>
-                                        <td>Tienda</td>
-                                        <td>
-                                            <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                            <button type="button" class="btn btn-block btn-danger btn-xs"
-                                                    data-toggle="modal"
-                                                    data-target="#modal-danger">Eliminar
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Usuario</th>
-                                        <th>E-mail</th>
-                                        <th>Contraseña</th>
-                                        <th>Rol</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                <div class="modal fade" id="modal-danger">
-                    <div class="modal-dialog">
-                        <div class="modal-content bg-danger">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Estás a punto de eliminar el registro</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>¿Deseas eliminar el registro?</p>
-                            </div>
-                            <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar
-                                </button>
-                                <button type="button" class="btn btn-outline-light swalDefaultSuccess"
-                                        data-dismiss="modal">Eliminar
-                                </button>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-            </section>
-            <!-- /.content -->
-        </div>
-
-    </div>
-    <!-- ./wrapper -->
+                              </tr>
+                              </tbody>
+                              <tfoot>
+                              <tr>
+                                  <th>Usuario</th>
+                                  <th>E-mail</th>
+                                  <th>Rol</th>
+                                  <th>Acciones</th>
+                              </tr>
+                              </tfoot>
+                          </table>
+                      </div>
+                      <!-- /.card-body -->
+                  </div>
+                  <!-- /.card -->
+              </div>
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+          <div class="modal fade" id="modal-danger">
+              <div class="modal-dialog">
+                  <div class="modal-content bg-danger">
+                      <div class="modal-header">
+                          <h4 class="modal-title">Estás a punto de eliminar el registro</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <p>¿Deseas eliminar el registro?</p>
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                          <form action="/user/" method="post">
+                              @csrf
+                              @method('DELETE')
+                              <button type="button" class="btn btn-outline-light" data-dismiss="modal">
+                                Cancelar
+                              </button>
+                              <button type="submit" class="btn btn-outline-light swalDefaultSuccess"
+                                      data-dismiss="modal">
+                                Eliminar
+                              </button>
+                          </form>
+                      </div>
+                  </div>
+                  <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+      </section>
 
     {{--
     <!-- jQuery -->
@@ -236,6 +196,5 @@
 
     </script>
     --}}
-    </body>
 
 @endsection

@@ -14,7 +14,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-
+      $tiendas = Store::all();
+      return view('admin.tienda.index', compact('tiendas'));
     }
 
     //Ejemplo de busqueda

@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Listado de Tiendas</h3>
                         <button type="button" class="btn btn-primary .btn-sm float-right"
-                                onclick="location.href=''">Nueva tienda
+                                onclick="location.href='#'">Nueva tienda
                         </button>
                     </div>
                     <!-- /.card-header -->
@@ -26,69 +26,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Ismael Gonzales</td>
-                                <td>El Patón
-                                </td>
-                                <td>Libre Comercio 225 Col Palmitas. Pachuca de Soto, Hgo.</td>
-                                <td>771458236</td>
-                                <td><img src="./qr.png" alt="Código QR" width="150" height="150"></td>
-
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs"
-                                            onclick="location.href='./editarUsuario.html'">Editar
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Brayan Asault</td>
-                                <td>El Patón
-                                </td>
-                                <td>Libre Comercio 225 Col Palmitas. Pachuca de Soto, Hgo.</td>
-                                <td>771458236</td>
-                                <td><img src="./qr.png" alt="Código QR" width="150" height="150"></td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sofía Revoa</td>
-                                <td>El Patón
-                                </td>
-                                <td>Libre Comercio 225 Col Palmitas. Pachuca de Soto, Hgo.</td>
-                                <td>771458236</td>
-                                <td><img src="./qr.png" alt="Código QR" width="150" height="150"></td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Sam Cruz</td>
-                                <td>El Patón
-                                </td>
-                                <td>Libre Comercio 225 Col Palmitas. Pachuca de Soto, Hgo.</td>
-                                <td>771458236</td>
-                                <td><img src="./qr.png" alt="Código QR" width="150" height="150"></td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
+                              @forelse ($tiendas as $tienda)
+                                <tr>
+                                    <td>{{ $tienda->user()->name }}</td>
+                                    <td>{{ $tienda->name }}</td>
+                                    <td>{{ $tienda->address }}</td>
+                                    <td>{{ $tienda->phone }}</td>
+                                    <td><img src="{{ $tienda->qr_path }}" alt="Código QR" width="150" height="150"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-block btn-info btn-xs"
+                                                onclick="location.href='#'">Editar
+                                        </button>
+                                        <button type="button" class="btn btn-block btn-danger btn-xs"
+                                                data-toggle="modal"
+                                                data-target="#modal-danger">Eliminar
+                                        </button>
+                                    </td>
+                                </tr>
+                              @empty
+                                  <tr>
+                                      <td>No hay tiendas</td>
+                                      <td>&nbsp;</td>
+                                  </tr>
+                              @endforelse
                             </tbody>
                             <tfoot>
                             <tr>
