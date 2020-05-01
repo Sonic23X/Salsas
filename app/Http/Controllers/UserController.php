@@ -39,7 +39,7 @@ class UserController extends Controller
       $create = $request->validate(
       [
         'name' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users',
         'password' => 'required',
         'c_password' => 'required|same:password',
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
@@ -86,7 +86,7 @@ class UserController extends Controller
       $update = $request->validate(
       [
         'name' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:users',
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ]);
 
