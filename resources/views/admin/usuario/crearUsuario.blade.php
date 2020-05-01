@@ -45,7 +45,6 @@
                               @endif
                               <form role="form" action="{{ url('/users') }}" id="quickForm" method="post">
                                   @csrf
-                                  @method('put')
                                   <div class="row">
                                       <div class="col-sm-6">
 

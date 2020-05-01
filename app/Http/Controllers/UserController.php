@@ -36,6 +36,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      $errorMessages =
+      [
+        'name.required' => 'Ingrese el nombre del usuario',
+        'email.required' => 'Ingrese el correo del usuario',
+        'email.email' => 'Ingrese un correo válido',
+        'email.unique' => 'El correo ya está en uso',
+        'rol.in' => 'Seleccione un rol válido'
+      ];
+
       $create = $request->validate(
       [
         'name' => 'required',
@@ -43,7 +52,7 @@ class UserController extends Controller
         'password' => 'required',
         'c_password' => 'required|same:password',
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
-      ]);
+      ], $errorMessages);
 
       $input = $request->all();
       $input['password'] = bcrypt($input['password']);
@@ -83,12 +92,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $errorMessages =
+      [
+        'name.required' => 'Ingrese el nombre del usuario',
+        'email.required' => 'Ingrese el correo del usuario',
+        'email.email' => 'Ingrese un correo válido',
+        'email.unique' => 'El correo ya está en uso',
+        'rol.in' => 'Seleccione un rol válido'
+      ];
+
       $update = $request->validate(
       [
         'name' => 'required',
-        'email' => 'required|email|unique:users',
+        'email' => 'required|email|unique:users,email,' . $id,
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
-      ]);
+      ], $errorMessages);
 
       $input = $request->all();
       $user = User::where('id', $id)->update($update);
