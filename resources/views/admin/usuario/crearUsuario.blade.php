@@ -34,8 +34,18 @@
 
                           <!-- form start -->
                           <div class="card-body">
+                              @if ($errors->any())
+                                  <div class="alert alert-danger" role="alert">
+                                      <ul>
+                                          @foreach ($errors->all() as $error)
+                                              <li>{{ $error }}</li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                              @endif
                               <form role="form" action="{{ url('/users') }}" id="quickForm" method="post">
                                   @csrf
+                                  @method('put')
                                   <div class="row">
                                       <div class="col-sm-6">
 
@@ -105,29 +115,18 @@
       </section>
 
 
-
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     @section('script')
        <script type="text/javascript">
            $(document).ready(function () {
-               $.validator.setDefaults({
+               /*$.validator.setDefaults({
                    submitHandler: function () {
                        alert("Correctamente registrado");
                        window.location.href = "listausuarios.html";
                    }
-               });
+               });*/
                $('#quickForm').validate({
                    rules: {
-                       user: {
+                       name: {
                            required: true,
                        },
                        email: {
@@ -144,7 +143,7 @@
                        }
                    },
                    messages: {
-                       user: {
+                       name: {
                            required:"Por favor ingrese un nombre de usuario",
                        },
                        email: {

@@ -24,7 +24,7 @@
                               <h3 class="card-title float-left">Editar Usuario</h3>
 
                               <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                      onclick="location.href='{{ url('/users') }}'">Regresar
+                                      onclick="location.href='{{ url('/users/'. $user->id) }}'">Regresar
                               </button>
 
                           </div>
@@ -32,6 +32,15 @@
 
                           <!-- form start -->
                           <div class="card-body">
+                            @if ($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form role="form" action="{{ url('/users/'.$user->id) }}" id="quickForm" method="post">
                                 @csrf
                                 {{method_field('PUT')}}
@@ -86,18 +95,19 @@
           </div><!-- /.container-fluid -->
       </section>
 
+
     @section('script')
         <script type="text/javascript">
             $(document).ready(function () {
-                $.validator.setDefaults({
+                /*$.validator.setDefaults({
                     submitHandler: function () {
                         alert("Actualizado con éxito");
                         window.location.href = "listausuarios.html";
                     }
-                });
+                });*/
                 $('#quickForm').validate({
                     rules: {
-                        user: {
+                        name: {
                             required: true,
                         },
                         email: {
@@ -106,7 +116,7 @@
                         },
                     },
                     messages: {
-                        user: {
+                        name: {
                             required: "Por favor ingrese un nombre de usuario",
                         },
                         email: {
