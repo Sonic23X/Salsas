@@ -117,13 +117,15 @@
         <div class="float-right d-none d-sm-inline">
           Anything you want
         </div>
-        <strong>Copyright &copy; 2014-2019 All rights reserved.
+          <strong>Copyright &copy; 2014-2019 All rights reserved.</strong>
       </footer>
 
     </div>
 
     <!-- JS de Laravel -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
     @yield('script')
   </body>
 </html>

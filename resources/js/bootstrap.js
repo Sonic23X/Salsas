@@ -19,6 +19,13 @@ try {
     require('toastr');
     require('jquery-validation');
     require('datatables.net-dt');
+    require('admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min');
+    require('admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min');
+    require('admin-lte/plugins/jquery-validation/jquery.validate.min.js');
+    require('admin-lte/plugins/jquery-validation/additional-methods.min.js');
+    require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
+
+
 } catch (e) {}
 
 /**

@@ -98,7 +98,7 @@
     <!-- /.content -->
 
 
-
+@section('script')
     <!-- page script -->
     <script>
         $(function () {
@@ -117,32 +117,6 @@
             });
         });
     </script>
-
-    <script type="text/javascript">
-        $(function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro Eliminado'
-                })
-            });
-
-            $('.swalDefaultError').click(function () {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Registro no eliminado, ocurrió un error.'
-                })
-            });
-
-        });
-
-    </script>
+@endsection
 
 @endsection

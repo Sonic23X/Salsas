@@ -67,12 +67,12 @@ Route::get('/listaUsuario', function()
 
 Route::get('/crearUsuario', function()
 {
-    return view('admin.salsas.crearUsuario');
+    return view('admin.usuario.crearUsuario');
 
 });
 
 Route::get('/editarUsuario', function()
 {
-    return view('admin.salsas.editarUsuario');
+    return view('admin.usuario.editarUsuario');
 
 });

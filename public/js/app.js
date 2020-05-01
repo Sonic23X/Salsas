@@ -103,6 +103,118 @@
 
 /***/ }),
 
+/***/ "./node_modules/admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * bsCustomFileInput v1.3.4 (https://github.com/Johann-S/bs-custom-file-input)
+ * Copyright 2018 - 2020 Johann-S <johann.servoire@gmail.com>
+ * Licensed under MIT (https://github.com/Johann-S/bs-custom-file-input/blob/master/LICENSE)
+ */
+!function(e,t){ true?module.exports=t():undefined}(this,function(){"use strict";var s={CUSTOMFILE:'.custom-file input[type="file"]',CUSTOMFILELABEL:".custom-file-label",FORM:"form",INPUT:"input"},l=function(e){if(0<e.childNodes.length)for(var t=[].slice.call(e.childNodes),n=0;n<t.length;n++){var l=t[n];if(3!==l.nodeType)return l}return e},u=function(e){var t=e.bsCustomFileInput.defaultText,n=e.parentNode.querySelector(s.CUSTOMFILELABEL);n&&(l(n).textContent=t)},n=!!window.File,r=function(e){if(e.hasAttribute("multiple")&&n)return[].slice.call(e.files).map(function(e){return e.name}).join(", ");if(-1===e.value.indexOf("fakepath"))return e.value;var t=e.value.split("\\");return t[t.length-1]};function d(){var e=this.parentNode.querySelector(s.CUSTOMFILELABEL);if(e){var t=l(e),n=r(this);n.length?t.textContent=n:u(this)}}function v(){for(var e=[].slice.call(this.querySelectorAll(s.INPUT)).filter(function(e){return!!e.bsCustomFileInput}),t=0,n=e.length;t<n;t++)u(e[t])}var p="bsCustomFileInput",m="reset",h="change";return{init:function(e,t){void 0===e&&(e=s.CUSTOMFILE),void 0===t&&(t=s.FORM);for(var n,l,r=[].slice.call(document.querySelectorAll(e)),i=[].slice.call(document.querySelectorAll(t)),o=0,u=r.length;o<u;o++){var c=r[o];Object.defineProperty(c,p,{value:{defaultText:(n=void 0,n="",(l=c.parentNode.querySelector(s.CUSTOMFILELABEL))&&(n=l.textContent),n)},writable:!0}),d.call(c),c.addEventListener(h,d)}for(var f=0,a=i.length;f<a;f++)i[f].addEventListener(m,v),Object.defineProperty(i[f],p,{value:!0,writable:!0})},destroy:function(){for(var e=[].slice.call(document.querySelectorAll(s.FORM)).filter(function(e){return!!e.bsCustomFileInput}),t=[].slice.call(document.querySelectorAll(s.INPUT)).filter(function(e){return!!e.bsCustomFileInput}),n=0,l=t.length;n<l;n++){var r=t[n];u(r),r[p]=void 0,r.removeEventListener(h,d)}for(var i=0,o=e.length;i<o;i++)e[i].removeEventListener(m,v),e[i][p]=void 0}}});
+//# sourceMappingURL=bs-custom-file-input.min.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ Responsive 2.2.3
+ 2014-2018 SpryMedia Ltd - datatables.net/license
+*/
+(function(d){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),__webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function(l){return d(l,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined})(function(d,l,j,q){function t(a,b,c){var e=b+"-"+c;if(n[e])return n[e];for(var d=[],a=a.cell(b,c).node().childNodes,b=0,c=a.length;b<c;b++)d.push(a[b]);return n[e]=d}function r(a,b,d){var e=b+
+"-"+d;if(n[e]){for(var a=a.cell(b,d).node(),d=n[e][0].parentNode.childNodes,b=[],f=0,g=d.length;f<g;f++)b.push(d[f]);d=0;for(f=b.length;d<f;d++)a.appendChild(b[d]);n[e]=q}}var o=d.fn.dataTable,i=function(a,b){if(!o.versionCheck||!o.versionCheck("1.10.10"))throw"DataTables Responsive requires DataTables 1.10.10 or newer";this.s={dt:new o.Api(a),columns:[],current:[]};this.s.dt.settings()[0].responsive||(b&&"string"===typeof b.details?b.details={type:b.details}:b&&!1===b.details?b.details={type:!1}:
+b&&!0===b.details&&(b.details={type:"inline"}),this.c=d.extend(!0,{},i.defaults,o.defaults.responsive,b),a.responsive=this,this._constructor())};d.extend(i.prototype,{_constructor:function(){var a=this,b=this.s.dt,c=b.settings()[0],e=d(l).width();b.settings()[0]._responsive=this;d(l).on("resize.dtr orientationchange.dtr",o.util.throttle(function(){var b=d(l).width();b!==e&&(a._resize(),e=b)}));c.oApi._fnCallbackReg(c,"aoRowCreatedCallback",function(e){-1!==d.inArray(!1,a.s.current)&&d(">td, >th",
+e).each(function(e){e=b.column.index("toData",e);!1===a.s.current[e]&&d(this).css("display","none")})});b.on("destroy.dtr",function(){b.off(".dtr");d(b.table().body()).off(".dtr");d(l).off("resize.dtr orientationchange.dtr");d.each(a.s.current,function(b,e){!1===e&&a._setColumnVis(b,!0)})});this.c.breakpoints.sort(function(a,b){return a.width<b.width?1:a.width>b.width?-1:0});this._classLogic();this._resizeAuto();c=this.c.details;!1!==c.type&&(a._detailsInit(),b.on("column-visibility.dtr",function(){a._timer&&
+clearTimeout(a._timer);a._timer=setTimeout(function(){a._timer=null;a._classLogic();a._resizeAuto();a._resize();a._redrawChildren()},100)}),b.on("draw.dtr",function(){a._redrawChildren()}),d(b.table().node()).addClass("dtr-"+c.type));b.on("column-reorder.dtr",function(){a._classLogic();a._resizeAuto();a._resize()});b.on("column-sizing.dtr",function(){a._resizeAuto();a._resize()});b.on("preXhr.dtr",function(){var e=[];b.rows().every(function(){this.child.isShown()&&e.push(this.id(true))});b.one("draw.dtr",
+function(){a._resizeAuto();a._resize();b.rows(e).every(function(){a._detailsDisplay(this,false)})})});b.on("init.dtr",function(){a._resizeAuto();a._resize();d.inArray(false,a.s.current)&&b.columns.adjust()});this._resize()},_columnsVisiblity:function(a){var b=this.s.dt,c=this.s.columns,e,f,g=c.map(function(a,b){return{columnIdx:b,priority:a.priority}}).sort(function(a,b){return a.priority!==b.priority?a.priority-b.priority:a.columnIdx-b.columnIdx}),h=d.map(c,function(e,c){return!1===b.column(c).visible()?
+"not-visible":e.auto&&null===e.minWidth?!1:!0===e.auto?"-":-1!==d.inArray(a,e.includeIn)}),m=0;e=0;for(f=h.length;e<f;e++)!0===h[e]&&(m+=c[e].minWidth);e=b.settings()[0].oScroll;e=e.sY||e.sX?e.iBarWidth:0;m=b.table().container().offsetWidth-e-m;e=0;for(f=h.length;e<f;e++)c[e].control&&(m-=c[e].minWidth);var s=!1;e=0;for(f=g.length;e<f;e++){var k=g[e].columnIdx;"-"===h[k]&&(!c[k].control&&c[k].minWidth)&&(s||0>m-c[k].minWidth?(s=!0,h[k]=!1):h[k]=!0,m-=c[k].minWidth)}g=!1;e=0;for(f=c.length;e<f;e++)if(!c[e].control&&
+!c[e].never&&!1===h[e]){g=!0;break}e=0;for(f=c.length;e<f;e++)c[e].control&&(h[e]=g),"not-visible"===h[e]&&(h[e]=!1);-1===d.inArray(!0,h)&&(h[0]=!0);return h},_classLogic:function(){var a=this,b=this.c.breakpoints,c=this.s.dt,e=c.columns().eq(0).map(function(a){var b=this.column(a),e=b.header().className,a=c.settings()[0].aoColumns[a].responsivePriority;a===q&&(b=d(b.header()).data("priority"),a=b!==q?1*b:1E4);return{className:e,includeIn:[],auto:!1,control:!1,never:e.match(/\bnever\b/)?!0:!1,priority:a}}),
+f=function(a,b){var c=e[a].includeIn;-1===d.inArray(b,c)&&c.push(b)},g=function(d,c,g,k){if(g)if("max-"===g){k=a._find(c).width;c=0;for(g=b.length;c<g;c++)b[c].width<=k&&f(d,b[c].name)}else if("min-"===g){k=a._find(c).width;c=0;for(g=b.length;c<g;c++)b[c].width>=k&&f(d,b[c].name)}else{if("not-"===g){c=0;for(g=b.length;c<g;c++)-1===b[c].name.indexOf(k)&&f(d,b[c].name)}}else e[d].includeIn.push(c)};e.each(function(a,e){for(var c=a.className.split(" "),f=!1,i=0,l=c.length;i<l;i++){var j=d.trim(c[i]);
+if("all"===j){f=!0;a.includeIn=d.map(b,function(a){return a.name});return}if("none"===j||a.never){f=!0;return}if("control"===j){f=!0;a.control=!0;return}d.each(b,function(a,b){var d=b.name.split("-"),c=j.match(RegExp("(min\\-|max\\-|not\\-)?("+d[0]+")(\\-[_a-zA-Z0-9])?"));c&&(f=!0,c[2]===d[0]&&c[3]==="-"+d[1]?g(e,b.name,c[1],c[2]+c[3]):c[2]===d[0]&&!c[3]&&g(e,b.name,c[1],c[2]))})}f||(a.auto=!0)});this.s.columns=e},_detailsDisplay:function(a,b){var c=this,e=this.s.dt,f=this.c.details;if(f&&!1!==f.type){var g=
+f.display(a,b,function(){return f.renderer(e,a[0],c._detailsObj(a[0]))});(!0===g||!1===g)&&d(e.table().node()).triggerHandler("responsive-display.dt",[e,a,g,b])}},_detailsInit:function(){var a=this,b=this.s.dt,c=this.c.details;"inline"===c.type&&(c.target="td:first-child, th:first-child");b.on("draw.dtr",function(){a._tabIndexes()});a._tabIndexes();d(b.table().body()).on("keyup.dtr","td, th",function(a){a.keyCode===13&&d(this).data("dtr-keyboard")&&d(this).click()});var e=c.target;d(b.table().body()).on("click.dtr mousedown.dtr mouseup.dtr",
+"string"===typeof e?e:"td, th",function(c){if(d(b.table().node()).hasClass("collapsed")&&d.inArray(d(this).closest("tr").get(0),b.rows().nodes().toArray())!==-1){if(typeof e==="number"){var g=e<0?b.columns().eq(0).length+e:e;if(b.cell(this).index().column!==g)return}g=b.row(d(this).closest("tr"));c.type==="click"?a._detailsDisplay(g,false):c.type==="mousedown"?d(this).css("outline","none"):c.type==="mouseup"&&d(this).blur().css("outline","")}})},_detailsObj:function(a){var b=this,c=this.s.dt;return d.map(this.s.columns,
+function(e,d){if(!e.never&&!e.control)return{title:c.settings()[0].aoColumns[d].sTitle,data:c.cell(a,d).render(b.c.orthogonal),hidden:c.column(d).visible()&&!b.s.current[d],columnIndex:d,rowIndex:a}})},_find:function(a){for(var b=this.c.breakpoints,c=0,e=b.length;c<e;c++)if(b[c].name===a)return b[c]},_redrawChildren:function(){var a=this,b=this.s.dt;b.rows({page:"current"}).iterator("row",function(c,e){b.row(e);a._detailsDisplay(b.row(e),!0)})},_resize:function(){var a=this,b=this.s.dt,c=d(l).width(),
+e=this.c.breakpoints,f=e[0].name,g=this.s.columns,h,m=this.s.current.slice();for(h=e.length-1;0<=h;h--)if(c<=e[h].width){f=e[h].name;break}var i=this._columnsVisiblity(f);this.s.current=i;e=!1;h=0;for(c=g.length;h<c;h++)if(!1===i[h]&&!g[h].never&&!g[h].control&&!1===!b.column(h).visible()){e=!0;break}d(b.table().node()).toggleClass("collapsed",e);var k=!1,j=0;b.columns().eq(0).each(function(b,c){!0===i[c]&&j++;i[c]!==m[c]&&(k=!0,a._setColumnVis(b,i[c]))});k&&(this._redrawChildren(),d(b.table().node()).trigger("responsive-resize.dt",
+[b,this.s.current]),0===b.page.info().recordsDisplay&&d("td",b.table().body()).eq(0).attr("colspan",j))},_resizeAuto:function(){var a=this.s.dt,b=this.s.columns;if(this.c.auto&&-1!==d.inArray(!0,d.map(b,function(a){return a.auto}))){d.isEmptyObject(n)||d.each(n,function(b){b=b.split("-");r(a,1*b[0],1*b[1])});a.table().node();var c=a.table().node().cloneNode(!1),e=d(a.table().header().cloneNode(!1)).appendTo(c),f=d(a.table().body()).clone(!1,!1).empty().appendTo(c),g=a.columns().header().filter(function(b){return a.column(b).visible()}).to$().clone(!1).css("display",
+"table-cell").css("min-width",0);d(f).append(d(a.rows({page:"current"}).nodes()).clone(!1)).find("th, td").css("display","");if(f=a.table().footer()){var f=d(f.cloneNode(!1)).appendTo(c),h=a.columns().footer().filter(function(b){return a.column(b).visible()}).to$().clone(!1).css("display","table-cell");d("<tr/>").append(h).appendTo(f)}d("<tr/>").append(g).appendTo(e);"inline"===this.c.details.type&&d(c).addClass("dtr-inline collapsed");d(c).find("[name]").removeAttr("name");d(c).css("position","relative");
+c=d("<div/>").css({width:1,height:1,overflow:"hidden",clear:"both"}).append(c);c.insertBefore(a.table().node());g.each(function(c){c=a.column.index("fromVisible",c);b[c].minWidth=this.offsetWidth||0});c.remove()}},_setColumnVis:function(a,b){var c=this.s.dt,e=b?"":"none";d(c.column(a).header()).css("display",e);d(c.column(a).footer()).css("display",e);c.column(a).nodes().to$().css("display",e);d.isEmptyObject(n)||c.cells(null,a).indexes().each(function(a){r(c,a.row,a.column)})},_tabIndexes:function(){var a=
+this.s.dt,b=a.cells({page:"current"}).nodes().to$(),c=a.settings()[0],e=this.c.details.target;b.filter("[data-dtr-keyboard]").removeData("[data-dtr-keyboard]");"number"===typeof e?a.cells(null,e,{page:"current"}).nodes().to$().attr("tabIndex",c.iTabIndex).data("dtr-keyboard",1):("td:first-child, th:first-child"===e&&(e=">td:first-child, >th:first-child"),d(e,a.rows({page:"current"}).nodes()).attr("tabIndex",c.iTabIndex).data("dtr-keyboard",1))}});i.breakpoints=[{name:"desktop",width:Infinity},{name:"tablet-l",
+width:1024},{name:"tablet-p",width:768},{name:"mobile-l",width:480},{name:"mobile-p",width:320}];i.display={childRow:function(a,b,c){if(b){if(d(a.node()).hasClass("parent"))return a.child(c(),"child").show(),!0}else{if(a.child.isShown())return a.child(!1),d(a.node()).removeClass("parent"),!1;a.child(c(),"child").show();d(a.node()).addClass("parent");return!0}},childRowImmediate:function(a,b,c){if(!b&&a.child.isShown()||!a.responsive.hasHidden())return a.child(!1),d(a.node()).removeClass("parent"),
+!1;a.child(c(),"child").show();d(a.node()).addClass("parent");return!0},modal:function(a){return function(b,c,e){if(c)d("div.dtr-modal-content").empty().append(e());else{var f=function(){g.remove();d(j).off("keypress.dtr")},g=d('<div class="dtr-modal"/>').append(d('<div class="dtr-modal-display"/>').append(d('<div class="dtr-modal-content"/>').append(e())).append(d('<div class="dtr-modal-close">&times;</div>').click(function(){f()}))).append(d('<div class="dtr-modal-background"/>').click(function(){f()})).appendTo("body");
+d(j).on("keyup.dtr",function(a){27===a.keyCode&&(a.stopPropagation(),f())})}a&&a.header&&d("div.dtr-modal-content").prepend("<h2>"+a.header(b)+"</h2>")}}};var n={};i.renderer={listHiddenNodes:function(){return function(a,b,c){var e=d('<ul data-dtr-index="'+b+'" class="dtr-details"/>'),f=!1;d.each(c,function(b,c){c.hidden&&(d('<li data-dtr-index="'+c.columnIndex+'" data-dt-row="'+c.rowIndex+'" data-dt-column="'+c.columnIndex+'"><span class="dtr-title">'+c.title+"</span> </li>").append(d('<span class="dtr-data"/>').append(t(a,
+c.rowIndex,c.columnIndex))).appendTo(e),f=!0)});return f?e:!1}},listHidden:function(){return function(a,b,c){return(a=d.map(c,function(a){return a.hidden?'<li data-dtr-index="'+a.columnIndex+'" data-dt-row="'+a.rowIndex+'" data-dt-column="'+a.columnIndex+'"><span class="dtr-title">'+a.title+'</span> <span class="dtr-data">'+a.data+"</span></li>":""}).join(""))?d('<ul data-dtr-index="'+b+'" class="dtr-details"/>').append(a):!1}},tableAll:function(a){a=d.extend({tableClass:""},a);return function(b,
+c,e){b=d.map(e,function(a){return'<tr data-dt-row="'+a.rowIndex+'" data-dt-column="'+a.columnIndex+'"><td>'+a.title+":</td> <td>"+a.data+"</td></tr>"}).join("");return d('<table class="'+a.tableClass+' dtr-details" width="100%"/>').append(b)}}};i.defaults={breakpoints:i.breakpoints,auto:!0,details:{display:i.display.childRow,renderer:i.renderer.listHidden(),target:0,type:"inline"},orthogonal:"display"};var p=d.fn.dataTable.Api;p.register("responsive()",function(){return this});p.register("responsive.index()",
+function(a){a=d(a);return{column:a.data("dtr-index"),row:a.parent().data("dtr-index")}});p.register("responsive.rebuild()",function(){return this.iterator("table",function(a){a._responsive&&a._responsive._classLogic()})});p.register("responsive.recalc()",function(){return this.iterator("table",function(a){a._responsive&&(a._responsive._resizeAuto(),a._responsive._resize())})});p.register("responsive.hasHidden()",function(){var a=this.context[0];return a._responsive?-1!==d.inArray(!1,a._responsive.s.current):
+!1});p.registerPlural("columns().responsiveHidden()","column().responsiveHidden()",function(){return this.iterator("column",function(a,b){return a._responsive?a._responsive.s.current[b]:!1},1)});i.version="2.2.3";d.fn.dataTable.Responsive=i;d.fn.DataTable.Responsive=i;d(j).on("preInit.dt.dtr",function(a,b){if("dt"===a.namespace&&(d(b.nTable).hasClass("responsive")||d(b.nTable).hasClass("dt-responsive")||b.oInit.responsive||o.defaults.responsive)){var c=b.oInit.responsive;!1!==c&&new i(b,d.isPlainObject(c)?
+c:{})}});return i});
+
+
+/***/ }),
+
+/***/ "./node_modules/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ Bootstrap 4 integration for DataTables' Responsive
+ ©2016 SpryMedia Ltd - datatables.net/license
+*/
+(function(c){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),__webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"),__webpack_require__(/*! datatables.net-responsive */ "./node_modules/datatables.net-responsive/js/dataTables.responsive.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function(a){return c(a,window,document)}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined})(function(c){var a=c.fn.dataTable,b=a.Responsive.display,g=b.modal,e=c('<div class="modal fade dtr-bs-modal" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"/></div></div></div>');
+b.modal=function(a){return function(b,d,f){if(c.fn.modal){if(!d){if(a&&a.header){var d=e.find("div.modal-header"),h=d.find("button").detach();d.empty().append('<h4 class="modal-title">'+a.header(b)+"</h4>").append(h)}e.find("div.modal-body").empty().append(f());e.appendTo("body").modal()}}else g(b,d,f)}};return a.Responsive});
+
+
+/***/ }),
+
+/***/ "./node_modules/admin-lte/plugins/jquery-validation/additional-methods.min.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/admin-lte/plugins/jquery-validation/additional-methods.min.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! jQuery Validation Plugin - v1.19.1 - 6/15/2019
+ * https://jqueryvalidation.org/
+ * Copyright (c) 2019 Jörn Zaefferer; Licensed MIT */
+!function(a){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),__webpack_require__(/*! ./jquery.validate.min */ "./node_modules/admin-lte/plugins/jquery-validation/jquery.validate.min.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(function(a){return function(){function b(a){return a.replace(/<.[^<>]*?>/g," ").replace(/&nbsp;|&#160;/gi," ").replace(/[.(),;:!?%#$'\"_+=\/\-“”’]*/g,"")}a.validator.addMethod("maxWords",function(a,c,d){return this.optional(c)||b(a).match(/\b\w+\b/g).length<=d},a.validator.format("Please enter {0} words or less.")),a.validator.addMethod("minWords",function(a,c,d){return this.optional(c)||b(a).match(/\b\w+\b/g).length>=d},a.validator.format("Please enter at least {0} words.")),a.validator.addMethod("rangeWords",function(a,c,d){var e=b(a),f=/\b\w+\b/g;return this.optional(c)||e.match(f).length>=d[0]&&e.match(f).length<=d[1]},a.validator.format("Please enter between {0} and {1} words."))}(),a.validator.addMethod("abaRoutingNumber",function(a){var b=0,c=a.split(""),d=c.length;if(9!==d)return!1;for(var e=0;e<d;e+=3)b+=3*parseInt(c[e],10)+7*parseInt(c[e+1],10)+parseInt(c[e+2],10);return 0!==b&&b%10===0},"Please enter a valid routing number."),a.validator.addMethod("accept",function(b,c,d){var e,f,g,h="string"==typeof d?d.replace(/\s/g,""):"image/*",i=this.optional(c);if(i)return i;if("file"===a(c).attr("type")&&(h=h.replace(/[\-\[\]\/\{\}\(\)\+\?\.\\\^\$\|]/g,"\\$&").replace(/,/g,"|").replace(/\/\*/g,"/.*"),c.files&&c.files.length))for(g=new RegExp(".?("+h+")$","i"),e=0;e<c.files.length;e++)if(f=c.files[e],!f.type.match(g))return!1;return!0},a.validator.format("Please enter a value with a valid mimetype.")),a.validator.addMethod("alphanumeric",function(a,b){return this.optional(b)||/^\w+$/i.test(a)},"Letters, numbers, and underscores only please"),a.validator.addMethod("bankaccountNL",function(a,b){if(this.optional(b))return!0;if(!/^[0-9]{9}|([0-9]{2} ){3}[0-9]{3}$/.test(a))return!1;var c,d,e,f=a.replace(/ /g,""),g=0,h=f.length;for(c=0;c<h;c++)d=h-c,e=f.substring(c,c+1),g+=d*e;return g%11===0},"Please specify a valid bank account number"),a.validator.addMethod("bankorgiroaccountNL",function(b,c){return this.optional(c)||a.validator.methods.bankaccountNL.call(this,b,c)||a.validator.methods.giroaccountNL.call(this,b,c)},"Please specify a valid bank or giro account number"),a.validator.addMethod("bic",function(a,b){return this.optional(b)||/^([A-Z]{6}[A-Z2-9][A-NP-Z1-9])(X{3}|[A-WY-Z0-9][A-Z0-9]{2})?$/.test(a.toUpperCase())},"Please specify a valid BIC code"),a.validator.addMethod("cifES",function(a,b){"use strict";function c(a){return a%2===0}if(this.optional(b))return!0;var d,e,f,g,h=new RegExp(/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/gi),i=a.substring(0,1),j=a.substring(1,8),k=a.substring(8,9),l=0,m=0,n=0;if(9!==a.length||!h.test(a))return!1;for(d=0;d<j.length;d++)e=parseInt(j[d],10),c(d)?(e*=2,n+=e<10?e:e-9):m+=e;return l=m+n,f=(10-l.toString().substr(-1)).toString(),f=parseInt(f,10)>9?"0":f,g="JABCDEFGHI".substr(f,1).toString(),i.match(/[ABEH]/)?k===f:i.match(/[KPQS]/)?k===g:k===f||k===g},"Please specify a valid CIF number."),a.validator.addMethod("cnhBR",function(a){if(a=a.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g,""),11!==a.length)return!1;var b,c,d,e,f,g,h=0,i=0;if(b=a.charAt(0),new Array(12).join(b)===a)return!1;for(e=0,f=9,g=0;e<9;++e,--f)h+=+(a.charAt(e)*f);for(c=h%11,c>=10&&(c=0,i=2),h=0,e=0,f=1,g=0;e<9;++e,++f)h+=+(a.charAt(e)*f);return d=h%11,d>=10?d=0:d-=i,String(c).concat(d)===a.substr(-2)},"Please specify a valid CNH number"),a.validator.addMethod("cnpjBR",function(a,b){"use strict";if(this.optional(b))return!0;if(a=a.replace(/[^\d]+/g,""),14!==a.length)return!1;if("00000000000000"===a||"11111111111111"===a||"22222222222222"===a||"33333333333333"===a||"44444444444444"===a||"55555555555555"===a||"66666666666666"===a||"77777777777777"===a||"88888888888888"===a||"99999999999999"===a)return!1;for(var c=a.length-2,d=a.substring(0,c),e=a.substring(c),f=0,g=c-7,h=c;h>=1;h--)f+=d.charAt(c-h)*g--,g<2&&(g=9);var i=f%11<2?0:11-f%11;if(i!==parseInt(e.charAt(0),10))return!1;c+=1,d=a.substring(0,c),f=0,g=c-7;for(var j=c;j>=1;j--)f+=d.charAt(c-j)*g--,g<2&&(g=9);return i=f%11<2?0:11-f%11,i===parseInt(e.charAt(1),10)},"Please specify a CNPJ value number"),a.validator.addMethod("cpfBR",function(a,b){"use strict";if(this.optional(b))return!0;if(a=a.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g,""),11!==a.length)return!1;var c,d,e,f,g=0;if(c=parseInt(a.substring(9,10),10),d=parseInt(a.substring(10,11),10),e=function(a,b){var c=10*a%11;return 10!==c&&11!==c||(c=0),c===b},""===a||"00000000000"===a||"11111111111"===a||"22222222222"===a||"33333333333"===a||"44444444444"===a||"55555555555"===a||"66666666666"===a||"77777777777"===a||"88888888888"===a||"99999999999"===a)return!1;for(f=1;f<=9;f++)g+=parseInt(a.substring(f-1,f),10)*(11-f);if(e(g,c)){for(g=0,f=1;f<=10;f++)g+=parseInt(a.substring(f-1,f),10)*(12-f);return e(g,d)}return!1},"Please specify a valid CPF number"),a.validator.addMethod("creditcard",function(a,b){if(this.optional(b))return"dependency-mismatch";if(/[^0-9 \-]+/.test(a))return!1;var c,d,e=0,f=0,g=!1;if(a=a.replace(/\D/g,""),a.length<13||a.length>19)return!1;for(c=a.length-1;c>=0;c--)d=a.charAt(c),f=parseInt(d,10),g&&(f*=2)>9&&(f-=9),e+=f,g=!g;return e%10===0},"Please enter a valid credit card number."),a.validator.addMethod("creditcardtypes",function(a,b,c){if(/[^0-9\-]+/.test(a))return!1;a=a.replace(/\D/g,"");var d=0;return c.mastercard&&(d|=1),c.visa&&(d|=2),c.amex&&(d|=4),c.dinersclub&&(d|=8),c.enroute&&(d|=16),c.discover&&(d|=32),c.jcb&&(d|=64),c.unknown&&(d|=128),c.all&&(d=255),1&d&&(/^(5[12345])/.test(a)||/^(2[234567])/.test(a))?16===a.length:2&d&&/^(4)/.test(a)?16===a.length:4&d&&/^(3[47])/.test(a)?15===a.length:8&d&&/^(3(0[012345]|[68]))/.test(a)?14===a.length:16&d&&/^(2(014|149))/.test(a)?15===a.length:32&d&&/^(6011)/.test(a)?16===a.length:64&d&&/^(3)/.test(a)?16===a.length:64&d&&/^(2131|1800)/.test(a)?15===a.length:!!(128&d)},"Please enter a valid credit card number."),a.validator.addMethod("currency",function(a,b,c){var d,e="string"==typeof c,f=e?c:c[0],g=!!e||c[1];return f=f.replace(/,/g,""),f=g?f+"]":f+"]?",d="^["+f+"([1-9]{1}[0-9]{0,2}(\\,[0-9]{3})*(\\.[0-9]{0,2})?|[1-9]{1}[0-9]{0,}(\\.[0-9]{0,2})?|0(\\.[0-9]{0,2})?|(\\.[0-9]{1,2})?)$",d=new RegExp(d),this.optional(b)||d.test(a)},"Please specify a valid currency"),a.validator.addMethod("dateFA",function(a,b){return this.optional(b)||/^[1-4]\d{3}\/((0?[1-6]\/((3[0-1])|([1-2][0-9])|(0?[1-9])))|((1[0-2]|(0?[7-9]))\/(30|([1-2][0-9])|(0?[1-9]))))$/.test(a)},a.validator.messages.date),a.validator.addMethod("dateITA",function(a,b){var c,d,e,f,g,h=!1,i=/^\d{1,2}\/\d{1,2}\/\d{4}$/;return i.test(a)?(c=a.split("/"),d=parseInt(c[0],10),e=parseInt(c[1],10),f=parseInt(c[2],10),g=new Date(Date.UTC(f,e-1,d,12,0,0,0)),h=g.getUTCFullYear()===f&&g.getUTCMonth()===e-1&&g.getUTCDate()===d):h=!1,this.optional(b)||h},a.validator.messages.date),a.validator.addMethod("dateNL",function(a,b){return this.optional(b)||/^(0?[1-9]|[12]\d|3[01])[\.\/\-](0?[1-9]|1[012])[\.\/\-]([12]\d)?(\d\d)$/.test(a)},a.validator.messages.date),a.validator.addMethod("extension",function(a,b,c){return c="string"==typeof c?c.replace(/,/g,"|"):"png|jpe?g|gif",this.optional(b)||a.match(new RegExp("\\.("+c+")$","i"))},a.validator.format("Please enter a value with a valid extension.")),a.validator.addMethod("giroaccountNL",function(a,b){return this.optional(b)||/^[0-9]{1,7}$/.test(a)},"Please specify a valid giro account number"),a.validator.addMethod("greaterThan",function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-greaterThan-blur").length&&e.addClass("validate-greaterThan-blur").on("blur.validate-greaterThan",function(){a(c).valid()}),b>e.val()},"Please enter a greater value."),a.validator.addMethod("greaterThanEqual",function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-greaterThanEqual-blur").length&&e.addClass("validate-greaterThanEqual-blur").on("blur.validate-greaterThanEqual",function(){a(c).valid()}),b>=e.val()},"Please enter a greater value."),a.validator.addMethod("iban",function(a,b){if(this.optional(b))return!0;var c,d,e,f,g,h,i,j,k,l=a.replace(/ /g,"").toUpperCase(),m="",n=!0,o="",p="",q=5;if(l.length<q)return!1;if(c=l.substring(0,2),h={AL:"\\d{8}[\\dA-Z]{16}",AD:"\\d{8}[\\dA-Z]{12}",AT:"\\d{16}",AZ:"[\\dA-Z]{4}\\d{20}",BE:"\\d{12}",BH:"[A-Z]{4}[\\dA-Z]{14}",BA:"\\d{16}",BR:"\\d{23}[A-Z][\\dA-Z]",BG:"[A-Z]{4}\\d{6}[\\dA-Z]{8}",CR:"\\d{17}",HR:"\\d{17}",CY:"\\d{8}[\\dA-Z]{16}",CZ:"\\d{20}",DK:"\\d{14}",DO:"[A-Z]{4}\\d{20}",EE:"\\d{16}",FO:"\\d{14}",FI:"\\d{14}",FR:"\\d{10}[\\dA-Z]{11}\\d{2}",GE:"[\\dA-Z]{2}\\d{16}",DE:"\\d{18}",GI:"[A-Z]{4}[\\dA-Z]{15}",GR:"\\d{7}[\\dA-Z]{16}",GL:"\\d{14}",GT:"[\\dA-Z]{4}[\\dA-Z]{20}",HU:"\\d{24}",IS:"\\d{22}",IE:"[\\dA-Z]{4}\\d{14}",IL:"\\d{19}",IT:"[A-Z]\\d{10}[\\dA-Z]{12}",KZ:"\\d{3}[\\dA-Z]{13}",KW:"[A-Z]{4}[\\dA-Z]{22}",LV:"[A-Z]{4}[\\dA-Z]{13}",LB:"\\d{4}[\\dA-Z]{20}",LI:"\\d{5}[\\dA-Z]{12}",LT:"\\d{16}",LU:"\\d{3}[\\dA-Z]{13}",MK:"\\d{3}[\\dA-Z]{10}\\d{2}",MT:"[A-Z]{4}\\d{5}[\\dA-Z]{18}",MR:"\\d{23}",MU:"[A-Z]{4}\\d{19}[A-Z]{3}",MC:"\\d{10}[\\dA-Z]{11}\\d{2}",MD:"[\\dA-Z]{2}\\d{18}",ME:"\\d{18}",NL:"[A-Z]{4}\\d{10}",NO:"\\d{11}",PK:"[\\dA-Z]{4}\\d{16}",PS:"[\\dA-Z]{4}\\d{21}",PL:"\\d{24}",PT:"\\d{21}",RO:"[A-Z]{4}[\\dA-Z]{16}",SM:"[A-Z]\\d{10}[\\dA-Z]{12}",SA:"\\d{2}[\\dA-Z]{18}",RS:"\\d{18}",SK:"\\d{20}",SI:"\\d{15}",ES:"\\d{20}",SE:"\\d{20}",CH:"\\d{5}[\\dA-Z]{12}",TN:"\\d{20}",TR:"\\d{5}[\\dA-Z]{17}",AE:"\\d{3}\\d{16}",GB:"[A-Z]{4}\\d{14}",VG:"[\\dA-Z]{4}\\d{16}"},g=h[c],"undefined"!=typeof g&&(i=new RegExp("^[A-Z]{2}\\d{2}"+g+"$",""),!i.test(l)))return!1;for(d=l.substring(4,l.length)+l.substring(0,4),j=0;j<d.length;j++)e=d.charAt(j),"0"!==e&&(n=!1),n||(m+="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(e));for(k=0;k<m.length;k++)f=m.charAt(k),p=""+o+f,o=p%97;return 1===o},"Please specify a valid IBAN"),a.validator.addMethod("integer",function(a,b){return this.optional(b)||/^-?\d+$/.test(a)},"A positive or negative non-decimal number please"),a.validator.addMethod("ipv4",function(a,b){return this.optional(b)||/^(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)\.(25[0-5]|2[0-4]\d|[01]?\d\d?)$/i.test(a)},"Please enter a valid IP v4 address."),a.validator.addMethod("ipv6",function(a,b){return this.optional(b)||/^((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(([0-9A-Fa-f]{1,4}:){0,5}:((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|(::([0-9A-Fa-f]{1,4}:){0,5}((\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b)\.){3}(\b((25[0-5])|(1\d{2})|(2[0-4]\d)|(\d{1,2}))\b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))$/i.test(a)},"Please enter a valid IP v6 address."),a.validator.addMethod("lessThan",function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-lessThan-blur").length&&e.addClass("validate-lessThan-blur").on("blur.validate-lessThan",function(){a(c).valid()}),b<e.val()},"Please enter a lesser value."),a.validator.addMethod("lessThanEqual",function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-lessThanEqual-blur").length&&e.addClass("validate-lessThanEqual-blur").on("blur.validate-lessThanEqual",function(){a(c).valid()}),b<=e.val()},"Please enter a lesser value."),a.validator.addMethod("lettersonly",function(a,b){return this.optional(b)||/^[a-z]+$/i.test(a)},"Letters only please"),a.validator.addMethod("letterswithbasicpunc",function(a,b){return this.optional(b)||/^[a-z\-.,()'"\s]+$/i.test(a)},"Letters or punctuation only please"),a.validator.addMethod("maxfiles",function(b,c,d){return!!this.optional(c)||!("file"===a(c).attr("type")&&c.files&&c.files.length>d)},a.validator.format("Please select no more than {0} files.")),a.validator.addMethod("maxsize",function(b,c,d){if(this.optional(c))return!0;if("file"===a(c).attr("type")&&c.files&&c.files.length)for(var e=0;e<c.files.length;e++)if(c.files[e].size>d)return!1;return!0},a.validator.format("File size must not exceed {0} bytes each.")),a.validator.addMethod("maxsizetotal",function(b,c,d){if(this.optional(c))return!0;if("file"===a(c).attr("type")&&c.files&&c.files.length)for(var e=0,f=0;f<c.files.length;f++)if(e+=c.files[f].size,e>d)return!1;return!0},a.validator.format("Total size of all files must not exceed {0} bytes.")),a.validator.addMethod("mobileNL",function(a,b){return this.optional(b)||/^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)6((\s|\s?\-\s?)?[0-9]){8}$/.test(a)},"Please specify a valid mobile number"),a.validator.addMethod("mobileRU",function(a,b){var c=a.replace(/\(|\)|\s+|-/g,"");return this.optional(b)||c.length>9&&/^((\+7|7|8)+([0-9]){10})$/.test(c)},"Please specify a valid mobile number"),a.validator.addMethod("mobileUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?|0)7(?:[1345789]\d{2}|624)\s?\d{3}\s?\d{3})$/)},"Please specify a valid mobile number"),a.validator.addMethod("netmask",function(a,b){return this.optional(b)||/^(254|252|248|240|224|192|128)\.0\.0\.0|255\.(254|252|248|240|224|192|128|0)\.0\.0|255\.255\.(254|252|248|240|224|192|128|0)\.0|255\.255\.255\.(254|252|248|240|224|192|128|0)/i.test(a)},"Please enter a valid netmask."),a.validator.addMethod("nieES",function(a,b){"use strict";if(this.optional(b))return!0;var c,d=new RegExp(/^[MXYZ]{1}[0-9]{7,8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/gi),e="TRWAGMYFPDXBNJZSQVHLCKET",f=a.substr(a.length-1).toUpperCase();return a=a.toString().toUpperCase(),!(a.length>10||a.length<9||!d.test(a))&&(a=a.replace(/^[X]/,"0").replace(/^[Y]/,"1").replace(/^[Z]/,"2"),c=9===a.length?a.substr(0,8):a.substr(0,9),e.charAt(parseInt(c,10)%23)===f)},"Please specify a valid NIE number."),a.validator.addMethod("nifES",function(a,b){"use strict";return!!this.optional(b)||(a=a.toUpperCase(),!!a.match("((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)")&&(/^[0-9]{8}[A-Z]{1}$/.test(a)?"TRWAGMYFPDXBNJZSQVHLCKE".charAt(a.substring(8,0)%23)===a.charAt(8):!!/^[KLM]{1}/.test(a)&&a[8]==="TRWAGMYFPDXBNJZSQVHLCKE".charAt(a.substring(8,1)%23)))},"Please specify a valid NIF number."),a.validator.addMethod("nipPL",function(a){"use strict";if(a=a.replace(/[^0-9]/g,""),10!==a.length)return!1;for(var b=[6,5,7,2,3,4,5,6,7],c=0,d=0;d<9;d++)c+=b[d]*a[d];var e=c%11,f=10===e?0:e;return f===parseInt(a[9],10)},"Please specify a valid NIP number."),a.validator.addMethod("nisBR",function(a){var b,c,d,e,f,g=0;if(a=a.replace(/([~!@#$%^&*()_+=`{}\[\]\-|\\:;'<>,.\/? ])+/g,""),11!==a.length)return!1;for(c=parseInt(a.substring(10,11),10),b=parseInt(a.substring(0,10),10),e=2;e<12;e++)f=e,10===e&&(f=2),11===e&&(f=3),g+=b%10*f,b=parseInt(b/10,10);return d=g%11,d=d>1?11-d:0,c===d},"Please specify a valid NIS/PIS number"),a.validator.addMethod("notEqualTo",function(b,c,d){return this.optional(c)||!a.validator.methods.equalTo.call(this,b,c,d)},"Please enter a different value, values must not be the same."),a.validator.addMethod("nowhitespace",function(a,b){return this.optional(b)||/^\S+$/i.test(a)},"No white space please"),a.validator.addMethod("pattern",function(a,b,c){return!!this.optional(b)||("string"==typeof c&&(c=new RegExp("^(?:"+c+")$")),c.test(a))},"Invalid format."),a.validator.addMethod("phoneNL",function(a,b){return this.optional(b)||/^((\+|00(\s|\s?\-\s?)?)31(\s|\s?\-\s?)?(\(0\)[\-\s]?)?|0)[1-9]((\s|\s?\-\s?)?[0-9]){8}$/.test(a)},"Please specify a valid phone number."),a.validator.addMethod("phonePL",function(a,b){a=a.replace(/\s+/g,"");var c=/^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5[0-9]|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/;return this.optional(b)||c.test(a)},"Please specify a valid phone number"),a.validator.addMethod("phonesUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?|0)(?:1\d{8,9}|[23]\d{9}|7(?:[1345789]\d{8}|624\d{6})))$/)},"Please specify a valid uk phone number"),a.validator.addMethod("phoneUK",function(a,b){return a=a.replace(/\(|\)|\s+|-/g,""),this.optional(b)||a.length>9&&a.match(/^(?:(?:(?:00\s?|\+)44\s?)|(?:\(?0))(?:\d{2}\)?\s?\d{4}\s?\d{4}|\d{3}\)?\s?\d{3}\s?\d{3,4}|\d{4}\)?\s?(?:\d{5}|\d{3}\s?\d{3})|\d{5}\)?\s?\d{4,5})$/)},"Please specify a valid phone number"),a.validator.addMethod("phoneUS",function(a,b){return a=a.replace(/\s+/g,""),this.optional(b)||a.length>9&&a.match(/^(\+?1-?)?(\([2-9]([02-9]\d|1[02-9])\)|[2-9]([02-9]\d|1[02-9]))-?[2-9]\d{2}-?\d{4}$/)},"Please specify a valid phone number"),a.validator.addMethod("postalcodeBR",function(a,b){return this.optional(b)||/^\d{2}.\d{3}-\d{3}?$|^\d{5}-?\d{3}?$/.test(a)},"Informe um CEP válido."),a.validator.addMethod("postalCodeCA",function(a,b){return this.optional(b)||/^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ] *\d[ABCEGHJKLMNPRSTVWXYZ]\d$/i.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postalcodeIT",function(a,b){return this.optional(b)||/^\d{5}$/.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postalcodeNL",function(a,b){return this.optional(b)||/^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/.test(a)},"Please specify a valid postal code"),a.validator.addMethod("postcodeUK",function(a,b){return this.optional(b)||/^((([A-PR-UWYZ][0-9])|([A-PR-UWYZ][0-9][0-9])|([A-PR-UWYZ][A-HK-Y][0-9])|([A-PR-UWYZ][A-HK-Y][0-9][0-9])|([A-PR-UWYZ][0-9][A-HJKSTUW])|([A-PR-UWYZ][A-HK-Y][0-9][ABEHMNPRVWXY]))\s?([0-9][ABD-HJLNP-UW-Z]{2})|(GIR)\s?(0AA))$/i.test(a)},"Please specify a valid UK postcode"),a.validator.addMethod("require_from_group",function(b,c,d){var e=a(d[1],c.form),f=e.eq(0),g=f.data("valid_req_grp")?f.data("valid_req_grp"):a.extend({},this),h=e.filter(function(){return g.elementValue(this)}).length>=d[0];return f.data("valid_req_grp",g),a(c).data("being_validated")||(e.data("being_validated",!0),e.each(function(){g.element(this)}),e.data("being_validated",!1)),h},a.validator.format("Please fill at least {0} of these fields.")),a.validator.addMethod("skip_or_fill_minimum",function(b,c,d){var e=a(d[1],c.form),f=e.eq(0),g=f.data("valid_skip")?f.data("valid_skip"):a.extend({},this),h=e.filter(function(){return g.elementValue(this)}).length,i=0===h||h>=d[0];return f.data("valid_skip",g),a(c).data("being_validated")||(e.data("being_validated",!0),e.each(function(){g.element(this)}),e.data("being_validated",!1)),i},a.validator.format("Please either skip these fields or fill at least {0} of them.")),a.validator.addMethod("stateUS",function(a,b,c){var d,e="undefined"==typeof c,f=!e&&"undefined"!=typeof c.caseSensitive&&c.caseSensitive,g=!e&&"undefined"!=typeof c.includeTerritories&&c.includeTerritories,h=!e&&"undefined"!=typeof c.includeMilitary&&c.includeMilitary;return d=g||h?g&&h?"^(A[AEKLPRSZ]|C[AOT]|D[CE]|FL|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEINOPST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$":g?"^(A[KLRSZ]|C[AOT]|D[CE]|FL|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEINOPST]|N[CDEHJMVY]|O[HKR]|P[AR]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$":"^(A[AEKLPRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$":"^(A[KLRZ]|C[AOT]|D[CE]|FL|GA|HI|I[ADLN]|K[SY]|LA|M[ADEINOST]|N[CDEHJMVY]|O[HKR]|PA|RI|S[CD]|T[NX]|UT|V[AT]|W[AIVY])$",d=f?new RegExp(d):new RegExp(d,"i"),this.optional(b)||d.test(a)},"Please specify a valid state"),a.validator.addMethod("strippedminlength",function(b,c,d){return a(b).text().length>=d},a.validator.format("Please enter at least {0} characters")),a.validator.addMethod("time",function(a,b){return this.optional(b)||/^([01]\d|2[0-3]|[0-9])(:[0-5]\d){1,2}$/.test(a)},"Please enter a valid time, between 00:00 and 23:59"),a.validator.addMethod("time12h",function(a,b){return this.optional(b)||/^((0?[1-9]|1[012])(:[0-5]\d){1,2}(\ ?[AP]M))$/i.test(a)},"Please enter a valid time in 12-hour am/pm format"),a.validator.addMethod("url2",function(a,b){return this.optional(b)||/^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)*(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(a)},a.validator.messages.url),a.validator.addMethod("vinUS",function(a){if(17!==a.length)return!1;var b,c,d,e,f,g,h=["A","B","C","D","E","F","G","H","J","K","L","M","N","P","R","S","T","U","V","W","X","Y","Z"],i=[1,2,3,4,5,6,7,8,1,2,3,4,5,7,9,2,3,4,5,6,7,8,9],j=[8,7,6,5,4,3,2,10,0,9,8,7,6,5,4,3,2],k=0;for(b=0;b<17;b++){if(e=j[b],d=a.slice(b,b+1),8===b&&(g=d),isNaN(d)){for(c=0;c<h.length;c++)if(d.toUpperCase()===h[c]){d=i[c],d*=e,isNaN(g)&&8===c&&(g=h[c]);break}}else d*=e;k+=d}return f=k%11,10===f&&(f="X"),f===g},"The specified vehicle identification number (VIN) is invalid."),a.validator.addMethod("zipcodeUS",function(a,b){return this.optional(b)||/^\d{5}(-\d{4})?$/.test(a)},"The specified US ZIP Code is invalid"),a.validator.addMethod("ziprange",function(a,b){return this.optional(b)||/^90[2-5]\d\{2\}-\d{4}$/.test(a)},"Your ZIP-code must be in the range 902xx-xxxx to 905xx-xxxx"),a});
+
+/***/ }),
+
+/***/ "./node_modules/admin-lte/plugins/jquery-validation/jquery.validate.min.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/admin-lte/plugins/jquery-validation/jquery.validate.min.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! jQuery Validation Plugin - v1.19.1 - 6/15/2019
+ * https://jqueryvalidation.org/
+ * Copyright (c) 2019 Jörn Zaefferer; Licensed MIT */
+!function(a){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):undefined}(function(a){a.extend(a.fn,{validate:function(b){if(!this.length)return void(b&&b.debug&&window.console&&console.warn("Nothing selected, can't validate, returning nothing."));var c=a.data(this[0],"validator");return c?c:(this.attr("novalidate","novalidate"),c=new a.validator(b,this[0]),a.data(this[0],"validator",c),c.settings.onsubmit&&(this.on("click.validate",":submit",function(b){c.submitButton=b.currentTarget,a(this).hasClass("cancel")&&(c.cancelSubmit=!0),void 0!==a(this).attr("formnovalidate")&&(c.cancelSubmit=!0)}),this.on("submit.validate",function(b){function d(){var d,e;return c.submitButton&&(c.settings.submitHandler||c.formSubmitted)&&(d=a("<input type='hidden'/>").attr("name",c.submitButton.name).val(a(c.submitButton).val()).appendTo(c.currentForm)),!(c.settings.submitHandler&&!c.settings.debug)||(e=c.settings.submitHandler.call(c,c.currentForm,b),d&&d.remove(),void 0!==e&&e)}return c.settings.debug&&b.preventDefault(),c.cancelSubmit?(c.cancelSubmit=!1,d()):c.form()?c.pendingRequest?(c.formSubmitted=!0,!1):d():(c.focusInvalid(),!1)})),c)},valid:function(){var b,c,d;return a(this[0]).is("form")?b=this.validate().form():(d=[],b=!0,c=a(this[0].form).validate(),this.each(function(){b=c.element(this)&&b,b||(d=d.concat(c.errorList))}),c.errorList=d),b},rules:function(b,c){var d,e,f,g,h,i,j=this[0],k="undefined"!=typeof this.attr("contenteditable")&&"false"!==this.attr("contenteditable");if(null!=j&&(!j.form&&k&&(j.form=this.closest("form")[0],j.name=this.attr("name")),null!=j.form)){if(b)switch(d=a.data(j.form,"validator").settings,e=d.rules,f=a.validator.staticRules(j),b){case"add":a.extend(f,a.validator.normalizeRule(c)),delete f.messages,e[j.name]=f,c.messages&&(d.messages[j.name]=a.extend(d.messages[j.name],c.messages));break;case"remove":return c?(i={},a.each(c.split(/\s/),function(a,b){i[b]=f[b],delete f[b]}),i):(delete e[j.name],f)}return g=a.validator.normalizeRules(a.extend({},a.validator.classRules(j),a.validator.attributeRules(j),a.validator.dataRules(j),a.validator.staticRules(j)),j),g.required&&(h=g.required,delete g.required,g=a.extend({required:h},g)),g.remote&&(h=g.remote,delete g.remote,g=a.extend(g,{remote:h})),g}}}),a.extend(a.expr.pseudos||a.expr[":"],{blank:function(b){return!a.trim(""+a(b).val())},filled:function(b){var c=a(b).val();return null!==c&&!!a.trim(""+c)},unchecked:function(b){return!a(b).prop("checked")}}),a.validator=function(b,c){this.settings=a.extend(!0,{},a.validator.defaults,b),this.currentForm=c,this.init()},a.validator.format=function(b,c){return 1===arguments.length?function(){var c=a.makeArray(arguments);return c.unshift(b),a.validator.format.apply(this,c)}:void 0===c?b:(arguments.length>2&&c.constructor!==Array&&(c=a.makeArray(arguments).slice(1)),c.constructor!==Array&&(c=[c]),a.each(c,function(a,c){b=b.replace(new RegExp("\\{"+a+"\\}","g"),function(){return c})}),b)},a.extend(a.validator,{defaults:{messages:{},groups:{},rules:{},errorClass:"error",pendingClass:"pending",validClass:"valid",errorElement:"label",focusCleanup:!1,focusInvalid:!0,errorContainer:a([]),errorLabelContainer:a([]),onsubmit:!0,ignore:":hidden",ignoreTitle:!1,onfocusin:function(a){this.lastActive=a,this.settings.focusCleanup&&(this.settings.unhighlight&&this.settings.unhighlight.call(this,a,this.settings.errorClass,this.settings.validClass),this.hideThese(this.errorsFor(a)))},onfocusout:function(a){this.checkable(a)||!(a.name in this.submitted)&&this.optional(a)||this.element(a)},onkeyup:function(b,c){var d=[16,17,18,20,35,36,37,38,39,40,45,144,225];9===c.which&&""===this.elementValue(b)||a.inArray(c.keyCode,d)!==-1||(b.name in this.submitted||b.name in this.invalid)&&this.element(b)},onclick:function(a){a.name in this.submitted?this.element(a):a.parentNode.name in this.submitted&&this.element(a.parentNode)},highlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).addClass(c).removeClass(d):a(b).addClass(c).removeClass(d)},unhighlight:function(b,c,d){"radio"===b.type?this.findByName(b.name).removeClass(c).addClass(d):a(b).removeClass(c).addClass(d)}},setDefaults:function(b){a.extend(a.validator.defaults,b)},messages:{required:"This field is required.",remote:"Please fix this field.",email:"Please enter a valid email address.",url:"Please enter a valid URL.",date:"Please enter a valid date.",dateISO:"Please enter a valid date (ISO).",number:"Please enter a valid number.",digits:"Please enter only digits.",equalTo:"Please enter the same value again.",maxlength:a.validator.format("Please enter no more than {0} characters."),minlength:a.validator.format("Please enter at least {0} characters."),rangelength:a.validator.format("Please enter a value between {0} and {1} characters long."),range:a.validator.format("Please enter a value between {0} and {1}."),max:a.validator.format("Please enter a value less than or equal to {0}."),min:a.validator.format("Please enter a value greater than or equal to {0}."),step:a.validator.format("Please enter a multiple of {0}.")},autoCreateRanges:!1,prototype:{init:function(){function b(b){var c="undefined"!=typeof a(this).attr("contenteditable")&&"false"!==a(this).attr("contenteditable");if(!this.form&&c&&(this.form=a(this).closest("form")[0],this.name=a(this).attr("name")),d===this.form){var e=a.data(this.form,"validator"),f="on"+b.type.replace(/^validate/,""),g=e.settings;g[f]&&!a(this).is(g.ignore)&&g[f].call(e,this,b)}}this.labelContainer=a(this.settings.errorLabelContainer),this.errorContext=this.labelContainer.length&&this.labelContainer||a(this.currentForm),this.containers=a(this.settings.errorContainer).add(this.settings.errorLabelContainer),this.submitted={},this.valueCache={},this.pendingRequest=0,this.pending={},this.invalid={},this.reset();var c,d=this.currentForm,e=this.groups={};a.each(this.settings.groups,function(b,c){"string"==typeof c&&(c=c.split(/\s/)),a.each(c,function(a,c){e[c]=b})}),c=this.settings.rules,a.each(c,function(b,d){c[b]=a.validator.normalizeRule(d)}),a(this.currentForm).on("focusin.validate focusout.validate keyup.validate",":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], [type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], [type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], [type='radio'], [type='checkbox'], [contenteditable], [type='button']",b).on("click.validate","select, option, [type='radio'], [type='checkbox']",b),this.settings.invalidHandler&&a(this.currentForm).on("invalid-form.validate",this.settings.invalidHandler)},form:function(){return this.checkForm(),a.extend(this.submitted,this.errorMap),this.invalid=a.extend({},this.errorMap),this.valid()||a(this.currentForm).triggerHandler("invalid-form",[this]),this.showErrors(),this.valid()},checkForm:function(){this.prepareForm();for(var a=0,b=this.currentElements=this.elements();b[a];a++)this.check(b[a]);return this.valid()},element:function(b){var c,d,e=this.clean(b),f=this.validationTargetFor(e),g=this,h=!0;return void 0===f?delete this.invalid[e.name]:(this.prepareElement(f),this.currentElements=a(f),d=this.groups[f.name],d&&a.each(this.groups,function(a,b){b===d&&a!==f.name&&(e=g.validationTargetFor(g.clean(g.findByName(a))),e&&e.name in g.invalid&&(g.currentElements.push(e),h=g.check(e)&&h))}),c=this.check(f)!==!1,h=h&&c,c?this.invalid[f.name]=!1:this.invalid[f.name]=!0,this.numberOfInvalids()||(this.toHide=this.toHide.add(this.containers)),this.showErrors(),a(b).attr("aria-invalid",!c)),h},showErrors:function(b){if(b){var c=this;a.extend(this.errorMap,b),this.errorList=a.map(this.errorMap,function(a,b){return{message:a,element:c.findByName(b)[0]}}),this.successList=a.grep(this.successList,function(a){return!(a.name in b)})}this.settings.showErrors?this.settings.showErrors.call(this,this.errorMap,this.errorList):this.defaultShowErrors()},resetForm:function(){a.fn.resetForm&&a(this.currentForm).resetForm(),this.invalid={},this.submitted={},this.prepareForm(),this.hideErrors();var b=this.elements().removeData("previousValue").removeAttr("aria-invalid");this.resetElements(b)},resetElements:function(a){var b;if(this.settings.unhighlight)for(b=0;a[b];b++)this.settings.unhighlight.call(this,a[b],this.settings.errorClass,""),this.findByName(a[b].name).removeClass(this.settings.validClass);else a.removeClass(this.settings.errorClass).removeClass(this.settings.validClass)},numberOfInvalids:function(){return this.objectLength(this.invalid)},objectLength:function(a){var b,c=0;for(b in a)void 0!==a[b]&&null!==a[b]&&a[b]!==!1&&c++;return c},hideErrors:function(){this.hideThese(this.toHide)},hideThese:function(a){a.not(this.containers).text(""),this.addWrapper(a).hide()},valid:function(){return 0===this.size()},size:function(){return this.errorList.length},focusInvalid:function(){if(this.settings.focusInvalid)try{a(this.findLastActive()||this.errorList.length&&this.errorList[0].element||[]).filter(":visible").trigger("focus").trigger("focusin")}catch(b){}},findLastActive:function(){var b=this.lastActive;return b&&1===a.grep(this.errorList,function(a){return a.element.name===b.name}).length&&b},elements:function(){var b=this,c={};return a(this.currentForm).find("input, select, textarea, [contenteditable]").not(":submit, :reset, :image, :disabled").not(this.settings.ignore).filter(function(){var d=this.name||a(this).attr("name"),e="undefined"!=typeof a(this).attr("contenteditable")&&"false"!==a(this).attr("contenteditable");return!d&&b.settings.debug&&window.console&&console.error("%o has no name assigned",this),e&&(this.form=a(this).closest("form")[0],this.name=d),this.form===b.currentForm&&(!(d in c||!b.objectLength(a(this).rules()))&&(c[d]=!0,!0))})},clean:function(b){return a(b)[0]},errors:function(){var b=this.settings.errorClass.split(" ").join(".");return a(this.settings.errorElement+"."+b,this.errorContext)},resetInternals:function(){this.successList=[],this.errorList=[],this.errorMap={},this.toShow=a([]),this.toHide=a([])},reset:function(){this.resetInternals(),this.currentElements=a([])},prepareForm:function(){this.reset(),this.toHide=this.errors().add(this.containers)},prepareElement:function(a){this.reset(),this.toHide=this.errorsFor(a)},elementValue:function(b){var c,d,e=a(b),f=b.type,g="undefined"!=typeof e.attr("contenteditable")&&"false"!==e.attr("contenteditable");return"radio"===f||"checkbox"===f?this.findByName(b.name).filter(":checked").val():"number"===f&&"undefined"!=typeof b.validity?b.validity.badInput?"NaN":e.val():(c=g?e.text():e.val(),"file"===f?"C:\\fakepath\\"===c.substr(0,12)?c.substr(12):(d=c.lastIndexOf("/"),d>=0?c.substr(d+1):(d=c.lastIndexOf("\\"),d>=0?c.substr(d+1):c)):"string"==typeof c?c.replace(/\r/g,""):c)},check:function(b){b=this.validationTargetFor(this.clean(b));var c,d,e,f,g=a(b).rules(),h=a.map(g,function(a,b){return b}).length,i=!1,j=this.elementValue(b);"function"==typeof g.normalizer?f=g.normalizer:"function"==typeof this.settings.normalizer&&(f=this.settings.normalizer),f&&(j=f.call(b,j),delete g.normalizer);for(d in g){e={method:d,parameters:g[d]};try{if(c=a.validator.methods[d].call(this,j,b,e.parameters),"dependency-mismatch"===c&&1===h){i=!0;continue}if(i=!1,"pending"===c)return void(this.toHide=this.toHide.not(this.errorsFor(b)));if(!c)return this.formatAndAdd(b,e),!1}catch(k){throw this.settings.debug&&window.console&&console.log("Exception occurred when checking element "+b.id+", check the '"+e.method+"' method.",k),k instanceof TypeError&&(k.message+=".  Exception occurred when checking element "+b.id+", check the '"+e.method+"' method."),k}}if(!i)return this.objectLength(g)&&this.successList.push(b),!0},customDataMessage:function(b,c){return a(b).data("msg"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase())||a(b).data("msg")},customMessage:function(a,b){var c=this.settings.messages[a];return c&&(c.constructor===String?c:c[b])},findDefined:function(){for(var a=0;a<arguments.length;a++)if(void 0!==arguments[a])return arguments[a]},defaultMessage:function(b,c){"string"==typeof c&&(c={method:c});var d=this.findDefined(this.customMessage(b.name,c.method),this.customDataMessage(b,c.method),!this.settings.ignoreTitle&&b.title||void 0,a.validator.messages[c.method],"<strong>Warning: No message defined for "+b.name+"</strong>"),e=/\$?\{(\d+)\}/g;return"function"==typeof d?d=d.call(this,c.parameters,b):e.test(d)&&(d=a.validator.format(d.replace(e,"{$1}"),c.parameters)),d},formatAndAdd:function(a,b){var c=this.defaultMessage(a,b);this.errorList.push({message:c,element:a,method:b.method}),this.errorMap[a.name]=c,this.submitted[a.name]=c},addWrapper:function(a){return this.settings.wrapper&&(a=a.add(a.parent(this.settings.wrapper))),a},defaultShowErrors:function(){var a,b,c;for(a=0;this.errorList[a];a++)c=this.errorList[a],this.settings.highlight&&this.settings.highlight.call(this,c.element,this.settings.errorClass,this.settings.validClass),this.showLabel(c.element,c.message);if(this.errorList.length&&(this.toShow=this.toShow.add(this.containers)),this.settings.success)for(a=0;this.successList[a];a++)this.showLabel(this.successList[a]);if(this.settings.unhighlight)for(a=0,b=this.validElements();b[a];a++)this.settings.unhighlight.call(this,b[a],this.settings.errorClass,this.settings.validClass);this.toHide=this.toHide.not(this.toShow),this.hideErrors(),this.addWrapper(this.toShow).show()},validElements:function(){return this.currentElements.not(this.invalidElements())},invalidElements:function(){return a(this.errorList).map(function(){return this.element})},showLabel:function(b,c){var d,e,f,g,h=this.errorsFor(b),i=this.idOrName(b),j=a(b).attr("aria-describedby");h.length?(h.removeClass(this.settings.validClass).addClass(this.settings.errorClass),h.html(c)):(h=a("<"+this.settings.errorElement+">").attr("id",i+"-error").addClass(this.settings.errorClass).html(c||""),d=h,this.settings.wrapper&&(d=h.hide().show().wrap("<"+this.settings.wrapper+"/>").parent()),this.labelContainer.length?this.labelContainer.append(d):this.settings.errorPlacement?this.settings.errorPlacement.call(this,d,a(b)):d.insertAfter(b),h.is("label")?h.attr("for",i):0===h.parents("label[for='"+this.escapeCssMeta(i)+"']").length&&(f=h.attr("id"),j?j.match(new RegExp("\\b"+this.escapeCssMeta(f)+"\\b"))||(j+=" "+f):j=f,a(b).attr("aria-describedby",j),e=this.groups[b.name],e&&(g=this,a.each(g.groups,function(b,c){c===e&&a("[name='"+g.escapeCssMeta(b)+"']",g.currentForm).attr("aria-describedby",h.attr("id"))})))),!c&&this.settings.success&&(h.text(""),"string"==typeof this.settings.success?h.addClass(this.settings.success):this.settings.success(h,b)),this.toShow=this.toShow.add(h)},errorsFor:function(b){var c=this.escapeCssMeta(this.idOrName(b)),d=a(b).attr("aria-describedby"),e="label[for='"+c+"'], label[for='"+c+"'] *";return d&&(e=e+", #"+this.escapeCssMeta(d).replace(/\s+/g,", #")),this.errors().filter(e)},escapeCssMeta:function(a){return a.replace(/([\\!"#$%&'()*+,.\/:;<=>?@\[\]^`{|}~])/g,"\\$1")},idOrName:function(a){return this.groups[a.name]||(this.checkable(a)?a.name:a.id||a.name)},validationTargetFor:function(b){return this.checkable(b)&&(b=this.findByName(b.name)),a(b).not(this.settings.ignore)[0]},checkable:function(a){return/radio|checkbox/i.test(a.type)},findByName:function(b){return a(this.currentForm).find("[name='"+this.escapeCssMeta(b)+"']")},getLength:function(b,c){switch(c.nodeName.toLowerCase()){case"select":return a("option:selected",c).length;case"input":if(this.checkable(c))return this.findByName(c.name).filter(":checked").length}return b.length},depend:function(a,b){return!this.dependTypes[typeof a]||this.dependTypes[typeof a](a,b)},dependTypes:{"boolean":function(a){return a},string:function(b,c){return!!a(b,c.form).length},"function":function(a,b){return a(b)}},optional:function(b){var c=this.elementValue(b);return!a.validator.methods.required.call(this,c,b)&&"dependency-mismatch"},startRequest:function(b){this.pending[b.name]||(this.pendingRequest++,a(b).addClass(this.settings.pendingClass),this.pending[b.name]=!0)},stopRequest:function(b,c){this.pendingRequest--,this.pendingRequest<0&&(this.pendingRequest=0),delete this.pending[b.name],a(b).removeClass(this.settings.pendingClass),c&&0===this.pendingRequest&&this.formSubmitted&&this.form()?(a(this.currentForm).submit(),this.submitButton&&a("input:hidden[name='"+this.submitButton.name+"']",this.currentForm).remove(),this.formSubmitted=!1):!c&&0===this.pendingRequest&&this.formSubmitted&&(a(this.currentForm).triggerHandler("invalid-form",[this]),this.formSubmitted=!1)},previousValue:function(b,c){return c="string"==typeof c&&c||"remote",a.data(b,"previousValue")||a.data(b,"previousValue",{old:null,valid:!0,message:this.defaultMessage(b,{method:c})})},destroy:function(){this.resetForm(),a(this.currentForm).off(".validate").removeData("validator").find(".validate-equalTo-blur").off(".validate-equalTo").removeClass("validate-equalTo-blur").find(".validate-lessThan-blur").off(".validate-lessThan").removeClass("validate-lessThan-blur").find(".validate-lessThanEqual-blur").off(".validate-lessThanEqual").removeClass("validate-lessThanEqual-blur").find(".validate-greaterThanEqual-blur").off(".validate-greaterThanEqual").removeClass("validate-greaterThanEqual-blur").find(".validate-greaterThan-blur").off(".validate-greaterThan").removeClass("validate-greaterThan-blur")}},classRuleSettings:{required:{required:!0},email:{email:!0},url:{url:!0},date:{date:!0},dateISO:{dateISO:!0},number:{number:!0},digits:{digits:!0},creditcard:{creditcard:!0}},addClassRules:function(b,c){b.constructor===String?this.classRuleSettings[b]=c:a.extend(this.classRuleSettings,b)},classRules:function(b){var c={},d=a(b).attr("class");return d&&a.each(d.split(" "),function(){this in a.validator.classRuleSettings&&a.extend(c,a.validator.classRuleSettings[this])}),c},normalizeAttributeRule:function(a,b,c,d){/min|max|step/.test(c)&&(null===b||/number|range|text/.test(b))&&(d=Number(d),isNaN(d)&&(d=void 0)),d||0===d?a[c]=d:b===c&&"range"!==b&&(a[c]=!0)},attributeRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)"required"===c?(d=b.getAttribute(c),""===d&&(d=!0),d=!!d):d=f.attr(c),this.normalizeAttributeRule(e,g,c,d);return e.maxlength&&/-1|2147483647|524288/.test(e.maxlength)&&delete e.maxlength,e},dataRules:function(b){var c,d,e={},f=a(b),g=b.getAttribute("type");for(c in a.validator.methods)d=f.data("rule"+c.charAt(0).toUpperCase()+c.substring(1).toLowerCase()),""===d&&(d=!0),this.normalizeAttributeRule(e,g,c,d);return e},staticRules:function(b){var c={},d=a.data(b.form,"validator");return d.settings.rules&&(c=a.validator.normalizeRule(d.settings.rules[b.name])||{}),c},normalizeRules:function(b,c){return a.each(b,function(d,e){if(e===!1)return void delete b[d];if(e.param||e.depends){var f=!0;switch(typeof e.depends){case"string":f=!!a(e.depends,c.form).length;break;case"function":f=e.depends.call(c,c)}f?b[d]=void 0===e.param||e.param:(a.data(c.form,"validator").resetElements(a(c)),delete b[d])}}),a.each(b,function(d,e){b[d]=a.isFunction(e)&&"normalizer"!==d?e(c):e}),a.each(["minlength","maxlength"],function(){b[this]&&(b[this]=Number(b[this]))}),a.each(["rangelength","range"],function(){var c;b[this]&&(a.isArray(b[this])?b[this]=[Number(b[this][0]),Number(b[this][1])]:"string"==typeof b[this]&&(c=b[this].replace(/[\[\]]/g,"").split(/[\s,]+/),b[this]=[Number(c[0]),Number(c[1])]))}),a.validator.autoCreateRanges&&(null!=b.min&&null!=b.max&&(b.range=[b.min,b.max],delete b.min,delete b.max),null!=b.minlength&&null!=b.maxlength&&(b.rangelength=[b.minlength,b.maxlength],delete b.minlength,delete b.maxlength)),b},normalizeRule:function(b){if("string"==typeof b){var c={};a.each(b.split(/\s/),function(){c[this]=!0}),b=c}return b},addMethod:function(b,c,d){a.validator.methods[b]=c,a.validator.messages[b]=void 0!==d?d:a.validator.messages[b],c.length<3&&a.validator.addClassRules(b,a.validator.normalizeRule(b))},methods:{required:function(b,c,d){if(!this.depend(d,c))return"dependency-mismatch";if("select"===c.nodeName.toLowerCase()){var e=a(c).val();return e&&e.length>0}return this.checkable(c)?this.getLength(b,c)>0:void 0!==b&&null!==b&&b.length>0},email:function(a,b){return this.optional(b)||/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(a)},url:function(a,b){return this.optional(b)||/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[\/?#]\S*)?$/i.test(a)},date:function(){var a=!1;return function(b,c){return a||(a=!0,this.settings.debug&&window.console&&console.warn("The `date` method is deprecated and will be removed in version '2.0.0'.\nPlease don't use it, since it relies on the Date constructor, which\nbehaves very differently across browsers and locales. Use `dateISO`\ninstead or one of the locale specific methods in `localizations/`\nand `additional-methods.js`.")),this.optional(c)||!/Invalid|NaN/.test(new Date(b).toString())}}(),dateISO:function(a,b){return this.optional(b)||/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(a)},number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},digits:function(a,b){return this.optional(b)||/^\d+$/.test(a)},minlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d},maxlength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e<=d},rangelength:function(b,c,d){var e=a.isArray(b)?b.length:this.getLength(b,c);return this.optional(c)||e>=d[0]&&e<=d[1]},min:function(a,b,c){return this.optional(b)||a>=c},max:function(a,b,c){return this.optional(b)||a<=c},range:function(a,b,c){return this.optional(b)||a>=c[0]&&a<=c[1]},step:function(b,c,d){var e,f=a(c).attr("type"),g="Step attribute on input type "+f+" is not supported.",h=["text","number","range"],i=new RegExp("\\b"+f+"\\b"),j=f&&!i.test(h.join()),k=function(a){var b=(""+a).match(/(?:\.(\d+))?$/);return b&&b[1]?b[1].length:0},l=function(a){return Math.round(a*Math.pow(10,e))},m=!0;if(j)throw new Error(g);return e=k(d),(k(b)>e||l(b)%l(d)!==0)&&(m=!1),this.optional(c)||m},equalTo:function(b,c,d){var e=a(d);return this.settings.onfocusout&&e.not(".validate-equalTo-blur").length&&e.addClass("validate-equalTo-blur").on("blur.validate-equalTo",function(){a(c).valid()}),b===e.val()},remote:function(b,c,d,e){if(this.optional(c))return"dependency-mismatch";e="string"==typeof e&&e||"remote";var f,g,h,i=this.previousValue(c,e);return this.settings.messages[c.name]||(this.settings.messages[c.name]={}),i.originalMessage=i.originalMessage||this.settings.messages[c.name][e],this.settings.messages[c.name][e]=i.message,d="string"==typeof d&&{url:d}||d,h=a.param(a.extend({data:b},d.data)),i.old===h?i.valid:(i.old=h,f=this,this.startRequest(c),g={},g[c.name]=b,a.ajax(a.extend(!0,{mode:"abort",port:"validate"+c.name,dataType:"json",data:g,context:f.currentForm,success:function(a){var d,g,h,j=a===!0||"true"===a;f.settings.messages[c.name][e]=i.originalMessage,j?(h=f.formSubmitted,f.resetInternals(),f.toHide=f.errorsFor(c),f.formSubmitted=h,f.successList.push(c),f.invalid[c.name]=!1,f.showErrors()):(d={},g=a||f.defaultMessage(c,{method:e,parameters:b}),d[c.name]=i.message=g,f.invalid[c.name]=!0,f.showErrors(d)),i.valid=j,f.stopRequest(c,j)}},d)),"pending")}}});var b,c={};return a.ajaxPrefilter?a.ajaxPrefilter(function(a,b,d){var e=a.port;"abort"===a.mode&&(c[e]&&c[e].abort(),c[e]=d)}):(b=a.ajax,a.ajax=function(d){var e=("mode"in d?d:a.ajaxSettings).mode,f=("port"in d?d:a.ajaxSettings).port;return"abort"===e?(c[f]&&c[f].abort(),c[f]=b.apply(this,arguments),c[f]):b.apply(this,arguments)}),a});
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -6657,6 +6769,182 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables Bootstrap 4 integration
+ * ©2011-2017 SpryMedia Ltd - datatables.net/license
+ */
+
+/**
+ * DataTables integration for Bootstrap 4. This requires Bootstrap 4 and
+ * DataTables 1.10 or newer.
+ *
+ * This file sets the defaults and adds options to DataTables to style its
+ * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
+ * for further information.
+ */
+(function( factory ){
+	if ( true ) {
+		// AMD
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
+			return factory( $, window, document );
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else {}
+}(function( $, window, document, undefined ) {
+'use strict';
+var DataTable = $.fn.dataTable;
+
+
+/* Set the defaults for DataTables initialisation */
+$.extend( true, DataTable.defaults, {
+	dom:
+		"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+		"<'row'<'col-sm-12'tr>>" +
+		"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+	renderer: 'bootstrap'
+} );
+
+
+/* Default class modification */
+$.extend( DataTable.ext.classes, {
+	sWrapper:      "dataTables_wrapper dt-bootstrap4",
+	sFilterInput:  "form-control form-control-sm",
+	sLengthSelect: "custom-select custom-select-sm form-control form-control-sm",
+	sProcessing:   "dataTables_processing card",
+	sPageButton:   "paginate_button page-item"
+} );
+
+
+/* Bootstrap paging button renderer */
+DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
+	var api     = new DataTable.Api( settings );
+	var classes = settings.oClasses;
+	var lang    = settings.oLanguage.oPaginate;
+	var aria = settings.oLanguage.oAria.paginate || {};
+	var btnDisplay, btnClass, counter=0;
+
+	var attach = function( container, buttons ) {
+		var i, ien, node, button;
+		var clickHandler = function ( e ) {
+			e.preventDefault();
+			if ( !$(e.currentTarget).hasClass('disabled') && api.page() != e.data.action ) {
+				api.page( e.data.action ).draw( 'page' );
+			}
+		};
+
+		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
+			button = buttons[i];
+
+			if ( $.isArray( button ) ) {
+				attach( container, button );
+			}
+			else {
+				btnDisplay = '';
+				btnClass = '';
+
+				switch ( button ) {
+					case 'ellipsis':
+						btnDisplay = '&#x2026;';
+						btnClass = 'disabled';
+						break;
+
+					case 'first':
+						btnDisplay = lang.sFirst;
+						btnClass = button + (page > 0 ?
+							'' : ' disabled');
+						break;
+
+					case 'previous':
+						btnDisplay = lang.sPrevious;
+						btnClass = button + (page > 0 ?
+							'' : ' disabled');
+						break;
+
+					case 'next':
+						btnDisplay = lang.sNext;
+						btnClass = button + (page < pages-1 ?
+							'' : ' disabled');
+						break;
+
+					case 'last':
+						btnDisplay = lang.sLast;
+						btnClass = button + (page < pages-1 ?
+							'' : ' disabled');
+						break;
+
+					default:
+						btnDisplay = button + 1;
+						btnClass = page === button ?
+							'active' : '';
+						break;
+				}
+
+				if ( btnDisplay ) {
+					node = $('<li>', {
+							'class': classes.sPageButton+' '+btnClass,
+							'id': idx === 0 && typeof button === 'string' ?
+								settings.sTableId +'_'+ button :
+								null
+						} )
+						.append( $('<a>', {
+								'href': '#',
+								'aria-controls': settings.sTableId,
+								'aria-label': aria[ button ],
+								'data-dt-idx': counter,
+								'tabindex': settings.iTabIndex,
+								'class': 'page-link'
+							} )
+							.html( btnDisplay )
+						)
+						.appendTo( container );
+
+					settings.oApi._fnBindAction(
+						node, {action: button}, clickHandler
+					);
+
+					counter++;
+				}
+			}
+		}
+	};
+
+	// IE9 throws an 'unknown error' if document.activeElement is used
+	// inside an iframe or frame. 
+	var activeEl;
+
+	try {
+		// Because this approach is destroying and recreating the paging
+		// elements, focus is lost on the select button which is bad for
+		// accessibility. So we want to restore focus once the draw has
+		// completed
+		activeEl = $(host).find(document.activeElement).data('dt-idx');
+	}
+	catch (e) {}
+
+	attach(
+		$(host).empty().html('<ul class="pagination"/>').children('ul'),
+		buttons
+	);
+
+	if ( activeEl !== undefined ) {
+		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+	}
+};
+
+
+return DataTable;
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js":
 /*!********************************************************************!*\
   !*** ./node_modules/datatables.net-dt/js/dataTables.dataTables.js ***!
@@ -6681,6 +6969,1394 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! DataTables s
 
 return $.fn.dataTable;
 
+}));
+
+
+/***/ }),
+
+/***/ "./node_modules/datatables.net-responsive/js/dataTables.responsive.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/datatables.net-responsive/js/dataTables.responsive.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! Responsive 2.2.3
+ * 2014-2018 SpryMedia Ltd - datatables.net/license
+ */
+
+/**
+ * @summary     Responsive
+ * @description Responsive tables plug-in for DataTables
+ * @version     2.2.3
+ * @file        dataTables.responsive.js
+ * @author      SpryMedia Ltd (www.sprymedia.co.uk)
+ * @contact     www.sprymedia.co.uk/contact
+ * @copyright   Copyright 2014-2018 SpryMedia Ltd.
+ *
+ * This source file is free software, available under the following license:
+ *   MIT license - http://datatables.net/license/mit
+ *
+ * This source file is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
+ *
+ * For details please refer to: http://www.datatables.net
+ */
+(function( factory ){
+	if ( true ) {
+		// AMD
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! datatables.net */ "./node_modules/datatables.net/js/jquery.dataTables.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ( $ ) {
+			return factory( $, window, document );
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else {}
+}(function( $, window, document, undefined ) {
+'use strict';
+var DataTable = $.fn.dataTable;
+
+
+/**
+ * Responsive is a plug-in for the DataTables library that makes use of
+ * DataTables' ability to change the visibility of columns, changing the
+ * visibility of columns so the displayed columns fit into the table container.
+ * The end result is that complex tables will be dynamically adjusted to fit
+ * into the viewport, be it on a desktop, tablet or mobile browser.
+ *
+ * Responsive for DataTables has two modes of operation, which can used
+ * individually or combined:
+ *
+ * * Class name based control - columns assigned class names that match the
+ *   breakpoint logic can be shown / hidden as required for each breakpoint.
+ * * Automatic control - columns are automatically hidden when there is no
+ *   room left to display them. Columns removed from the right.
+ *
+ * In additional to column visibility control, Responsive also has built into
+ * options to use DataTables' child row display to show / hide the information
+ * from the table that has been hidden. There are also two modes of operation
+ * for this child row display:
+ *
+ * * Inline - when the control element that the user can use to show / hide
+ *   child rows is displayed inside the first column of the table.
+ * * Column - where a whole column is dedicated to be the show / hide control.
+ *
+ * Initialisation of Responsive is performed by:
+ *
+ * * Adding the class `responsive` or `dt-responsive` to the table. In this case
+ *   Responsive will automatically be initialised with the default configuration
+ *   options when the DataTable is created.
+ * * Using the `responsive` option in the DataTables configuration options. This
+ *   can also be used to specify the configuration options, or simply set to
+ *   `true` to use the defaults.
+ *
+ *  @class
+ *  @param {object} settings DataTables settings object for the host table
+ *  @param {object} [opts] Configuration options
+ *  @requires jQuery 1.7+
+ *  @requires DataTables 1.10.3+
+ *
+ *  @example
+ *      $('#example').DataTable( {
+ *        responsive: true
+ *      } );
+ *    } );
+ */
+var Responsive = function ( settings, opts ) {
+	// Sanity check that we are using DataTables 1.10 or newer
+	if ( ! DataTable.versionCheck || ! DataTable.versionCheck( '1.10.10' ) ) {
+		throw 'DataTables Responsive requires DataTables 1.10.10 or newer';
+	}
+
+	this.s = {
+		dt: new DataTable.Api( settings ),
+		columns: [],
+		current: []
+	};
+
+	// Check if responsive has already been initialised on this table
+	if ( this.s.dt.settings()[0].responsive ) {
+		return;
+	}
+
+	// details is an object, but for simplicity the user can give it as a string
+	// or a boolean
+	if ( opts && typeof opts.details === 'string' ) {
+		opts.details = { type: opts.details };
+	}
+	else if ( opts && opts.details === false ) {
+		opts.details = { type: false };
+	}
+	else if ( opts && opts.details === true ) {
+		opts.details = { type: 'inline' };
+	}
+
+	this.c = $.extend( true, {}, Responsive.defaults, DataTable.defaults.responsive, opts );
+	settings.responsive = this;
+	this._constructor();
+};
+
+$.extend( Responsive.prototype, {
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Constructor
+	 */
+
+	/**
+	 * Initialise the Responsive instance
+	 *
+	 * @private
+	 */
+	_constructor: function ()
+	{
+		var that = this;
+		var dt = this.s.dt;
+		var dtPrivateSettings = dt.settings()[0];
+		var oldWindowWidth = $(window).width();
+
+		dt.settings()[0]._responsive = this;
+
+		// Use DataTables' throttle function to avoid processor thrashing on
+		// resize
+		$(window).on( 'resize.dtr orientationchange.dtr', DataTable.util.throttle( function () {
+			// iOS has a bug whereby resize can fire when only scrolling
+			// See: http://stackoverflow.com/questions/8898412
+			var width = $(window).width();
+
+			if ( width !== oldWindowWidth ) {
+				that._resize();
+				oldWindowWidth = width;
+			}
+		} ) );
+
+		// DataTables doesn't currently trigger an event when a row is added, so
+		// we need to hook into its private API to enforce the hidden rows when
+		// new data is added
+		dtPrivateSettings.oApi._fnCallbackReg( dtPrivateSettings, 'aoRowCreatedCallback', function (tr, data, idx) {
+			if ( $.inArray( false, that.s.current ) !== -1 ) {
+				$('>td, >th', tr).each( function ( i ) {
+					var idx = dt.column.index( 'toData', i );
+
+					if ( that.s.current[idx] === false ) {
+						$(this).css('display', 'none');
+					}
+				} );
+			}
+		} );
+
+		// Destroy event handler
+		dt.on( 'destroy.dtr', function () {
+			dt.off( '.dtr' );
+			$( dt.table().body() ).off( '.dtr' );
+			$(window).off( 'resize.dtr orientationchange.dtr' );
+
+			// Restore the columns that we've hidden
+			$.each( that.s.current, function ( i, val ) {
+				if ( val === false ) {
+					that._setColumnVis( i, true );
+				}
+			} );
+		} );
+
+		// Reorder the breakpoints array here in case they have been added out
+		// of order
+		this.c.breakpoints.sort( function (a, b) {
+			return a.width < b.width ? 1 :
+				a.width > b.width ? -1 : 0;
+		} );
+
+		this._classLogic();
+		this._resizeAuto();
+
+		// Details handler
+		var details = this.c.details;
+
+		if ( details.type !== false ) {
+			that._detailsInit();
+
+			// DataTables will trigger this event on every column it shows and
+			// hides individually
+			dt.on( 'column-visibility.dtr', function () {
+				// Use a small debounce to allow multiple columns to be set together
+				if ( that._timer ) {
+					clearTimeout( that._timer );
+				}
+
+				that._timer = setTimeout( function () {
+					that._timer = null;
+
+					that._classLogic();
+					that._resizeAuto();
+					that._resize();
+
+					that._redrawChildren();
+				}, 100 );
+			} );
+
+			// Redraw the details box on each draw which will happen if the data
+			// has changed. This is used until DataTables implements a native
+			// `updated` event for rows
+			dt.on( 'draw.dtr', function () {
+				that._redrawChildren();
+			} );
+
+			$(dt.table().node()).addClass( 'dtr-'+details.type );
+		}
+
+		dt.on( 'column-reorder.dtr', function (e, settings, details) {
+			that._classLogic();
+			that._resizeAuto();
+			that._resize();
+		} );
+
+		// Change in column sizes means we need to calc
+		dt.on( 'column-sizing.dtr', function () {
+			that._resizeAuto();
+			that._resize();
+		});
+
+		// On Ajax reload we want to reopen any child rows which are displayed
+		// by responsive
+		dt.on( 'preXhr.dtr', function () {
+			var rowIds = [];
+			dt.rows().every( function () {
+				if ( this.child.isShown() ) {
+					rowIds.push( this.id(true) );
+				}
+			} );
+
+			dt.one( 'draw.dtr', function () {
+				that._resizeAuto();
+				that._resize();
+
+				dt.rows( rowIds ).every( function () {
+					that._detailsDisplay( this, false );
+				} );
+			} );
+		});
+
+		dt.on( 'init.dtr', function (e, settings, details) {
+			that._resizeAuto();
+			that._resize();
+
+			// If columns were hidden, then DataTables needs to adjust the
+			// column sizing
+			if ( $.inArray( false, that.s.current ) ) {
+				dt.columns.adjust();
+			}
+		} );
+
+		// First pass - draw the table for the current viewport size
+		this._resize();
+	},
+
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * Private methods
+	 */
+
+	/**
+	 * Calculate the visibility for the columns in a table for a given
+	 * breakpoint. The result is pre-determined based on the class logic if
+	 * class names are used to control all columns, but the width of the table
+	 * is also used if there are columns which are to be automatically shown
+	 * and hidden.
+	 *
+	 * @param  {string} breakpoint Breakpoint name to use for the calculation
+	 * @return {array} Array of boolean values initiating the visibility of each
+	 *   column.
+	 *  @private
+	 */
+	_columnsVisiblity: function ( breakpoint )
+	{
+		var dt = this.s.dt;
+		var columns = this.s.columns;
+		var i, ien;
+
+		// Create an array that defines the column ordering based first on the
+		// column's priority, and secondly the column index. This allows the
+		// columns to be removed from the right if the priority matches
+		var order = columns
+			.map( function ( col, idx ) {
+				return {
+					columnIdx: idx,
+					priority: col.priority
+				};
+			} )
+			.sort( function ( a, b ) {
+				if ( a.priority !== b.priority ) {
+					return a.priority - b.priority;
+				}
+				return a.columnIdx - b.columnIdx;
+			} );
+
+		// Class logic - determine which columns are in this breakpoint based
+		// on the classes. If no class control (i.e. `auto`) then `-` is used
+		// to indicate this to the rest of the function
+		var display = $.map( columns, function ( col, i ) {
+			if ( dt.column(i).visible() === false ) {
+				return 'not-visible';
+			}
+			return col.auto && col.minWidth === null ?
+				false :
+				col.auto === true ?
+					'-' :
+					$.inArray( breakpoint, col.includeIn ) !== -1;
+		} );
+
+		// Auto column control - first pass: how much width is taken by the
+		// ones that must be included from the non-auto columns
+		var requiredWidth = 0;
+		for ( i=0, ien=display.length ; i<ien ; i++ ) {
+			if ( display[i] === true ) {
+				requiredWidth += columns[i].minWidth;
+			}
+		}
+
+		// Second pass, use up any remaining width for other columns. For
+		// scrolling tables we need to subtract the width of the scrollbar. It
+		// may not be requires which makes this sub-optimal, but it would
+		// require another full redraw to make complete use of those extra few
+		// pixels
+		var scrolling = dt.settings()[0].oScroll;
+		var bar = scrolling.sY || scrolling.sX ? scrolling.iBarWidth : 0;
+		var widthAvailable = dt.table().container().offsetWidth - bar;
+		var usedWidth = widthAvailable - requiredWidth;
+
+		// Control column needs to always be included. This makes it sub-
+		// optimal in terms of using the available with, but to stop layout
+		// thrashing or overflow. Also we need to account for the control column
+		// width first so we know how much width is available for the other
+		// columns, since the control column might not be the first one shown
+		for ( i=0, ien=display.length ; i<ien ; i++ ) {
+			if ( columns[i].control ) {
+				usedWidth -= columns[i].minWidth;
+			}
+		}
+
+		// Allow columns to be shown (counting by priority and then right to
+		// left) until we run out of room
+		var empty = false;
+		for ( i=0, ien=order.length ; i<ien ; i++ ) {
+			var colIdx = order[i].columnIdx;
+
+			if ( display[colIdx] === '-' && ! columns[colIdx].control && columns[colIdx].minWidth ) {
+				// Once we've found a column that won't fit we don't let any
+				// others display either, or columns might disappear in the
+				// middle of the table
+				if ( empty || usedWidth - columns[colIdx].minWidth < 0 ) {
+					empty = true;
+					display[colIdx] = false;
+				}
+				else {
+					display[colIdx] = true;
+				}
+
+				usedWidth -= columns[colIdx].minWidth;
+			}
+		}
+
+		// Determine if the 'control' column should be shown (if there is one).
+		// This is the case when there is a hidden column (that is not the
+		// control column). The two loops look inefficient here, but they are
+		// trivial and will fly through. We need to know the outcome from the
+		// first , before the action in the second can be taken
+		var showControl = false;
+
+		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+			if ( ! columns[i].control && ! columns[i].never && display[i] === false ) {
+				showControl = true;
+				break;
+			}
+		}
+
+		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+			if ( columns[i].control ) {
+				display[i] = showControl;
+			}
+
+			// Replace not visible string with false from the control column detection above
+			if ( display[i] === 'not-visible' ) {
+				display[i] = false;
+			}
+		}
+
+		// Finally we need to make sure that there is at least one column that
+		// is visible
+		if ( $.inArray( true, display ) === -1 ) {
+			display[0] = true;
+		}
+
+		return display;
+	},
+
+
+	/**
+	 * Create the internal `columns` array with information about the columns
+	 * for the table. This includes determining which breakpoints the column
+	 * will appear in, based upon class names in the column, which makes up the
+	 * vast majority of this method.
+	 *
+	 * @private
+	 */
+	_classLogic: function ()
+	{
+		var that = this;
+		var calc = {};
+		var breakpoints = this.c.breakpoints;
+		var dt = this.s.dt;
+		var columns = dt.columns().eq(0).map( function (i) {
+			var column = this.column(i);
+			var className = column.header().className;
+			var priority = dt.settings()[0].aoColumns[i].responsivePriority;
+
+			if ( priority === undefined ) {
+				var dataPriority = $(column.header()).data('priority');
+
+				priority = dataPriority !== undefined ?
+					dataPriority * 1 :
+					10000;
+			}
+
+			return {
+				className: className,
+				includeIn: [],
+				auto:      false,
+				control:   false,
+				never:     className.match(/\bnever\b/) ? true : false,
+				priority:  priority
+			};
+		} );
+
+		// Simply add a breakpoint to `includeIn` array, ensuring that there are
+		// no duplicates
+		var add = function ( colIdx, name ) {
+			var includeIn = columns[ colIdx ].includeIn;
+
+			if ( $.inArray( name, includeIn ) === -1 ) {
+				includeIn.push( name );
+			}
+		};
+
+		var column = function ( colIdx, name, operator, matched ) {
+			var size, i, ien;
+
+			if ( ! operator ) {
+				columns[ colIdx ].includeIn.push( name );
+			}
+			else if ( operator === 'max-' ) {
+				// Add this breakpoint and all smaller
+				size = that._find( name ).width;
+
+				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+					if ( breakpoints[i].width <= size ) {
+						add( colIdx, breakpoints[i].name );
+					}
+				}
+			}
+			else if ( operator === 'min-' ) {
+				// Add this breakpoint and all larger
+				size = that._find( name ).width;
+
+				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+					if ( breakpoints[i].width >= size ) {
+						add( colIdx, breakpoints[i].name );
+					}
+				}
+			}
+			else if ( operator === 'not-' ) {
+				// Add all but this breakpoint
+				for ( i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+					if ( breakpoints[i].name.indexOf( matched ) === -1 ) {
+						add( colIdx, breakpoints[i].name );
+					}
+				}
+			}
+		};
+
+		// Loop over each column and determine if it has a responsive control
+		// class
+		columns.each( function ( col, i ) {
+			var classNames = col.className.split(' ');
+			var hasClass = false;
+
+			// Split the class name up so multiple rules can be applied if needed
+			for ( var k=0, ken=classNames.length ; k<ken ; k++ ) {
+				var className = $.trim( classNames[k] );
+
+				if ( className === 'all' ) {
+					// Include in all
+					hasClass = true;
+					col.includeIn = $.map( breakpoints, function (a) {
+						return a.name;
+					} );
+					return;
+				}
+				else if ( className === 'none' || col.never ) {
+					// Include in none (default) and no auto
+					hasClass = true;
+					return;
+				}
+				else if ( className === 'control' ) {
+					// Special column that is only visible, when one of the other
+					// columns is hidden. This is used for the details control
+					hasClass = true;
+					col.control = true;
+					return;
+				}
+
+				$.each( breakpoints, function ( j, breakpoint ) {
+					// Does this column have a class that matches this breakpoint?
+					var brokenPoint = breakpoint.name.split('-');
+					var re = new RegExp( '(min\\-|max\\-|not\\-)?('+brokenPoint[0]+')(\\-[_a-zA-Z0-9])?' );
+					var match = className.match( re );
+
+					if ( match ) {
+						hasClass = true;
+
+						if ( match[2] === brokenPoint[0] && match[3] === '-'+brokenPoint[1] ) {
+							// Class name matches breakpoint name fully
+							column( i, breakpoint.name, match[1], match[2]+match[3] );
+						}
+						else if ( match[2] === brokenPoint[0] && ! match[3] ) {
+							// Class name matched primary breakpoint name with no qualifier
+							column( i, breakpoint.name, match[1], match[2] );
+						}
+					}
+				} );
+			}
+
+			// If there was no control class, then automatic sizing is used
+			if ( ! hasClass ) {
+				col.auto = true;
+			}
+		} );
+
+		this.s.columns = columns;
+	},
+
+
+	/**
+	 * Show the details for the child row
+	 *
+	 * @param  {DataTables.Api} row    API instance for the row
+	 * @param  {boolean}        update Update flag
+	 * @private
+	 */
+	_detailsDisplay: function ( row, update )
+	{
+		var that = this;
+		var dt = this.s.dt;
+		var details = this.c.details;
+
+		if ( details && details.type !== false ) {
+			var res = details.display( row, update, function () {
+				return details.renderer(
+					dt, row[0], that._detailsObj(row[0])
+				);
+			} );
+
+			if ( res === true || res === false ) {
+				$(dt.table().node()).triggerHandler( 'responsive-display.dt', [dt, row, res, update] );
+			}
+		}
+	},
+
+
+	/**
+	 * Initialisation for the details handler
+	 *
+	 * @private
+	 */
+	_detailsInit: function ()
+	{
+		var that    = this;
+		var dt      = this.s.dt;
+		var details = this.c.details;
+
+		// The inline type always uses the first child as the target
+		if ( details.type === 'inline' ) {
+			details.target = 'td:first-child, th:first-child';
+		}
+
+		// Keyboard accessibility
+		dt.on( 'draw.dtr', function () {
+			that._tabIndexes();
+		} );
+		that._tabIndexes(); // Initial draw has already happened
+
+		$( dt.table().body() ).on( 'keyup.dtr', 'td, th', function (e) {
+			if ( e.keyCode === 13 && $(this).data('dtr-keyboard') ) {
+				$(this).click();
+			}
+		} );
+
+		// type.target can be a string jQuery selector or a column index
+		var target   = details.target;
+		var selector = typeof target === 'string' ? target : 'td, th';
+
+		// Click handler to show / hide the details rows when they are available
+		$( dt.table().body() )
+			.on( 'click.dtr mousedown.dtr mouseup.dtr', selector, function (e) {
+				// If the table is not collapsed (i.e. there is no hidden columns)
+				// then take no action
+				if ( ! $(dt.table().node()).hasClass('collapsed' ) ) {
+					return;
+				}
+
+				// Check that the row is actually a DataTable's controlled node
+				if ( $.inArray( $(this).closest('tr').get(0), dt.rows().nodes().toArray() ) === -1 ) {
+					return;
+				}
+
+				// For column index, we determine if we should act or not in the
+				// handler - otherwise it is already okay
+				if ( typeof target === 'number' ) {
+					var targetIdx = target < 0 ?
+						dt.columns().eq(0).length + target :
+						target;
+
+					if ( dt.cell( this ).index().column !== targetIdx ) {
+						return;
+					}
+				}
+
+				// $().closest() includes itself in its check
+				var row = dt.row( $(this).closest('tr') );
+
+				// Check event type to do an action
+				if ( e.type === 'click' ) {
+					// The renderer is given as a function so the caller can execute it
+					// only when they need (i.e. if hiding there is no point is running
+					// the renderer)
+					that._detailsDisplay( row, false );
+				}
+				else if ( e.type === 'mousedown' ) {
+					// For mouse users, prevent the focus ring from showing
+					$(this).css('outline', 'none');
+				}
+				else if ( e.type === 'mouseup' ) {
+					// And then re-allow at the end of the click
+					$(this).blur().css('outline', '');
+				}
+			} );
+	},
+
+
+	/**
+	 * Get the details to pass to a renderer for a row
+	 * @param  {int} rowIdx Row index
+	 * @private
+	 */
+	_detailsObj: function ( rowIdx )
+	{
+		var that = this;
+		var dt = this.s.dt;
+
+		return $.map( this.s.columns, function( col, i ) {
+			// Never and control columns should not be passed to the renderer
+			if ( col.never || col.control ) {
+				return;
+			}
+
+			return {
+				title:       dt.settings()[0].aoColumns[ i ].sTitle,
+				data:        dt.cell( rowIdx, i ).render( that.c.orthogonal ),
+				hidden:      dt.column( i ).visible() && !that.s.current[ i ],
+				columnIndex: i,
+				rowIndex:    rowIdx
+			};
+		} );
+	},
+
+
+	/**
+	 * Find a breakpoint object from a name
+	 *
+	 * @param  {string} name Breakpoint name to find
+	 * @return {object}      Breakpoint description object
+	 * @private
+	 */
+	_find: function ( name )
+	{
+		var breakpoints = this.c.breakpoints;
+
+		for ( var i=0, ien=breakpoints.length ; i<ien ; i++ ) {
+			if ( breakpoints[i].name === name ) {
+				return breakpoints[i];
+			}
+		}
+	},
+
+
+	/**
+	 * Re-create the contents of the child rows as the display has changed in
+	 * some way.
+	 *
+	 * @private
+	 */
+	_redrawChildren: function ()
+	{
+		var that = this;
+		var dt = this.s.dt;
+
+		dt.rows( {page: 'current'} ).iterator( 'row', function ( settings, idx ) {
+			var row = dt.row( idx );
+
+			that._detailsDisplay( dt.row( idx ), true );
+		} );
+	},
+
+
+	/**
+	 * Alter the table display for a resized viewport. This involves first
+	 * determining what breakpoint the window currently is in, getting the
+	 * column visibilities to apply and then setting them.
+	 *
+	 * @private
+	 */
+	_resize: function ()
+	{
+		var that = this;
+		var dt = this.s.dt;
+		var width = $(window).width();
+		var breakpoints = this.c.breakpoints;
+		var breakpoint = breakpoints[0].name;
+		var columns = this.s.columns;
+		var i, ien;
+		var oldVis = this.s.current.slice();
+
+		// Determine what breakpoint we are currently at
+		for ( i=breakpoints.length-1 ; i>=0 ; i-- ) {
+			if ( width <= breakpoints[i].width ) {
+				breakpoint = breakpoints[i].name;
+				break;
+			}
+		}
+		
+		// Show the columns for that break point
+		var columnsVis = this._columnsVisiblity( breakpoint );
+		this.s.current = columnsVis;
+
+		// Set the class before the column visibility is changed so event
+		// listeners know what the state is. Need to determine if there are
+		// any columns that are not visible but can be shown
+		var collapsedClass = false;
+		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
+			if ( columnsVis[i] === false && ! columns[i].never && ! columns[i].control && ! dt.column(i).visible() === false ) {
+				collapsedClass = true;
+				break;
+			}
+		}
+
+		$( dt.table().node() ).toggleClass( 'collapsed', collapsedClass );
+
+		var changed = false;
+		var visible = 0;
+
+		dt.columns().eq(0).each( function ( colIdx, i ) {
+			if ( columnsVis[i] === true ) {
+				visible++;
+			}
+
+			if ( columnsVis[i] !== oldVis[i] ) {
+				changed = true;
+				that._setColumnVis( colIdx, columnsVis[i] );
+			}
+		} );
+
+		if ( changed ) {
+			this._redrawChildren();
+
+			// Inform listeners of the change
+			$(dt.table().node()).trigger( 'responsive-resize.dt', [dt, this.s.current] );
+
+			// If no records, update the "No records" display element
+			if ( dt.page.info().recordsDisplay === 0 ) {
+				$('td', dt.table().body()).eq(0).attr('colspan', visible);
+			}
+		}
+	},
+
+
+	/**
+	 * Determine the width of each column in the table so the auto column hiding
+	 * has that information to work with. This method is never going to be 100%
+	 * perfect since column widths can change slightly per page, but without
+	 * seriously compromising performance this is quite effective.
+	 *
+	 * @private
+	 */
+	_resizeAuto: function ()
+	{
+		var dt = this.s.dt;
+		var columns = this.s.columns;
+
+		// Are we allowed to do auto sizing?
+		if ( ! this.c.auto ) {
+			return;
+		}
+
+		// Are there any columns that actually need auto-sizing, or do they all
+		// have classes defined
+		if ( $.inArray( true, $.map( columns, function (c) { return c.auto; } ) ) === -1 ) {
+			return;
+		}
+
+		// Need to restore all children. They will be reinstated by a re-render
+		if ( ! $.isEmptyObject( _childNodeStore ) ) {
+			$.each( _childNodeStore, function ( key ) {
+				var idx = key.split('-');
+
+				_childNodesRestore( dt, idx[0]*1, idx[1]*1 );
+			} );
+		}
+
+		// Clone the table with the current data in it
+		var tableWidth   = dt.table().node().offsetWidth;
+		var columnWidths = dt.columns;
+		var clonedTable  = dt.table().node().cloneNode( false );
+		var clonedHeader = $( dt.table().header().cloneNode( false ) ).appendTo( clonedTable );
+		var clonedBody   = $( dt.table().body() ).clone( false, false ).empty().appendTo( clonedTable ); // use jQuery because of IE8
+
+		// Header
+		var headerCells = dt.columns()
+			.header()
+			.filter( function (idx) {
+				return dt.column(idx).visible();
+			} )
+			.to$()
+			.clone( false )
+			.css( 'display', 'table-cell' )
+			.css( 'min-width', 0 );
+
+		// Body rows - we don't need to take account of DataTables' column
+		// visibility since we implement our own here (hence the `display` set)
+		$(clonedBody)
+			.append( $(dt.rows( { page: 'current' } ).nodes()).clone( false ) )
+			.find( 'th, td' ).css( 'display', '' );
+
+		// Footer
+		var footer = dt.table().footer();
+		if ( footer ) {
+			var clonedFooter = $( footer.cloneNode( false ) ).appendTo( clonedTable );
+			var footerCells = dt.columns()
+				.footer()
+				.filter( function (idx) {
+					return dt.column(idx).visible();
+				} )
+				.to$()
+				.clone( false )
+				.css( 'display', 'table-cell' );
+
+			$('<tr/>')
+				.append( footerCells )
+				.appendTo( clonedFooter );
+		}
+
+		$('<tr/>')
+			.append( headerCells )
+			.appendTo( clonedHeader );
+
+		// In the inline case extra padding is applied to the first column to
+		// give space for the show / hide icon. We need to use this in the
+		// calculation
+		if ( this.c.details.type === 'inline' ) {
+			$(clonedTable).addClass( 'dtr-inline collapsed' );
+		}
+		
+		// It is unsafe to insert elements with the same name into the DOM
+		// multiple times. For example, cloning and inserting a checked radio
+		// clears the chcecked state of the original radio.
+		$( clonedTable ).find( '[name]' ).removeAttr( 'name' );
+
+		// A position absolute table would take the table out of the flow of
+		// our container element, bypassing the height and width (Scroller)
+		$( clonedTable ).css( 'position', 'relative' )
+		
+		var inserted = $('<div/>')
+			.css( {
+				width: 1,
+				height: 1,
+				overflow: 'hidden',
+				clear: 'both'
+			} )
+			.append( clonedTable );
+
+		inserted.insertBefore( dt.table().node() );
+
+		// The cloned header now contains the smallest that each column can be
+		headerCells.each( function (i) {
+			var idx = dt.column.index( 'fromVisible', i );
+			columns[ idx ].minWidth =  this.offsetWidth || 0;
+		} );
+
+		inserted.remove();
+	},
+
+	/**
+	 * Set a column's visibility.
+	 *
+	 * We don't use DataTables' column visibility controls in order to ensure
+	 * that column visibility can Responsive can no-exist. Since only IE8+ is
+	 * supported (and all evergreen browsers of course) the control of the
+	 * display attribute works well.
+	 *
+	 * @param {integer} col      Column index
+	 * @param {boolean} showHide Show or hide (true or false)
+	 * @private
+	 */
+	_setColumnVis: function ( col, showHide )
+	{
+		var dt = this.s.dt;
+		var display = showHide ? '' : 'none'; // empty string will remove the attr
+
+		$( dt.column( col ).header() ).css( 'display', display );
+		$( dt.column( col ).footer() ).css( 'display', display );
+		dt.column( col ).nodes().to$().css( 'display', display );
+
+		// If the are child nodes stored, we might need to reinsert them
+		if ( ! $.isEmptyObject( _childNodeStore ) ) {
+			dt.cells( null, col ).indexes().each( function (idx) {
+				_childNodesRestore( dt, idx.row, idx.column );
+			} );
+		}
+	},
+
+
+	/**
+	 * Update the cell tab indexes for keyboard accessibility. This is called on
+	 * every table draw - that is potentially inefficient, but also the least
+	 * complex option given that column visibility can change on the fly. Its a
+	 * shame user-focus was removed from CSS 3 UI, as it would have solved this
+	 * issue with a single CSS statement.
+	 *
+	 * @private
+	 */
+	_tabIndexes: function ()
+	{
+		var dt = this.s.dt;
+		var cells = dt.cells( { page: 'current' } ).nodes().to$();
+		var ctx = dt.settings()[0];
+		var target = this.c.details.target;
+
+		cells.filter( '[data-dtr-keyboard]' ).removeData( '[data-dtr-keyboard]' );
+
+		if ( typeof target === 'number' ) {
+			dt.cells( null, target, { page: 'current' } ).nodes().to$()
+				.attr( 'tabIndex', ctx.iTabIndex )
+				.data( 'dtr-keyboard', 1 );
+		}
+		else {
+			// This is a bit of a hack - we need to limit the selected nodes to just
+			// those of this table
+			if ( target === 'td:first-child, th:first-child' ) {
+				target = '>td:first-child, >th:first-child';
+			}
+
+			$( target, dt.rows( { page: 'current' } ).nodes() )
+				.attr( 'tabIndex', ctx.iTabIndex )
+				.data( 'dtr-keyboard', 1 );
+		}
+	}
+} );
+
+
+/**
+ * List of default breakpoints. Each item in the array is an object with two
+ * properties:
+ *
+ * * `name` - the breakpoint name.
+ * * `width` - the breakpoint width
+ *
+ * @name Responsive.breakpoints
+ * @static
+ */
+Responsive.breakpoints = [
+	{ name: 'desktop',  width: Infinity },
+	{ name: 'tablet-l', width: 1024 },
+	{ name: 'tablet-p', width: 768 },
+	{ name: 'mobile-l', width: 480 },
+	{ name: 'mobile-p', width: 320 }
+];
+
+
+/**
+ * Display methods - functions which define how the hidden data should be shown
+ * in the table.
+ *
+ * @namespace
+ * @name Responsive.defaults
+ * @static
+ */
+Responsive.display = {
+	childRow: function ( row, update, render ) {
+		if ( update ) {
+			if ( $(row.node()).hasClass('parent') ) {
+				row.child( render(), 'child' ).show();
+
+				return true;
+			}
+		}
+		else {
+			if ( ! row.child.isShown()  ) {
+				row.child( render(), 'child' ).show();
+				$( row.node() ).addClass( 'parent' );
+
+				return true;
+			}
+			else {
+				row.child( false );
+				$( row.node() ).removeClass( 'parent' );
+
+				return false;
+			}
+		}
+	},
+
+	childRowImmediate: function ( row, update, render ) {
+		if ( (! update && row.child.isShown()) || ! row.responsive.hasHidden() ) {
+			// User interaction and the row is show, or nothing to show
+			row.child( false );
+			$( row.node() ).removeClass( 'parent' );
+
+			return false;
+		}
+		else {
+			// Display
+			row.child( render(), 'child' ).show();
+			$( row.node() ).addClass( 'parent' );
+
+			return true;
+		}
+	},
+
+	// This is a wrapper so the modal options for Bootstrap and jQuery UI can
+	// have options passed into them. This specific one doesn't need to be a
+	// function but it is for consistency in the `modal` name
+	modal: function ( options ) {
+		return function ( row, update, render ) {
+			if ( ! update ) {
+				// Show a modal
+				var close = function () {
+					modal.remove(); // will tidy events for us
+					$(document).off( 'keypress.dtr' );
+				};
+
+				var modal = $('<div class="dtr-modal"/>')
+					.append( $('<div class="dtr-modal-display"/>')
+						.append( $('<div class="dtr-modal-content"/>')
+							.append( render() )
+						)
+						.append( $('<div class="dtr-modal-close">&times;</div>' )
+							.click( function () {
+								close();
+							} )
+						)
+					)
+					.append( $('<div class="dtr-modal-background"/>')
+						.click( function () {
+							close();
+						} )
+					)
+					.appendTo( 'body' );
+
+				$(document).on( 'keyup.dtr', function (e) {
+					if ( e.keyCode === 27 ) {
+						e.stopPropagation();
+
+						close();
+					}
+				} );
+			}
+			else {
+				$('div.dtr-modal-content')
+					.empty()
+					.append( render() );
+			}
+
+			if ( options && options.header ) {
+				$('div.dtr-modal-content').prepend(
+					'<h2>'+options.header( row )+'</h2>'
+				);
+			}
+		};
+	}
+};
+
+
+var _childNodeStore = {};
+
+function _childNodes( dt, row, col ) {
+	var name = row+'-'+col;
+
+	if ( _childNodeStore[ name ] ) {
+		return _childNodeStore[ name ];
+	}
+
+	// https://jsperf.com/childnodes-array-slice-vs-loop
+	var nodes = [];
+	var children = dt.cell( row, col ).node().childNodes;
+	for ( var i=0, ien=children.length ; i<ien ; i++ ) {
+		nodes.push( children[i] );
+	}
+
+	_childNodeStore[ name ] = nodes;
+
+	return nodes;
+}
+
+function _childNodesRestore( dt, row, col ) {
+	var name = row+'-'+col;
+
+	if ( ! _childNodeStore[ name ] ) {
+		return;
+	}
+
+	var node = dt.cell( row, col ).node();
+	var store = _childNodeStore[ name ];
+	var parent = store[0].parentNode;
+	var parentChildren = parent.childNodes;
+	var a = [];
+
+	for ( var i=0, ien=parentChildren.length ; i<ien ; i++ ) {
+		a.push( parentChildren[i] );
+	}
+
+	for ( var j=0, jen=a.length ; j<jen ; j++ ) {
+		node.appendChild( a[j] );
+	}
+
+	_childNodeStore[ name ] = undefined;
+}
+
+
+/**
+ * Display methods - functions which define how the hidden data should be shown
+ * in the table.
+ *
+ * @namespace
+ * @name Responsive.defaults
+ * @static
+ */
+Responsive.renderer = {
+	listHiddenNodes: function () {
+		return function ( api, rowIdx, columns ) {
+			var ul = $('<ul data-dtr-index="'+rowIdx+'" class="dtr-details"/>');
+			var found = false;
+
+			var data = $.each( columns, function ( i, col ) {
+				if ( col.hidden ) {
+					$(
+						'<li data-dtr-index="'+col.columnIndex+'" data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
+							'<span class="dtr-title">'+
+								col.title+
+							'</span> '+
+						'</li>'
+					)
+						.append( $('<span class="dtr-data"/>').append( _childNodes( api, col.rowIndex, col.columnIndex ) ) )// api.cell( col.rowIndex, col.columnIndex ).node().childNodes ) )
+						.appendTo( ul );
+
+					found = true;
+				}
+			} );
+
+			return found ?
+				ul :
+				false;
+		};
+	},
+
+	listHidden: function () {
+		return function ( api, rowIdx, columns ) {
+			var data = $.map( columns, function ( col ) {
+				return col.hidden ?
+					'<li data-dtr-index="'+col.columnIndex+'" data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
+						'<span class="dtr-title">'+
+							col.title+
+						'</span> '+
+						'<span class="dtr-data">'+
+							col.data+
+						'</span>'+
+					'</li>' :
+					'';
+			} ).join('');
+
+			return data ?
+				$('<ul data-dtr-index="'+rowIdx+'" class="dtr-details"/>').append( data ) :
+				false;
+		}
+	},
+
+	tableAll: function ( options ) {
+		options = $.extend( {
+			tableClass: ''
+		}, options );
+
+		return function ( api, rowIdx, columns ) {
+			var data = $.map( columns, function ( col ) {
+				return '<tr data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
+						'<td>'+col.title+':'+'</td> '+
+						'<td>'+col.data+'</td>'+
+					'</tr>';
+			} ).join('');
+
+			return $('<table class="'+options.tableClass+' dtr-details" width="100%"/>').append( data );
+		}
+	}
+};
+
+/**
+ * Responsive default settings for initialisation
+ *
+ * @namespace
+ * @name Responsive.defaults
+ * @static
+ */
+Responsive.defaults = {
+	/**
+	 * List of breakpoints for the instance. Note that this means that each
+	 * instance can have its own breakpoints. Additionally, the breakpoints
+	 * cannot be changed once an instance has been creased.
+	 *
+	 * @type {Array}
+	 * @default Takes the value of `Responsive.breakpoints`
+	 */
+	breakpoints: Responsive.breakpoints,
+
+	/**
+	 * Enable / disable auto hiding calculations. It can help to increase
+	 * performance slightly if you disable this option, but all columns would
+	 * need to have breakpoint classes assigned to them
+	 *
+	 * @type {Boolean}
+	 * @default  `true`
+	 */
+	auto: true,
+
+	/**
+	 * Details control. If given as a string value, the `type` property of the
+	 * default object is set to that value, and the defaults used for the rest
+	 * of the object - this is for ease of implementation.
+	 *
+	 * The object consists of the following properties:
+	 *
+	 * * `display` - A function that is used to show and hide the hidden details
+	 * * `renderer` - function that is called for display of the child row data.
+	 *   The default function will show the data from the hidden columns
+	 * * `target` - Used as the selector for what objects to attach the child
+	 *   open / close to
+	 * * `type` - `false` to disable the details display, `inline` or `column`
+	 *   for the two control types
+	 *
+	 * @type {Object|string}
+	 */
+	details: {
+		display: Responsive.display.childRow,
+
+		renderer: Responsive.renderer.listHidden(),
+
+		target: 0,
+
+		type: 'inline'
+	},
+
+	/**
+	 * Orthogonal data request option. This is used to define the data type
+	 * requested when Responsive gets the data to show in the child row.
+	 *
+	 * @type {String}
+	 */
+	orthogonal: 'display'
+};
+
+
+/*
+ * API
+ */
+var Api = $.fn.dataTable.Api;
+
+// Doesn't do anything - work around for a bug in DT... Not documented
+Api.register( 'responsive()', function () {
+	return this;
+} );
+
+Api.register( 'responsive.index()', function ( li ) {
+	li = $(li);
+
+	return {
+		column: li.data('dtr-index'),
+		row:    li.parent().data('dtr-index')
+	};
+} );
+
+Api.register( 'responsive.rebuild()', function () {
+	return this.iterator( 'table', function ( ctx ) {
+		if ( ctx._responsive ) {
+			ctx._responsive._classLogic();
+		}
+	} );
+} );
+
+Api.register( 'responsive.recalc()', function () {
+	return this.iterator( 'table', function ( ctx ) {
+		if ( ctx._responsive ) {
+			ctx._responsive._resizeAuto();
+			ctx._responsive._resize();
+		}
+	} );
+} );
+
+Api.register( 'responsive.hasHidden()', function () {
+	var ctx = this.context[0];
+
+	return ctx._responsive ?
+		$.inArray( false, ctx._responsive.s.current ) !== -1 :
+		false;
+} );
+
+Api.registerPlural( 'columns().responsiveHidden()', 'column().responsiveHidden()', function () {
+	return this.iterator( 'column', function ( settings, column ) {
+		return settings._responsive ?
+			settings._responsive.s.current[ column ] :
+			false;
+	}, 1 );
+} );
+
+
+/**
+ * Version information
+ *
+ * @name Responsive.version
+ * @static
+ */
+Responsive.version = '2.2.3';
+
+
+$.fn.dataTable.Responsive = Responsive;
+$.fn.DataTable.Responsive = Responsive;
+
+// Attach a listener to the document which listens for DataTables initialisation
+// events so we can automatically initialise
+$(document).on( 'preInit.dt.dtr', function (e, settings, json) {
+	if ( e.namespace !== 'dt' ) {
+		return;
+	}
+
+	if ( $(settings.nTable).hasClass( 'responsive' ) ||
+		 $(settings.nTable).hasClass( 'dt-responsive' ) ||
+		 settings.oInit.responsive ||
+		 DataTable.defaults.responsive
+	) {
+		var init = settings.oInit.responsive;
+
+		if ( init !== false ) {
+			new Responsive( settings, $.isPlainObject( init ) ? init : {}  );
+		}
+	}
+} );
+
+
+return Responsive;
 }));
 
 
@@ -70650,6 +72326,16 @@ try {
   __webpack_require__(/*! jquery-validation */ "./node_modules/jquery-validation/dist/jquery.validate.js");
 
   __webpack_require__(/*! datatables.net-dt */ "./node_modules/datatables.net-dt/js/dataTables.dataTables.js");
+
+  __webpack_require__(/*! admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min */ "./node_modules/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js");
+
+  __webpack_require__(/*! admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min */ "./node_modules/admin-lte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js");
+
+  __webpack_require__(/*! admin-lte/plugins/jquery-validation/jquery.validate.min.js */ "./node_modules/admin-lte/plugins/jquery-validation/jquery.validate.min.js");
+
+  __webpack_require__(/*! admin-lte/plugins/jquery-validation/additional-methods.min.js */ "./node_modules/admin-lte/plugins/jquery-validation/additional-methods.min.js");
+
+  __webpack_require__(/*! admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js */ "./node_modules/admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -70763,8 +72449,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Software\Salsas\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Software\Salsas\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tnksa\Documents\GitHub\Salsas\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tnksa\Documents\GitHub\Salsas\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
