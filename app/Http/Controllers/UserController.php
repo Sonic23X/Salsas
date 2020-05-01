@@ -105,7 +105,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-      User::where('id', $id)->delete();
-      return redirect('/users');
+      User::find($id)->delete();
+      return redirect('/users')->with('message', 'El usuario se borró correctamente!');;
     }
 }

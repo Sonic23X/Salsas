@@ -35,6 +35,12 @@
           </div><!-- /.container-fluid -->
       </section>
 
+      @if (session('status'))
+          <div class="alert alert-success">
+              {{ session('message') }}
+          </div>
+      @endif
+
       <!-- Main content -->
       <section class="content">
           <div class="row">
@@ -69,6 +75,7 @@
                                           </button>
                                           <button type="button" class="btn btn-block btn-danger btn-xs"
                                                   data-toggle="modal"
+                                                  data-whatever="{{$user->id}}"
                                                   data-target="#modal-danger">Eliminar
                                           </button>
                                       </td>
@@ -113,14 +120,13 @@
                           <p>¿Deseas eliminar el registro?</p>
                       </div>
                       <div class="modal-footer justify-content-between">
-                          <form action="/user/" method="post">
+                          <form id="deleteForm"  method="post">
                               @csrf
-                              @method('DELETE')
+                              @method('delete')
                               <button type="button" class="btn btn-outline-light" data-dismiss="modal">
                                 Cancelar
                               </button>
-                              <button type="submit" class="btn btn-outline-light swalDefaultSuccess"
-                                      data-dismiss="modal">
+                              <button type="submit" class="btn btn-outline-light swalDefaultSuccess" >
                                 Eliminar
                               </button>
                           </form>
@@ -132,6 +138,8 @@
           </div>
           <!-- /.modal -->
       </section>
+
+
 
     {{--
     <!-- jQuery -->
@@ -196,5 +204,16 @@
 
     </script>
     --}}
+    @section('script')
+    <script type="text/javascript">
+    $('#modal-danger').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var user_id = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        $('#deleteForm').attr('action', '/users/'+user_id);
+        })
+    </script>
+    @endsection
 
 @endsection
