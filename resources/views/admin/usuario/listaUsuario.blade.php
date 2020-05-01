@@ -42,7 +42,7 @@
                                   <th>Acciones</th>
                               </tr>
                               </thead>
-                              <tbody>
+                             <tbody>
                                 @forelse ($users as $user)
                                   <tr>
                                       <td>{{ $user->name }}</td>
@@ -69,6 +69,7 @@
 
                               </tr>
                               </tbody>
+
                               <tfoot>
                               <tr>
                                   <th>Usuario</th>
@@ -118,71 +119,6 @@
           <!-- /.modal -->
       </section>
 
-
-
-    {{--
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables -->
-    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <!-- SweetAlert2 -->
-    <script src="../../plugins/sweetalert2/sweetalert2.min.js"></script>
-    <!-- Toastr -->
-    <script src="../../plugins/toastr/toastr.min.js"></script>
-    <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-
-    <!-- page script -->
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(function () {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
-            });
-
-            $('.swalDefaultSuccess').click(function () {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Registro Eliminado'
-                })
-            });
-
-            $('.swalDefaultError').click(function () {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Registro no eliminado, ocurrió un error.'
-                })
-            });
-
-        });
-
-    </script>
-    --}}
     @section('script')
     <script type="text/javascript">
     $('#modal-danger').on('show.bs.modal', function (event) {
