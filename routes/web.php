@@ -76,3 +76,17 @@ Route::get('/editarUsuario', function()
     return view('admin.usuario.editarUsuario');
 
 });
+
+//rutas temporales tienda
+
+Route::get('/crearTienda', function()
+{
+    return view('admin.tienda.crearTienda');
+
+});
+
+Route::get('/editarTienda', function()
+{
+    return view('admin.tienda.editarTienda');
+
+});
