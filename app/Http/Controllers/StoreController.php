@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Entities\Store;
 use App\User;
@@ -53,6 +54,10 @@ class StoreController extends Controller
       //buscamos al usuario
       $user = User::where('name', 'like', '%' . $input['owner'] . '%')
                   ->first();
+
+      if($user == null)
+          return Redirect::back()
+                 ->withErrors(['error' => 'El usuario no existe']);
 
       //armamos la respuesta
       $data = array(
@@ -127,6 +132,10 @@ class StoreController extends Controller
       //buscamos al usuario
       $user = User::where('name', 'like', '%' . $input['owner'] . '%')
                   ->first();
+
+      if($user == null)
+          return Redirect::back()
+                 ->withErrors(['error' => 'El usuario no existe']);
 
       //armamos la respuesta
       $data = array(
