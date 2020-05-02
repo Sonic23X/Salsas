@@ -1,116 +1,113 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="wrapper">
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1>Agregar Salsa</h1>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+      <div class="container-fluid">
+          <div class="row mb-2">
+              <div class="col-sm-6">
+                  <h1>Agregar Salsa</h1>
+              </div>
+          </div>
+      </div><!-- /.container-fluid -->
+  </section>
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-12">
+  <!-- Main content -->
+  <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <!-- left column -->
+              <div class="col-12">
 
-                            <!-- general form elements -->
-                            <div class="card card-primary">
-                                <div class="card-header">
-                                    <h3 class="card-title float-left">Registrar Salsa</h3>
+                  <!-- general form elements -->
+                  <div class="card card-primary">
+                      <div class="card-header">
+                          <h3 class="card-title float-left">Registrar Salsa</h3>
 
-                                    <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                            onclick="location.href='#'">Regresar
-                                    </button>
+                          <button type="button" class="btn btn-primary  .btn-sm float-right"
+                                  onclick="location.href='{{ url('/salsas') }}'">Regresar
+                          </button>
 
-                                </div>
-                                <!-- /.card-header -->
+                      </div>
+                      <!-- /.card-header -->
 
-                                <!-- form start -->
-                                <div class="card-body">
-                                    <form role="form" id="quickForm">
+                      <!-- form start -->
+                      <div class="card-body">
+                          @if ($errors->any())
+                              <div class="alert alert-danger" role="alert">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          @endif
+                          <form role="form" action="{{ url('/salsas') }}" id="quickForm" method="post">
+                              @csrf
 
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Nombre</label>
-                                                    <input id="name" type="text" name="name"  class="form-control @error('name', 'cSausage') is-invalid @enderror"
-                                                           placeholder="Ingrese Nombre de Salsa">
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <!-- text input -->
+                                      <div class="form-group">
+                                          <label>Nombre</label>
+                                          <input id="name" type="text" name="name"  class="form-control @error('name', 'cSausage') is-invalid @enderror"
+                                                 placeholder="Ingrese Nombre de Salsa">
 
-                                                    @error('name', 'cSausage')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                    @enderror
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <div class="form-group">
+                                          <label>Características</label>
+                                          <input type="text" name="description" class="form-control"
+                                                 placeholder="Seleccione carácteristicas">
+                                      </div>
+                                  </div>
+                              </div>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label>Características</label>
-                                                    <input type="text" name="features" class="form-control"
-                                                           placeholder="Seleccione carácteristicas">
-                                                </div>
-                                            </div>
-                                        </div>
+                              <div class="row">
+                                  <div class="col-sm-6">
 
-                                        <div class="row">
-                                            <div class="col-sm-6">
+                                      <!-- text input -->
+                                      <div class="form-group">
+                                          <label>Precio</label>
+                                          <input type="number" name="price" class="form-control"
+                                                 placeholder="Ingrese Precio">
+                                      </div>
+                                  </div>
+                              </div>
 
-                                                <!-- text input -->
-                                                <div class="form-group">
-                                                    <label>Precio</label>
-                                                    <input type="number" name="price" class="form-control"
-                                                           placeholder="Ingrese Precio">
-                                                </div>
-                                            </div>
-                                        </div>
+                              <!-- /.card-body -->
 
-                                        <!-- /.card-body -->
+                              <div class="card-footer">
+                                  <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+                  <!-- /.card -->
 
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.card -->
-
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-    </div>
-    <!-- ./wrapper -->
+              </div>
+          </div>
+          <!-- /.row -->
+      </div><!-- /.container-fluid -->
+  </section>
 
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            $.validator.setDefaults({
+            /*$.validator.setDefaults({
                 submitHandler: function () {
                     alert("Correctamente registrado");
                     window.location.href = "listausuarios.html";
                 }
-            });
+            });*/
             $('#quickForm').validate({
                 rules: {
                     name: {
                         required: true,
                     },
-                    features: {
+                    description: {
                         required: true,
                     },
                     price: {
@@ -121,7 +118,7 @@
                     name: {
                         required: "Por favor ingrese un nombre",
                     },
-                    features: {
+                    description: {
                         required: "Por favor seleccione un característica.",
                     },
                     price: {

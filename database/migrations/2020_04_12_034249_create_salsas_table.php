@@ -16,8 +16,8 @@ class CreateSalsasTable extends Migration
         Schema::create('salsas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->json('description')->nullable();
-            $table->decimal('price', 4, 2);
+            $table->string('description')->nullable();
+            $table->decimal('price', 5, 2);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Salsa extends Model
 {
@@ -18,7 +19,7 @@ class Salsa extends Model
   protected $fillable = [
       'name', 'description', 'price',
   ];
-  
+
   public function Order(){
     return $this->belongsToMany('App\Entities\Order');
   }

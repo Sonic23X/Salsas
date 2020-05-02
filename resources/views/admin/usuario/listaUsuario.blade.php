@@ -42,7 +42,7 @@
                                   <th>Acciones</th>
                               </tr>
                               </thead>
-                             {{--<tbody>
+                              <tbody>
                                 @forelse ($users as $user)
                                   <tr>
                                       <td>{{ $user->name }}</td>
@@ -65,11 +65,7 @@
                                         <td>&nbsp;</td>
                                     </tr>
                                 @endforelse
-                              <tr>
-
-                              </tr>
                               </tbody>
-                              --}}
                               <tfoot>
                               <tr>
                                   <th>Usuario</th>

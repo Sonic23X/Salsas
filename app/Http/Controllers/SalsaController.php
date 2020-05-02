@@ -15,7 +15,8 @@ class SalsaController extends Controller
      */
     public function index()
     {
-        //
+      $salsas = Salsa::all();
+      return view('admin.salsas.listaSalsa', compact('salsas'));
     }
 
     /**
@@ -25,7 +26,7 @@ class SalsaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.salsas.crearSalsa');
     }
 
     /**
@@ -36,19 +37,29 @@ class SalsaController extends Controller
      */
     public function store(Request $request)
     {
+        $errorMessages =
+        [
+          'name.required' => 'Ingrese el nombre del producto',
+          'description.required' => 'Ingrese la descripción del producto',
+          'price.required' => 'Ingrese el precio del producto',
+          'price.min' => 'Ingrese el precio correcto del producto',
+          'price.max' => 'Ingrese el precio correcto del producto',
+        ];
+
         $validatedData = $request->validate([
-            'name' => ['required'],
-            'description' => ['required'],
-            'price' => ['required'],
-        ]);
-        
+          'name' => ['required'],
+          'description' => ['required'],
+          'price' => ['required', 'numeric', 'min:1', 'max:999'],
+        ], $errorMessages);
+
         $salsa = new Salsa([
-           'name' => $request->get('name'), 
-           'description' => $request->get('description'), 
-           'price' => $request->get('price'), 
+           'name' => $request->get('name'),
+           'description' => $request->get('description'),
+           'price' => $request->get('price'),
         ]);
         $salsa->save();
-        return response()->json($salsa);
+
+        return redirect('/salsas');
     }
 
     /**
@@ -70,7 +81,7 @@ class SalsaController extends Controller
      */
     public function edit(Salsa $salsa)
     {
-        //
+        return view('admin.salsas.editarSalsa', compact('salsa'));
     }
 
     /**
@@ -80,21 +91,26 @@ class SalsaController extends Controller
      * @param  \App\Entities\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salsa $salsa)
+    public function update(Request $request, $id)
     {
+        $errorMessages =
+        [
+          'name.required' => 'Ingrese el nombre del producto',
+          'description.required' => 'Ingrese la descripción del producto',
+          'price.required' => 'Ingrese el precio del producto',
+          'price.min' => 'Ingrese el precio correcto del producto',
+          'price.max' => 'Ingrese el precio correcto del producto',
+        ];
+
         $validatedData = $request->validate([
-            'name' => ['required'],
-            'description' => ['required'],
-            'price' => ['required'],
-        ]);
-       
-        $update = Salsa::find($salsa);
-        $update->name = $request->get('name');
-        $update->description = $request->get('description');
-        $update->price = $request->get('price');
-        $update->save();
-        
-        return response()->json($update);
+              'name' => ['required'],
+              'description' => ['required'],
+              'price' => ['required', 'numeric', 'min:1', 'max:999'],
+        ], $errorMessages);
+
+        $update = Salsa::find($id)->update($validatedData);
+
+        return redirect('/salsas');
     }
 
     /**
@@ -103,11 +119,9 @@ class SalsaController extends Controller
      * @param  \App\Entities\Salsa  $salsa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salsa $salsa)
+    public function destroy($salsa)
     {
-        $delete = Salsa::find($salsa);
-        $delete->delete();
-        
-        return response()->json($delete);
+        Salsa::find($salsa)->delete();
+        return redirect('/salsas')->with('message', 'El producto se borró correctamente!');
     }
 }

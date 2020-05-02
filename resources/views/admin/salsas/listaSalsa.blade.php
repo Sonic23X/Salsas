@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Listado de Salsas</h3>
                         <button type="button" class="btn btn-primary .btn-sm float-right"
-                                onclick="location.href='#'">Registrar Salsa
+                                onclick="location.href='{{ url('/salsas/create') }}'">Registrar Salsa
                         </button>
                     </div>
                     <!-- /.card-header -->
@@ -36,60 +36,28 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>BBQ</td>
-                                <td>-----
-                                </td>
-                                <td>$125.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs"
-                                            onclick="location.href='#'">Editar
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Verde</td>
-                                <td>-----
-                                </td>
-                                <td>$125.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Roja</td>
-                                <td>-----
-                                </td>
-                                <td>$125.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Brava</td>
-                                <td>-----
-                                </td>
-                                <td>$125.00</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-info btn-xs">Editar</button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs"
-                                            data-toggle="modal"
-                                            data-target="#modal-danger">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
+                            @forelse ($salsas as $salsa)
+                              <tr>
+                                  <td>{{ $salsa->name }}</td>
+                                  <td>{{ $salsa->description }}</td>
+                                  <td>{{ $salsa->price }}</td>
+                                  <td>
+                                      <button type="button" class="btn btn-block btn-info btn-xs"
+                                              onclick="location.href='{{ url('/salsas/'.$salsa->id.'/edit') }}'">Editar
+                                      </button>
+                                      <button type="button" class="btn btn-block btn-danger btn-xs"
+                                              data-toggle="modal"
+                                              data-whatever="{{$salsa->id}}"
+                                              data-target="#modal-danger">Eliminar
+                                      </button>
+                                  </td>
+                              </tr>
+                            @empty
+                                <tr>
+                                    <td>No hay salsas</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                             <tfoot>
                             <tr>
@@ -121,11 +89,16 @@
                         <p>¿Deseas eliminar el registro?</p>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar
-                        </button>
-                        <button type="button" class="btn btn-outline-light"
-                                data-dismiss="modal">Eliminar
-                        </button>
+                        <form id="deleteForm"  method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">
+                              Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-outline-light swalDefaultSuccess" >
+                              Eliminar
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -149,6 +122,15 @@
     "responsive": true,
     });
 
+    </script>
+    <script type="text/javascript">
+        $('#modal-danger').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var salsa_id = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            $('#deleteForm').attr('action', '/salsas/'+salsa_id);
+        })
     </script>
 
 @endsection

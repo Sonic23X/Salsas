@@ -24,7 +24,7 @@
                               <h3 class="card-title float-left">Editar Usuario</h3>
 
                               <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                      onclick="location.href='{{ url('/users/'. $user->id) }}'">Regresar
+                                      onclick="location.href='{{ url('/users') }}'">Regresar
                               </button>
 
                           </div>

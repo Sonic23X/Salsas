@@ -97,7 +97,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-pepper-hot"></i>
                   <p>
                     Productos
