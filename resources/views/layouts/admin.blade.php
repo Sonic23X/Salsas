@@ -20,7 +20,9 @@
       <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
-
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
         </ul>
 
         <!-- Right navbar links -->
@@ -88,6 +90,7 @@
                   </p>
                 </a>
               </li>
+              <!--
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-truck"></i>
@@ -96,6 +99,7 @@
                   </p>
                 </a>
               </li>
+            -->
               <li class="nav-item">
                 <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-pepper-hot"></i>
