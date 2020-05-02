@@ -26,7 +26,7 @@
                             <h3 class="card-title float-left">Registrar Tienda</h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                    onclick="location.href='{{ url('#') }}'">Regresar
+                                    onclick="location.href='{{ url('/stores') }}'">Regresar
                             </button>
 
                         </div>
@@ -34,8 +34,17 @@
 
                         <!-- form start -->
                         <div class="card-body">
-                            <form role="form" action="#" id="quickForm" method="post">
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form role="form" action="{{ url('/stores') }}" id="quickForm" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
@@ -49,7 +58,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Nombre del Establecimiento</label>
-                                            <input type="text" name="place" class="form-control"
+                                            <input type="text" name="name" class="form-control"
                                                    placeholder="Ingrese nombre del establecimiento.">
                                         </div>
                                     </div>

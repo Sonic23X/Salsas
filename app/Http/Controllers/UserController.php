@@ -108,7 +108,6 @@ class UserController extends Controller
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ], $errorMessages);
 
-      $input = $request->all();
       $user = User::where('id', $id)->update($update);
 
       return redirect('/users');
@@ -124,6 +123,6 @@ class UserController extends Controller
     public function destroy($id)
     {
       User::find($id)->delete();
-      return redirect('/users')->with('message', 'El usuario se borró correctamente!');;
+      return redirect('/users')->with('message', 'El usuario se borró correctamente!');
     }
 }

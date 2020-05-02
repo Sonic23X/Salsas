@@ -16,7 +16,11 @@ class CreateStoreTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('address');
+            $table->string('street');
+            $table->integer('number');
+            $table->string('suburb');
+            $table->string('state');
+            $table->integer('postal');
             $table->string('phone');
             $table->string('qr_path')->default(null)->nullable();
             $table->unsignedBigInteger('user_id');

@@ -3,10 +3,13 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
 
 class Store extends Model
 {
+  use SoftDeletes;
+
   /**
    * The attributes that are mass assignable.
    *
@@ -14,7 +17,8 @@ class Store extends Model
    */
   protected $fillable =
   [
-    'name', 'address', 'phone', 'user_id'
+    'name', 'address', 'phone', 'street', 'number',
+    'suburb', 'state', 'postal', 'user_id',
   ];
 
   /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entities\Store;
+use App\User;
 
 class StoreController extends Controller
 {
@@ -18,12 +19,6 @@ class StoreController extends Controller
       return view('admin.tienda.index', compact('tiendas'));
     }
 
-    //Ejemplo de busqueda
-    public function get($id)
-    {
-      return Store::findOrFail($id);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -31,7 +26,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tienda.crearTienda');
     }
 
     /**
@@ -45,18 +40,35 @@ class StoreController extends Controller
       //validaciones con unique ¿? | busqueda de usuario existente
       $input = $request->validate(
       [
+        'owner' => 'required|string',
         'name' => 'required|string',
-        'address' => 'required|string',
-        'phone' => 'required|string',
-        'user_id' => 'required|int',
+        'street' => 'required|string',
+        'number' => 'required|numeric',
+        'suburb' => 'required|string',
+        'state' => 'required',
+        'postal' => 'required|numeric',
+        'phone' => 'required|numeric',
       ]);
 
-      //adaptar para que el campo qr_path permita ser null al crear el registro
-      //en caso de que el QR contenga el ID de la tienda
-      $input['qr_path'] = 'path';
+      //buscamos al usuario
+      $user = User::where('name', 'like', '%' . $input['owner'] . '%')
+                  ->first();
+
+      //armamos la respuesta
+      $data = array(
+        'name' => $input['name'],
+        'street' => $input['street'],
+        'number' => $input['number'],
+        'suburb' => $input['suburb'],
+        'state' => $input['state'],
+        'postal' => $input['postal'],
+        'phone' => $input['phone'],
+        'user_id' => $user->id,
+        'qr_path' => 'path'
+      );
 
       //save the store
-      $store = Store::create($input);
+      $store = Store::create($data);
 
       //generate the QR
       \QrCode::size(500)
@@ -66,7 +78,7 @@ class StoreController extends Controller
       $store->qr_path = 'images\qr\qr_'.$store->name.'.svg';
       $store->save();
 
-      return $store;
+      return redirect('/stores');
     }
 
     /**
@@ -88,7 +100,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        //
+        return view('admin.tienda.editarTienda', compact('store'));
     }
 
     /**
@@ -98,19 +110,39 @@ class StoreController extends Controller
      * @param  \App\Entities\Store  $store
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Store $store)
+    public function update(Request $request, $id)
     {
-      $store->fill($request->validate(
+      $input = $request->validate(
       [
+        'owner' => 'required|string',
         'name' => 'required|string',
-        'address' => 'required|string',
-        'phone' => 'required|string',
-        'user_id' => 'required|int',
-      ]));
+        'street' => 'required|string',
+        'number' => 'required|numeric',
+        'suburb' => 'required|string',
+        'state' => 'required',
+        'postal' => 'required|numeric',
+        'phone' => 'required|numeric',
+      ]);
 
-      $store->save();
+      //buscamos al usuario
+      $user = User::where('name', 'like', '%' . $input['owner'] . '%')
+                  ->first();
 
-      return $store;
+      //armamos la respuesta
+      $data = array(
+        'name' => $input['name'],
+        'street' => $input['street'],
+        'number' => $input['number'],
+        'suburb' => $input['suburb'],
+        'state' => $input['state'],
+        'postal' => $input['postal'],
+        'phone' => $input['phone'],
+        'user_id' => $user->id,
+      );
+
+      $store = Store::where('id', $id)->update($data);
+
+      return redirect('/stores');
     }
 
     /**
@@ -123,6 +155,6 @@ class StoreController extends Controller
     {
         $store->delete();
 
-        return array('status' => 200, 'message' => '¡Tienda borrada!');
+        return redirect('/stores')->with('message', 'La tienda se borró correctamente!');
     }
 }

@@ -26,7 +26,7 @@
                             <h3 class="card-title float-left">Editar Tienda</h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                    onclick="location.href='{{ url('#') }}'">Regresar
+                                    onclick="location.href='{{ url('/stores') }}'">Regresar
                             </button>
 
                         </div>
@@ -34,8 +34,18 @@
 
                         <!-- form start -->
                         <div class="card-body">
-                            <form role="form" action="#" id="quickForm" method="post">
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form role="form" action="{{ url('/stores/'.$store->id) }}" id="quickForm" method="post">
+                                @csrf
+                                @method('PUT')
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
@@ -43,14 +53,16 @@
                                             <label>Dueño</label>
                                             <input id="owner" type="text" name="owner"
                                                    class="form-control"
-                                                   placeholder="Ingrese Nombre del Dueño">
+                                                   placeholder="Ingrese Nombre del Dueño"
+                                                   value="{{ $store->user()->name }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label>Nombre del Establecimiento</label>
-                                            <input type="text" name="place" class="form-control"
-                                                   placeholder="Ingrese nombre del establecimiento.">
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="Ingrese nombre del establecimiento."
+                                                   value="{{ $store->name }}">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +75,8 @@
                                         <div class="form-group">
                                             <label>Calle</label>
                                             <input type="text" name="street" class="form-control"
-                                                   placeholder="Ingrese Calle">
+                                                   placeholder="Ingrese Calle"
+                                                   value="{{ $store->street }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -71,7 +84,8 @@
                                         <div class="form-group">
                                             <label>Número</label>
                                             <input type="number" name="number" class="form-control"
-                                                   placeholder="Ingrese Número">
+                                                   placeholder="Ingrese Número"
+                                                   value="{{ $store->number }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -79,7 +93,8 @@
                                         <div class="form-group">
                                             <label>Colonia</label>
                                             <input type="text" name="suburb" class="form-control"
-                                                   placeholder="Ingrese Colonia">
+                                                   placeholder="Ingrese Colonia"
+                                                   value="{{ $store->suburb }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -87,7 +102,8 @@
                                         <div class="form-group">
                                             <label>Estado</label>
                                             <input type="text" name="state" class="form-control"
-                                                   placeholder="Ingrese Estado">
+                                                   placeholder="Ingrese Estado"
+                                                   value="{{ $store->state }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -95,7 +111,8 @@
                                         <div class="form-group">
                                             <label>Código Postal</label>
                                             <input type="number" name="postal" class="form-control"
-                                                   placeholder="Ingrese C.P.">
+                                                   placeholder="Ingrese C.P."
+                                                   value="{{ $store->postal }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -103,7 +120,8 @@
                                         <div class="form-group">
                                             <label>Teléfono</label>
                                             <input type="number" name="phone" class="form-control"
-                                                   placeholder="Ingrese Teléfono">
+                                                   placeholder="Ingrese Teléfono"
+                                                   value="{{ $store->phone }}">
                                         </div>
                                     </div>
 
