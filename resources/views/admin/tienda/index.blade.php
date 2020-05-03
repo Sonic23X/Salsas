@@ -14,7 +14,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="example2" name="example2" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Dueño</th>
@@ -26,18 +26,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                              @forelse ($tiendas as $tienda)
+                            @forelse ($tiendas as $tienda)
                                 <tr>
                                     <td>{{ $tienda->user()->name }}</td>
                                     <td>{{ $tienda->name }}</td>
                                     <td>
-                                      {{ $tienda->street }} {{ $tienda->number }}, {{ $tienda->suburb }}, {{ $tienda->state }}, CP {{ $tienda->postal }}
+                                        {{ $tienda->street }} {{ $tienda->number }}, {{ $tienda->suburb }}
+                                        , {{ $tienda->state }}, CP {{ $tienda->postal }}
                                     </td>
                                     <td>{{ $tienda->phone }}</td>
                                     <td><img src="{{ $tienda->qr_path }}" alt="Código QR" width="150" height="150"></td>
                                     <td>
                                         <button type="button" class="btn btn-block btn-info btn-xs"
-                                                onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">Editar
+                                                onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">
+                                            Editar
                                         </button>
                                         <button type="button" class="btn btn-block btn-danger btn-xs"
                                                 data-toggle="modal"
@@ -46,12 +48,12 @@
                                         </button>
                                     </td>
                                 </tr>
-                              @empty
-                                  <tr>
-                                      <td>No hay tiendas</td>
-                                      <td>&nbsp;</td>
-                                  </tr>
-                              @endforelse
+                            @empty
+                                <tr>
+                                    <td>No hay tiendas</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            @endforelse
                             </tbody>
                             <tfoot>
                             <tr>
@@ -85,16 +87,16 @@
                         <p>¿Deseas eliminar el registro?</p>
                     </div>
                     <div class="modal-footer justify-content-between">
-                      <form id="deleteForm"  method="post">
-                          @csrf
-                          @method('delete')
-                          <button type="button" class="btn btn-outline-light" data-dismiss="modal">
-                            Cancelar
-                          </button>
-                          <button type="submit" class="btn btn-outline-light swalDefaultSuccess" >
-                            Eliminar
-                          </button>
-                      </form>
+                        <form id="deleteForm" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-outline-light swalDefaultSuccess">
+                                Eliminar
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -107,34 +109,32 @@
 
 
 @section('script')
+
     <!-- page script -->
     <script type="text/javascript">
-    $('#modal-danger').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var store_id = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        $('#deleteForm').attr('action', '/stores/'+store_id);
+
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": false,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $('#modal-danger').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var store_id = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            $('#deleteForm').attr('action', '/stores/' + store_id);
         })
     </script>
 
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": false,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
 @endsection
 
 @endsection
