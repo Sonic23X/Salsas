@@ -39,6 +39,12 @@ Route::resources([
     'users' => 'UserController'
 ]);
 
+Route::get('/qr', function()
+{
+    return view('admin.qr.qr');
+
+});
+
 //rutas temporales
 Route::get('/listaSalsa', function()
 {
