@@ -26,7 +26,7 @@ try {
     require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
 
     //qr
-    require('jsqr');
+    require('jsqr/dist/jsQR.js');
 
 } catch (e) {}
 

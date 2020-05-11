@@ -82443,7 +82443,7 @@ try {
   __webpack_require__(/*! admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js */ "./node_modules/admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"); //qr
 
 
-  __webpack_require__(/*! jsqr */ "./node_modules/jsqr/dist/jsQR.js");
+  __webpack_require__(/*! jsqr/dist/jsQR.js */ "./node_modules/jsqr/dist/jsQR.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
