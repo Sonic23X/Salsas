@@ -15,7 +15,11 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Delivery::getListing();
+        $salsas = Delivery::getDeliveredSalsas();
+        $mount = Delivery::getMountReceived();
+        
+        return view();
     }
 
     /**
