@@ -37,6 +37,7 @@
                                     <td>{{ $tienda->phone }}</td>
                                     <td><img src="{{ $tienda->qr_path }}" alt="Código QR" width="150" height="150"></td>
                                     <td>
+                                        <button type="button" class="btn btn-block btn-info btn-xs">Pedido</button>
                                         <button type="button" class="btn btn-block btn-info btn-xs"
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">
                                             Editar

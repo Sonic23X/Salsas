@@ -39,12 +39,6 @@ Route::resources([
     'users' => 'UserController'
 ]);
 
-Route::get('/qr', function()
-{
-    return view('admin.qr.qr');
-
-});
-
 //rutas temporales
 Route::get('/listaSalsa', function()
 {
@@ -96,3 +90,67 @@ Route::get('/editarTienda', function()
     return view('admin.tienda.editarTienda');
 
 });
+
+//Rutas temporales pedidos de una  tienda en específico dentro del admin
+
+Route::get('/tiendaPedido', function()
+{
+    return view('admin.tienda.tiendaPedido');
+
+});
+
+Route::get('/crearPedido', function()
+{
+    return view('admin.tienda.crearPedido');
+
+});
+
+//Rutas temporales entregas en administrador
+Route::get('/entregaDashAdmin', function()
+{
+    return view('admin.entregas.listaEntrega');
+
+});
+
+//rutas temporales de la lista de pedidos general dentro del admin
+
+Route::get('/listaPedidosAdmin', function()
+{
+    return view('admin.pedido.listaPedidosAdmin');
+
+});
+
+Route::get('/detallePedidoAdmin', function()
+{
+    return view('admin.pedido.detallePedidoAdmin');
+
+});
+
+//Rutas Temporales lista de pedidos de tienda
+
+Route::get('/tiendaListaPedidos', function()
+{
+    return view('tienda.listaPedidos');
+
+});
+
+Route::get('/detallePedidoTienda', function()
+{
+    return view('tienda.pedidoTiendaDetalle');
+
+});
+
+//Rutas temporales de repartidor
+
+Route::get('/dashRepartidor', function ()
+{
+   return view('repartidor.entregas.dashrepartidor');
+});
+
+Route::get('/registrarEntregaRepartidor', function ()
+{
+    return view('repartidor.entregas.registrarEntrega');
+});
+
+
+
