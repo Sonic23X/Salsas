@@ -25,8 +25,6 @@ try {
     require('admin-lte/plugins/jquery-validation/additional-methods.min.js');
     require('admin-lte/plugins/bs-custom-file-input/bs-custom-file-input.min.js');
 
-    //qr
-    require('jsqr/dist/jsQR.js');
 
 } catch (e) {}
 

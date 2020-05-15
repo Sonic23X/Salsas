@@ -77,10 +77,10 @@ class StoreController extends Controller
 
       //generate the QR
       \QrCode::size(500)
-            ->generate(''.$store->id.'', public_path('images/qr/qr_'. str_replace(' ', '_', $store->name)  .'.svg'));
+            ->generate(''.$store->id.'', public_path('images\qr\qr_'. str_replace(' ', '_', $store->name)  .'.svg'));
 
       //update the qr_path of the store
-      $store->qr_path = 'images/qr/qr_'.str_replace(' ', '_', $store->name).'.svg';
+      $store->qr_path = 'images\qr\qr_'.str_replace(' ', '_', $store->name).'.svg';
       $store->save();
 
       return redirect('/stores');
