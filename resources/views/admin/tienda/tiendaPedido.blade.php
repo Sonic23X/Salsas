@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+  @extends('layouts.admin')
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -16,10 +16,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="card-title" style="text-transform: uppercase"><strong>El patón</strong></h1>
-                        <button type="button" class="btn btn-primary .btn-sm float-right" onclick="location.href=''">
-                            Levantar
-                            Pedido
+                        <h1 class="card-title" style="text-transform: uppercase">
+                            <strong>{{$store->name}}</strong>
+                        </h1>
+                        <button type="button"
+                                class="btn btn-primary btn-sm float-right"
+                                onclick="location.href='{{ url('/stores/'.$store->id.'/orders/create') }}'">
+                            Levantar Pedido
                         </button>
                     </div>
                     <!-- /.card-header -->
@@ -36,69 +39,32 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>8912316516</td>
-                                <td>Ismael Gonzales</td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
+                              @forelse($store->orders as $order)
+                                <tr>
+                                  <td>{{$order->code}}</td>
+                                  <td>{{$order->seller->name}}</td>
+                                  <td>{{$order->created_at}}</td>
+                                  <td>${{$order->mount ?? 0.00}}</td>
+                                  <td>{{$order->notes}}</td>
 
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#modal-lg">Editar
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#modal-danger">Cancelar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>98645157486</td>
-                                <td>Brayan Asault</td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#modal-lg">Editar
-                                    </button>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-block btn-primary btn-xs"
+                                                  onclick='location.href="{{url("/stores/{$store->id}/orders/{$order->id}")}}"'>
+                                                Editar
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-block btn-danger btn-xs"   data-toggle="modal"
+                                                  data-target="#deleteModal"
+                                                  data-order="{{$order->id}}"
+                                                  data-code="{{$order->code}}">
+                                                  Cancelar
+                                        </button>
+                                    </td>
+                                </tr>
+                              @empty
+                              @endforelse
 
-                                    <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#modal-danger">Cancelar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6321254523</td>
-                                <td>Sofía Revoa</td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#modal-lg">Editar
-                                    </button>
-
-                                    <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#modal-danger">Cancelar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12365445</td>
-                                <td>Sam Cruz</td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#modal-lg">Editar
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs" data-toggle="modal"
-                                            data-target="#modal-danger">Cancelar
-                                    </button>
-                                </td>
-                            </tr>
                             </tbody>
                             <tfoot>
                             <tr>
@@ -120,7 +86,7 @@
         </div>
         <!-- /.row -->
 
-        <div class="modal fade" id="modal-danger">
+        <div class="modal fade" id="deleteModal">
             <div class="modal-dialog">
                 <div class="modal-content bg-danger">
                     <div class="modal-header">
@@ -133,10 +99,16 @@
                         <p>¿Deseas cancelar el pedido?</p>
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-light"
-                                data-dismiss="modal">Cancelar Pedido
-                        </button>
+                      <form id="deleteForm"  method="post">
+                          @csrf
+                          @method('delete')
+                          <button type="button" class="btn btn-outline-light" data-dismiss="modal">
+                            Cerrar
+                          </button>
+                          <button type="submit" class="btn btn-outline-light swalDefaultSuccess" >
+                            Cancelar Pedido
+                          </button>
+                      </form>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -164,6 +136,14 @@
                 "responsive": true,
             });
         });
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var order_id = button.data('order')
+            var code = button.data('code') // Extract info from data-* attributes
+            $('#codeOrder').html(code);
+            $('#deleteForm').attr('action', '/orders/'+order_id);
+        })
     </script>
 
 

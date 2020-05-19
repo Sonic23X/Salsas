@@ -21,7 +21,15 @@ class Order extends Model
     ];
 
   public function salsas(){
-    return $this->belongsToMany('App\Entities\Salsa', 'orders_detail', 'order_id', 'salsa_id')->withPivot('quantity', 'price');
+     return $this->belongsToMany('App\Entities\Salsa', 'orders_detail', 'order_id', 'salsa_id')->withPivot('quantity', 'price');
+  }
+  public function total(){
+      $total=0;
+      $sum = $this->salsas->map(function ($item, $key) use($total) {
+          return $item->pivot->price * $item->pivot->quantity;
+      });
+
+      return $sum->sum();
   }
   public function store(){
        return $this->belongsTo('App\Entities\Store');

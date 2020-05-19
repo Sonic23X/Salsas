@@ -33,32 +33,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Mango</td>
-                                <td>23</td>
-                                <td>$360.00</td>
-                            </tr>
-                            <tr>
-                                <td>Morita</td>
-                                <td>9</td>
-                                <td>$180.00</td>
-                            </tr>
-                            <tr>
-                                <td>Mango</td>
-                                <td>23</td>
-                                <td>$360.00</td>
-                            </tr>
-                            <tr>
-                                <td>Morita</td>
-                                <td>9</td>
-                                <td>$180.00</td>
-                            </tr>
+                              @forelse($order->salsas as $salsa)
+                                <tr>
+                                    <td>{{$salsa->name}}</td>
+                                    <td>{{$salsa->pivot->quantity}}</td>
+                                    <td>${{$salsa->pivot->price ?? 0.00}}</td>
+                                </tr>
+                              @empty
+                              @endforelse
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>TOTAL</th>
-                                <th>34</th>
-                                <th>$540.00</th>
+                                <th>{{count($order->salsas)}}</th>
+                                <th>{{$order->total()}}</th>
                             </tr>
                             </tfoot>
                         </table>

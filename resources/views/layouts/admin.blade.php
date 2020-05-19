@@ -90,16 +90,16 @@
                   </p>
                 </a>
               </li>
-              <!--
+
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url('/orders') }}" class="nav-link">
                   <i class="nav-icon fas fa-truck"></i>
                   <p>
                     Pedidos
                   </p>
                 </a>
               </li>
-            -->
+
               <li class="nav-item">
                 <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-pepper-hot"></i>

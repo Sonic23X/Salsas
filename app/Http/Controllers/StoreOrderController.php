@@ -3,31 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Order;
+use App\Entities\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OrderController extends Controller
+class StoreOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Store $store)
     {
-          $orders = Order::all();
-
-          return view('admin.pedido.listaPedidosAdmin', compact('orders'));
+          return view('admin.tienda.tiendaPedido',
+                    compact('store'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Store $store)
     {
-        //
+        return view('admin.tienda.crearPedido',
+                compact('store'));
     }
 
     /**
@@ -36,7 +38,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Store $store,Request $request)
     {
         $data = $request->validate([
             'code' => ['required'],
@@ -72,10 +74,11 @@ class OrderController extends Controller
      * @param  \App\Entities\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Store $store,Order $order)
     {
       $order->load('salsas');
-      return view('admin.pedido.detallePedidoAdmin', compact('order'));
+      return view('admin.tienda.crearPedido',
+              compact('store','order'));
     }
 
     /**
@@ -130,7 +133,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        $order->delete();
-        return redirect('/orders')->with('message', 'El pedido se borró correctamente!');
+        $orders = Order::find($order);
+        $orders->delete();
+        return response()->json($orders);
     }
 }

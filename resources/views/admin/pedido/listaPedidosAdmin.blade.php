@@ -19,9 +19,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Listado de Pedidos</h3>
-                        <button type="button" class="btn btn-primary .btn-sm float-right"
-                                onclick="location.href=''">Nuevo Pedido
-                        </button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -38,68 +35,35 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>8912316516</td>
-                                <td>Ismael Gonzales</td>
-                                <td>Superama
-                                </td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
+                              @forelse($orders as $order)
+                                <tr>
+                                    <td>{{$order->code}}</td>
+                                    <td>{{$order->seller->name}}</td>
+                                    <td>{{$order->store->name}} </td>
+                                    <td>{{$order->created_at}}</td>
+                                    <td>${{$order->mount ?? 0.00}}</td>
+                                    <td>{{$order->notes}}</td>
 
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs">Detalle
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>98645157486</td>
-                                <td>Brayan Asault</td>
-                                <td>El Patón
-                                </td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs">Detalle
-                                    </button>
-                                        <button type="button" class="btn btn-block btn-danger btn-xs">Eliminar
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-block btn-primary btn-xs"
+                                                onclick='location.href="{{url("/orders/{$order->id}")}}"'>
+                                                Detalle
                                         </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6321254523</td>
-                                <td>Sofía Revoa</td>
-                                <td>De la esquina
-                                </td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs">Detalle
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs">Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12365445</td>
-                                <td>Sam Cruz</td>
-                                <td>La Fama
-                                </td>
-                                <td>22/05/2020</td>
-                                <td>$190.00</td>
-                                <td>El cliente pide la entrega en 2 partes.</td>
-                                <td>
-                                    <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="modal"
-                                            data-target="#modal-danger">Detalle
-                                    </button>
-                                    <button type="button" class="btn btn-block btn-danger btn-xs">Detalle
-                                    </button>
-                                </td>
-                            </tr>
+                                        <button type="button"
+                                                class="btn btn-block btn-danger btn-xs"
+                                                data-toggle="modal"
+                                                data-target="#deleteModal"
+                                                data-order="{{$order->id}}"
+                                                data-code="{{$order->code}}">
+                                                Eliminar
+                                        </button>
+                                    </td>
+
+                                </tr>
+                              @empty
+                              @endforelse
+
                             </tbody>
                             <tfoot>
                             <tr>
@@ -123,59 +87,30 @@
         <!-- /.row -->
 
 
-        <div class="modal fade" id="modal-lg">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Detalle de Pedido <strong>8912316516</strong></h4>
+        <div class="modal fade" id="deleteModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content bg-danger">
+                <div class="modal-header">
+                        <h4 class="modal-title">Cancelar Pedido <strong id="codeOrder"></strong></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="card-body table-responsive p-0" style="height: 300px;">
-                            <table class="table table-head-fixed text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>Salsa</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>Mango</td>
-                                    <td>23</td>
-                                    <td>$360.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Morita</td>
-                                    <td>9</td>
-                                    <td>$180.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Mango</td>
-                                    <td>23</td>
-                                    <td>$360.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Morita</td>
-                                    <td>9</td>
-                                    <td>$180.00</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>TOTAL</th>
-                                    <th>34</th>
-                                    <th>$540.00</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                        <p>¿Deseas eliminar el pedido?</p>
                     </div>
+
                     <div class="modal-footer float-right">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                        <form id="deleteForm"  method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">
+                              Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-outline-light swalDefaultSuccess" >
+                              Eliminar
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -202,5 +137,12 @@
             "responsive": true,
         });
 
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var order_id = button.data('order')
+            var code = button.data('code') // Extract info from data-* attributes
+            $('#codeOrder').html(code);
+            $('#deleteForm').attr('action', '/orders/'+order_id);
+        })
     </script>
 @endsection

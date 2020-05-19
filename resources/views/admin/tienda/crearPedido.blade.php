@@ -22,7 +22,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title float-left"><strong>EL PATON</strong></h3>
+                            <h3 class="card-title float-left"><strong>{{$store->name}}</strong></h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"
                                     onclick="location.href=''">Regresar

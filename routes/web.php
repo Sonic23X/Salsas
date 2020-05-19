@@ -36,68 +36,14 @@ Route::resources([
     'orders' => 'OrderController',
     'salsas' => 'SalsaController',
     'stores' => 'StoreController',
+    'stores.orders' => 'StoreOrderController',
     'users' => 'UserController'
 ]);
 
-//rutas temporales
-Route::get('/listaSalsa', function()
-{
-    return view('admin.salsas.listaSalsa');
 
-});
-
-Route::get('/crearSalsa', function()
-{
-    return view('admin.salsas.crearSalsa');
-
-});
-
-Route::get('/editarSalsa', function()
-{
-    return view('admin.salsas.editarSalsa');
-
-});
-
-//Rutas temporales usuario
-Route::get('/listaUsuario', function()
-{
-    return view('admin.usuario.listaUsuario');
-
-});
-
-Route::get('/crearUsuario', function()
-{
-    return view('admin.usuario.crearUsuario');
-
-});
-
-Route::get('/editarUsuario', function()
-{
-    return view('admin.usuario.editarUsuario');
-
-});
-
-//rutas temporales tienda
-
-Route::get('/crearTienda', function()
-{
-    return view('admin.tienda.crearTienda');
-
-});
-
-Route::get('/editarTienda', function()
-{
-    return view('admin.tienda.editarTienda');
-
-});
 
 //Rutas temporales pedidos de una  tienda en específico dentro del admin
 
-Route::get('/tiendaPedido', function()
-{
-    return view('admin.tienda.tiendaPedido');
-
-});
 
 Route::get('/crearPedido', function()
 {
@@ -112,19 +58,7 @@ Route::get('/entregaDashAdmin', function()
 
 });
 
-//rutas temporales de la lista de pedidos general dentro del admin
 
-Route::get('/listaPedidosAdmin', function()
-{
-    return view('admin.pedido.listaPedidosAdmin');
-
-});
-
-Route::get('/detallePedidoAdmin', function()
-{
-    return view('admin.pedido.detallePedidoAdmin');
-
-});
 
 //Rutas Temporales lista de pedidos de tienda
 
@@ -151,6 +85,3 @@ Route::get('/registrarEntregaRepartidor', function ()
 {
     return view('repartidor.entregas.registrarEntrega');
 });
-
-
-
