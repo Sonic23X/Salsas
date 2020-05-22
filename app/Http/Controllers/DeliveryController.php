@@ -15,11 +15,13 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $list = Delivery::getListing();
+        $deliveries = Delivery::all();
         $salsas = Delivery::getDeliveredSalsas();
         $mount = Delivery::getMountReceived();
-        
-        return view();
+
+        return view('admin.entregas.listaEntrega',
+                  compact('deliveries','salsas','mount'));
+
     }
 
     /**

@@ -99,6 +99,14 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ url('/deliveries') }}" class="nav-link">
+                  <i class="nav-icon fas fa-truck"></i>
+                  <p>
+                    Entregas
+                  </p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">

@@ -24,7 +24,7 @@
                                 <!-- small card -->
                                 <div class="small-box bg-info">
                                     <div class="inner">
-                                        <h3>150</h3>
+                                        <h3>{{$salsas}}</h3>
 
                                         <p>Salsas Entregadas</p>
                                     </div>
@@ -38,7 +38,7 @@
                                 <!-- small card -->
                                 <div class="small-box bg-success">
                                     <div class="inner">
-                                        <h3>$1035</h3>
+                                        <h3>${{$mount}}</h3>
 
                                         <p>Total Ganancias</p>
                                     </div>
@@ -64,48 +64,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>23456</td>
-                                <td>Juan Fernando Perez</td>
-                                <td>12/05/2020</td>
-                                <td>$350.00</td>
-                                <td>$362.00</td>
-                                <td>Quedaban pendiente 2 salsas</td>
-                            </tr>
-                            <tr>
-                                <td>23456</td>
-                                <td>Juan Fernando Perez</td>
-                                <td>12/05/2020</td>
-                                <td>$350.00</td>
-                                <td>$362.00</td>
-                                <td>Quedaban pendiente 2 salsas</td>
-                            </tr>
-                            <tr>
-                                <td>23456</td>
-                                <td>Juan Fernando Perez</td>
-                                <td>12/05/2020</td>
-                                <td>$350.00</td>
-                                <td>$362.00</td>
-                                <td>Quedaban pendiente 2 salsas</td>
-                            </tr>
-                            <tr>
-                                <td>23456</td>
-                                <td>Juan Fernando Perez</td>
-                                <td>12/05/2020</td>
-                                <td>$350.00</td>
-                                <td>$362.00</td>
-                                <td>Quedaban pendiente 2 salsas</td>
-                            </tr>
-                            <tr>
-                                <td>23456</td>
-                                <td>Juan Fernando Perez</td>
-                                <td>12/05/2020</td>
-                                <td>$350.00</td>
-                                <td>$362.00</td>
-                                <td>Quedaban pendiente 2 salsas</td>
-                            </tr>
-
-
+                              @forelse($deliveries as $delivery)
+                                <tr>
+                                    <td>{{$delivery->id}}</td>
+                                    <td>{{$delivery->man->name}}</td>
+                                    <td>{{$delivery->created_at}}</td>
+                                    <td>${{$delivery->mount_received ?? 0.00}}</td>
+                                    <td>${{$delivery->total ?? 0.00}}</td>
+                                    <td>{{$delivery->note}}</td>
+                                </tr>
+                              @empty
+                              @endforelse
                             </tbody>
                             <tfoot>
                             <tr>
