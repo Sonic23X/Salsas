@@ -48,7 +48,7 @@ class UserController extends Controller
       $create = $request->validate(
       [
         'name' => 'required',
-        'email' => 'required|email|unique:users',
+        'email' => 'required|email|unique',
         'password' => 'required',
         'c_password' => 'required|same:password',
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',

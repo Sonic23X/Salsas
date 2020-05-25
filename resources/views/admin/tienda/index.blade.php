@@ -35,7 +35,11 @@
                                         , {{ $tienda->state }}, CP {{ $tienda->postal }}
                                     </td>
                                     <td>{{ $tienda->phone }}</td>
-                                    <td><img src="{{ $tienda->qr_path }}" alt="Código QR" width="150" height="150"></td>
+                                    <td>
+                                      <a href="{{ url('/stores/getQr') }}/{{ $tienda->id }}" class="btn btn-info ml-5 mt-5">
+                                        Descargar código QR
+                                      </a>
+                                    </td>
                                     <td>
                                         <button type="button"
                                                 class="btn btn-block btn-info btn-xs"
@@ -137,7 +141,7 @@
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             $('#deleteForm').attr('action', '/stores/' + store_id);
-        })
+        });
     </script>
 
 @endsection

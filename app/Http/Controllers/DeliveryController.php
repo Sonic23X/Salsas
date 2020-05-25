@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Delivery;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeliveryPost;
+use App\Entities\Store;
 
 class DeliveryController extends Controller
 {
@@ -30,7 +31,8 @@ class DeliveryController extends Controller
      */
     public function create( $store )
     {
-      return view('repartidor.entregas.registrarEntrega');
+      $store = Store::findOrFail( $store );
+      return view('repartidor.entregas.registrarEntrega', compact( 'store' ));
     }
 
     /**
