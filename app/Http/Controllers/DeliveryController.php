@@ -21,7 +21,6 @@ class DeliveryController extends Controller
 
         return view('admin.entregas.listaEntrega',
                   compact('deliveries','salsas','mount'));
-
     }
 
     /**
@@ -29,9 +28,9 @@ class DeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $store )
     {
-        //
+      return view('repartidor.entregas.registrarEntrega');
     }
 
     /**

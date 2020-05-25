@@ -11,9 +11,16 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      if( $request->user()->is_delivery )
+      {
+        return view('repartidor.entregas.dashrepartidor');
+      }
+      else
+      {
         return view('dashboard');
+      }
     }
 
     /**
