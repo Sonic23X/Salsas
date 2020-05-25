@@ -48,15 +48,35 @@ class UserController extends Controller
       $create = $request->validate(
       [
         'name' => 'required',
-        'email' => 'required|email|unique',
+        'email' => 'required|email',
         'password' => 'required',
         'c_password' => 'required|same:password',
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ], $errorMessages);
 
       $input = $request->all();
-      $input['password'] = bcrypt($input['password']);
-      $user = User::create($input);
+      $usuario = User::onlyTrashed()->where( 'email', $input['email'] )->first();
+
+      if ( $usuario == null )
+      {
+        $input['password'] = bcrypt($input['password']);
+        User::create($input);
+      }
+      else
+      {
+        User::onlyTrashed()->where( 'email', $input['email'] )->first()->restore();
+
+        $update = $request->validate(
+        [
+          'name' => 'required',
+          'email' => 'required|email',
+          'password' => 'required',
+          'rol' => 'required|in:admin,vendedor,repartidor,tienda',
+        ], $errorMessages);
+
+
+        User::where('id', $usuario->id)->update($update);
+      }
 
       return redirect('/users');
     }
