@@ -31,10 +31,9 @@ Route::middleware('auth')->group(function()
         'stores.orders' => 'StoreOrderController',
         'users' => 'UserController'
     ]);
-});
 
-  //rutas personalizadas de Entregas
-  Route::get( 'deliveries/setDelivery/{store}', 'DeliveryController@create' );
-  Route::get( 'stores/getQr/{id}', 'StoreController@getStoreCode' );
-
+    //rutas personalizadas de Entregas
+    Route::get( 'deliveries/setDelivery/{store}', 'DeliveryController@create' );
+    Route::get( 'stores/getQr/{id}', 'StoreController@getStoreCode' );
+    
 });
