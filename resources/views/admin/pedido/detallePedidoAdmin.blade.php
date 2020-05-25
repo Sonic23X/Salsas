@@ -21,7 +21,19 @@
                         <h3 class="card-title">Detalle de pedido</h3>
                     </div>
                     <!-- /.card-header -->
+                    <div class="card-body row" >
 
+                      <div class="col-md-6">
+                        <p><strong>No. Pedido</strong>: {{$order->code}}</p>
+                        <p><strong>Fecha</strong>: {{$order->created_at}}</p>
+                        <p><strong>Vendedor</strong>: {{$order->seller->name}}</p>
+                        <p><strong>Tienda</strong>: {{$order->store->name}}</p>
+                        <p><strong>Total</strong>: ${{$order->mount ?? 0.00}}</p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><strong>Notas</strong>: {{$order->notes}}</p>
+                      </div>
+                    </div>
 
                     <div class="card-body table-responsive p-0" style="height: 300px;">
                         <table class="table table-head-fixed text-nowrap">
@@ -46,7 +58,7 @@
                             <tr>
                                 <th>TOTAL</th>
                                 <th>{{count($order->salsas)}}</th>
-                                <th>{{$order->total()}}</th>
+                                <th>${{$order->total()}}</th>
                             </tr>
                             </tfoot>
                         </table>

@@ -27,7 +27,8 @@ class StoreController extends Controller
      */
     public function create()
     {
-        return view('admin.tienda.crearTienda');
+        $usersList = User::where('rol','tienda')->get();
+        return view('admin.tienda.crearTienda',compact('usersList'));
     }
 
     /**
@@ -41,7 +42,7 @@ class StoreController extends Controller
       //validaciones con unique ¿? | busqueda de usuario existente
       $input = $request->validate(
       [
-        'owner' => 'required|string',
+        'owner' => 'required|exists:users,id',
         'name' => 'required|string',
         'street' => 'required|string',
         'number' => 'required|numeric',
@@ -52,12 +53,12 @@ class StoreController extends Controller
       ]);
 
       //buscamos al usuario
-      $user = User::where('name', 'like', '%' . $input['owner'] . '%')
-                  ->first();
-
-      if($user == null)
-          return Redirect::back()
-                 ->withErrors(['error' => 'El usuario no existe']);
+      // $user = User::where('name', 'like', '%' . $input['owner'] . '%')
+      // //             ->first();
+      //
+      // if($user == null)
+      //     return Redirect::back()
+      //            ->withErrors(['error' => 'El usuario no existe']);
 
       //armamos la respuesta
       $data = array(
@@ -68,7 +69,7 @@ class StoreController extends Controller
         'state' => $input['state'],
         'postal' => $input['postal'],
         'phone' => $input['phone'],
-        'user_id' => $user->id,
+        'user_id' => $input['owner'],
         'qr_path' => 'path'
       );
 
