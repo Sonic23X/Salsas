@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #1cc659">
                         <h3 class="card-title">Listado de Pedidos</h3>
                         <button type="button" class="btn btn-primary .btn-sm float-right" onclick="location.href=''">
                             Nuevo

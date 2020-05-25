@@ -22,7 +22,7 @@
 
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header">
+                        <div class="card-header" style="background-color: #1cc659">
                             <h3 class="card-title float-left">Registrar entrega</h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"

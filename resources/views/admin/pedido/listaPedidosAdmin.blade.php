@@ -22,7 +22,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="tblListaPedidoAdmin" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>No. Pedido</th>
@@ -127,7 +127,7 @@
     <!-- page script -->
     <script type="text/javascript">
 
-        $('#example2').DataTable({
+        $('#tblListaPedidoAdmin').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -135,6 +135,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
         });
 
         $('#deleteModal').on('show.bs.modal', function (event) {

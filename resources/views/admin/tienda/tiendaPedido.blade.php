@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #1cc659">
                         <h1 class="card-title" style="text-transform: uppercase">
                             <strong>{{$store->name}}</strong>
                         </h1>
@@ -27,7 +27,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="tblPedido" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>No. Pedido</th>
@@ -126,7 +126,7 @@
                 "responsive": true,
                 "autoWidth": false,
             });
-            $('#example2').DataTable({
+            $('#tblPedido').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
@@ -134,6 +134,9 @@
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                }
             });
         });
 
