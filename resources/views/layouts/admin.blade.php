@@ -12,6 +12,8 @@
 
     <!-- Laravel Css -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('styles')
+    
   </head>
   <body class="hold-transition sidebar-mini">
 
