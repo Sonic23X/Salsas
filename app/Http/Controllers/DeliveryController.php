@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Delivery;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeliveryPost;
+use App\Entities\Store;
 
 class DeliveryController extends Controller
 {
@@ -21,7 +22,6 @@ class DeliveryController extends Controller
 
         return view('admin.entregas.listaEntrega',
                   compact('deliveries','salsas','mount'));
-
     }
 
     /**
@@ -29,9 +29,10 @@ class DeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $store )
     {
-        //
+      $store = Store::findOrFail( $store );
+      return view('repartidor.entregas.registrarEntrega', compact( 'store' ));
     }
 
     /**

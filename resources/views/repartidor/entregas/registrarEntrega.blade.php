@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>"Nombre de la tienda"</h1>
+                    <h1>Tienda: {{ $store->name }}</h1>
                     <h2>{lista de salsas a entregar}</h2>
                 </div>
             </div>
@@ -19,7 +19,6 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-12">
-
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">

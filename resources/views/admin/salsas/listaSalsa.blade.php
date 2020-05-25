@@ -40,7 +40,7 @@
                               <tr>
                                   <td>{{ $salsa->name }}</td>
                                   <td>{{ $salsa->description }}</td>
-                                  <td>{{ $salsa->price }}</td>
+                                  <td>${{ $salsa->price }}</td>
                                   <td>
                                       <button type="button" class="btn btn-block btn-info btn-xs"
                                               onclick="location.href='{{ url('/salsas/'.$salsa->id.'/edit') }}'">Editar

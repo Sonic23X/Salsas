@@ -31,7 +31,7 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              Bienvenido <span class="caret"></span>
+              Bienvenido, {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -76,6 +76,7 @@
                   </p>
                 </a>
               </li>
+              @if( request()->user()->is_admin )
               <li class="nav-item">
                 <a href="{{ url('/users') }}" class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-users"></i>
@@ -84,6 +85,8 @@
                   </p>
                 </a>
               </li>
+              @endif
+              @if( !request()->user()->is_delivery )
               <li class="nav-item">
                 <a href="{{ url('/stores') }}" class="nav-link {{ (request()->is('stores*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-store"></i>
@@ -92,15 +95,18 @@
                   </p>
                 </a>
               </li>
-
+              @endif
+              @if( !request()->user()->is_delivery )
               <li class="nav-item">
                 <a href="{{ url('/orders') }}" class="nav-link">
-                  <i class="nav-icon fas fa-truck"></i>
+                  <i class="nav-icon fas fa-clipboard"></i>
                   <p>
                     Pedidos
                   </p>
                 </a>
               </li>
+              @endif
+              @if( !request()->user()->is_delivery )
               <li class="nav-item">
                 <a href="{{ url('/deliveries') }}" class="nav-link">
                   <i class="nav-icon fas fa-truck"></i>
@@ -109,7 +115,8 @@
                   </p>
                 </a>
               </li>
-
+              @endif
+              @if( !request()->user()->is_delivery )
               <li class="nav-item">
                 <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-pepper-hot"></i>
@@ -118,6 +125,7 @@
                   </p>
                 </a>
               </li>
+              @endif
             </ul>
           </nav>
         </div>
