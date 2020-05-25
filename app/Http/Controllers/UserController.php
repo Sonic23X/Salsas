@@ -74,7 +74,7 @@ class UserController extends Controller
           'rol' => 'required|in:admin,vendedor,repartidor,tienda',
         ], $errorMessages);
 
-
+        $update['password'] = bcrypt($update['password']);
         User::where('id', $usuario->id)->update($update);
       }
 
