@@ -49,11 +49,6 @@
 
                                     <td>
                                         <button type="button"
-                                                class="btn btn-block btn-primary btn-xs"
-                                                  onclick='location.href="{{url("/stores/{$store->id}/orders/{$order->id}")}}"'>
-                                                Editar
-                                        </button>
-                                        <button type="button"
                                                 class="btn btn-block btn-danger btn-xs"   data-toggle="modal"
                                                   data-target="#deleteModal"
                                                   data-order="{{$order->id}}"
@@ -119,9 +114,13 @@
     </section>
     <!-- /.content -->
 
+
+
+@endsection
+
 @section('script')
-    <script>
-        $(function () {
+    <script type="text/javascript">
+
             $("#example1").DataTable({
                 "responsive": true,
                 "autoWidth": false,
@@ -135,21 +134,19 @@
                 "autoWidth": false,
                 "responsive": true,
             });
-        });
 
         $('#deleteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var order_id = button.data('order')
             var code = button.data('code') // Extract info from data-* attributes
+            var store_id = "{{$store->id}}";
             $('#codeOrder').html(code);
-            $('#deleteForm').attr('action', '/orders/'+order_id);
-        })
+            $('#deleteForm').attr('action', "/stores/"+store_id+"/orders/"+order_id);
+            console.log("/stores/"+store_id+"/orders/"+order_id);
+        });
     </script>
 
 
-
-
-@endsection
 
 
 @endsection

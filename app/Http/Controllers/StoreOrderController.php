@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Order;
 use App\Entities\Store;
+use App\Entities\Salsa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -28,8 +29,9 @@ class StoreOrderController extends Controller
      */
     public function create(Store $store)
     {
+        $salsas=Salsa::all();
         return view('admin.tienda.crearPedido',
-                compact('store'));
+                compact('store','salsas'));
     }
 
     /**
@@ -38,34 +40,32 @@ class StoreOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Store $store,Request $request)
+    public function store(Store $store, Request $request)
     {
         $data = $request->validate([
-            'code' => ['required'],
-            'store_id' => ['required'],
-            'seller_id' => ['required'],
-            'mount' => ['required'],
-            'notes' => ['required'],
-            'salsa_id' => ['required'],
-            'quantity' => ['required'],
-            'price' => ['required']
+            'notes' =>'',
+            'salsa.*.id' =>'',
+            'salsa.*.quantity' =>'',
+            'salsa.*.price' =>'required'
         ]);
 
-        $order = Order::create([
-            'code' => $data['code'],
-            'store_id' => $data['store_id'],
-            'seller_id' => $data['seller_id'],
-            'mount' => $data['mount'],
-            'notes' => $data['notes']
+        $sum=0;
+        foreach ($data['salsa'] as $key => $value) {
+          if($value['quantity']){
+            $sum =+ $value['price'] * $value['quantity'];
+          }
+        }
+
+        $order = new  Order([
+            'code' => '123',
+            'store_id' => $store->id,
+            'seller_id' => $request->user()->id,
+            'mount' => $sum,
+            'notes' => $data['notes'] ?? ''
         ]);
 
-        $id = Order::max('id');
-
-        $detail= Order::find($id);
-
-        $detail->salsas()->attach($id,['salsa_id'=>$data['salsa_id'],'quantity'=>$data['quantity'], 'price'=>$data['price']]);
-
-        return response()->json($order);
+        $order->salsas()->attach($data['salsa']);
+        return redirect("/stores/{$store->id}/orders");
     }
 
     /**
@@ -76,9 +76,11 @@ class StoreOrderController extends Controller
      */
     public function show(Store $store,Order $order)
     {
+      $salsas=Salsa::all();
       $order->load('salsas');
       return view('admin.tienda.crearPedido',
-              compact('store','order'));
+              compact('store','order','salsas'));
+
     }
 
     /**
@@ -131,10 +133,9 @@ class StoreOrderController extends Controller
      * @param  \App\Entities\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Store $store,Order $order)
     {
-        $orders = Order::find($order);
-        $orders->delete();
-        return response()->json($orders);
+        $order->delete();
+        return redirect("/stores/{$store->id}/orders")->with('message', 'El pedido se borró correctamente!');
     }
 }

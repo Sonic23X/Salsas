@@ -24,8 +24,8 @@ class Order extends Model
      return $this->belongsToMany('App\Entities\Salsa', 'orders_detail', 'order_id', 'salsa_id')->withPivot('quantity', 'price');
   }
   public function total(){
-      $total=0;
-      $sum = $this->salsas->map(function ($item, $key) use($total) {
+
+      $sum = $this->salsas->map(function ($item, $key){
           return $item->pivot->price * $item->pivot->quantity;
       });
 

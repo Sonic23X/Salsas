@@ -78,6 +78,11 @@
                                                    value="{{ $salsa->price }}">
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <label>
+                                            <input type="checkbox" name="active"
+                                                   value="true"   {{ $salsa->active ? 'checked': ''}}> Activa</label>
+                                    </div>
                                 </div>
 
                                 <!-- /.card-body -->

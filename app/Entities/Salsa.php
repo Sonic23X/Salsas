@@ -17,7 +17,7 @@ class Salsa extends Model
    * @var array
    */
   protected $fillable = [
-      'name', 'description', 'price',
+      'name', 'description', 'price','active'
   ];
 
   public function Order(){

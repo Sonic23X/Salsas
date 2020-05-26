@@ -105,10 +105,12 @@ class SalsaController extends Controller
         $validatedData = $request->validate([
               'name' => ['required'],
               'description' => ['required'],
-              'price' => ['required', 'numeric', 'min:1', 'max:999'],
+              'price' => ['required', 'numeric', 'min:1', 'max:999']
         ], $errorMessages);
 
+        $validatedData['active'] = isset($validatedData['active']) ? true : 0;
         $update = Salsa::find($id)->update($validatedData);
+
 
         return redirect('/salsas');
     }
