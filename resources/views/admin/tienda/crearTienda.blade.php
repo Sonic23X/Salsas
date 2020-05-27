@@ -75,7 +75,7 @@
                                             <div class="autocompleteselect">
                                               <select id="owner" type="text" name="owner"
                                                    class="form-control">
-                                                   <option value="">Select one...</option>
+                                                   <option value="">Selecciona un usuario...</option>
                                                    @forelse($usersList as $user)
                                                       <option value="{{$user->id}}">{{$user->name}}</option>
                                                    @empty
@@ -294,7 +294,7 @@
 
             $( "<a>" )
               .attr( "tabIndex", -1 )
-              .attr( "title", "Show All Items" )
+              .attr( "title", "Mostrar todo" )
               .tooltip()
               .appendTo( this.wrapper )
               .button({
@@ -317,7 +317,7 @@
                 }
 
                 // Pass empty string as value to search for, displaying all results
-                input.autocomplete( "search", "" );
+                input.autocomplete( "buscar", "" );
               });
           },
 
@@ -360,7 +360,7 @@
             // Remove invalid value
             this.input
               .val( "" )
-              .attr( "title", value + " didn't match any item" )
+              .attr( "title", value + " no coincide con ningún usuario" )
               .tooltip( "open" );
             this.element.val( "" );
             this._delay(function() {

@@ -25,7 +25,7 @@
                             <h3 class="card-title float-left"><strong>{{$store->name}}</strong></h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"
-                                    onclick="location.href=''">Regresar
+                                      onclick="location.href='{{ url('/stores/'.$store->id.'/orders') }}'">Regresar
                             </button>
 
                         </div>
@@ -35,175 +35,70 @@
 
                         <div class="row">
                             <div class="card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 10px"></th>
-                                        <th>Salsa</th>
-                                        <th>Cantidad</th>
-                                        <th>Costo</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Jamaica</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Guajillo</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Pasilla</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Mora</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Tamarindo</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Piña</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Árbol</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Mango</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Jalapeño</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" style="transform: scale(1.5);"
-                                                       type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>Chipote</td>
-                                        <td style="text-align: center;">
-                                            <input style="width: 45px; text-align: center;" type="number" min="1">
-                                        </td>
-                                        <td style="text-align: center;"><span class="badge bbg-primary">$60.00</span>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>TOTAL</th>
-                                        <th>34</th>
-                                        <th>$540.00</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                                <br>
-                                <div>
-                                    <label>Notas</label>
-                                    <textarea class="form-control" rows="2" placeholder="Notas ..."></textarea>
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
-                                </div>
-                            </div>
+                              @if ($errors->any())
+                                  <div class="alert alert-danger" role="alert">
+                                      <ul>
+                                          @foreach ($errors->all() as $error)
+                                              <li>{{ $error }}</li>
+                                          @endforeach
+                                      </ul>
+                                  </div>
+                              @endif
+                              <form method="post" action="{{url('/stores/'.$store->id.'/orders')}}">
+                                @csrf
+
+                                  <table class="table table-bordered">
+                                      <thead>
+                                      <tr>
+                                          <th style="width: 10px"></th>
+                                          <th>Salsa</th>
+                                          <th>Cantidad</th>
+                                          <th>Costo</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                        @forelse($salsas as $salsa)
+                                        
+                                          <tr>
+                                              <td>
+                                                  <div class="form-check">
+                                                      <input class="form-check-input" style="transform: scale(1.5);"
+                                                            name="salsa[{{$salsa->id}}][id]"
+                                                            value="{{$salsa->id}}"
+                                                             type="checkbox">
+                                                  </div>
+                                              </td>
+                                              <td>{{$salsa->name}}</td>
+                                              <td style="text-align: center;">
+                                                  <input style="width: 45px; text-align: center;" name="salsa[{{$salsa->id}}][quantity]" type="number" min="1">
+                                              </td>
+                                              <td style="text-align: center;">
+                                                <span class="badge bbg-primary">${{$salsa->price}}</span>
+                                                <input type="hidden" name="salsa[{{$salsa->id}}][price]" value="{{$salsa->price}}" />
+                                              </td>
+                                          </tr>
+                                        @empty
+                                        @endforelse
+                                      </tbody>
+                                      <tfoot>
+                                      <!-- <tr>
+                                          <th></th>
+                                          <th>TOTAL</th>
+                                          <th>34</th>
+                                          <th>$540.00</th>
+                                      </tr> -->
+                                      </tfoot>
+                                  </table>
+                                  <br>
+                                  <div>
+                                      <label>Notas</label>
+                                      <textarea name="note" class="form-control" rows="2" placeholder="Notas ..."></textarea>
+                                  </div>
+                                  <div class="card-footer">
+                                      <button type="submit" class="btn btn-primary btn-block">Aceptar</button>
+                                  </div>
+                                      </form>
+                              </div>
 
                             <!-- /.card-body -->
                         </div>
