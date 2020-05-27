@@ -36,17 +36,17 @@
                                     </td>
                                     <td>{{ $tienda->phone }}</td>
                                     <td>
-                                      <a href="{{ url('/stores/getQr') }}/{{ $tienda->id }}" class="btn btn-info ml-5 mt-5">
+                                      <a href="{{ url('/stores/getQr') }}/{{ $tienda->id }}" class="btn btn-primary ml-5 mt-5">
                                         Descargar código QR
                                       </a>
                                     </td>
                                     <td>
                                         <button type="button"
-                                                class="btn btn-block btn-info btn-xs"
+                                                class="btn btn-block btn-primary btn-xs"
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/orders') }}'">
                                                 Pedidos
                                         </button>
-                                        <button type="button" class="btn btn-block btn-info btn-xs"
+                                        <button type="button" class="btn btn-block btn-primary btn-xs"
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">
                                             Editar
                                         </button>

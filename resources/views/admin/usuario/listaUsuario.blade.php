@@ -49,7 +49,7 @@
                                       <td>{{ $user->email }}</td>
                                       <td>{{ $user->rol }}</td>
                                       <td>
-                                          <button type="button" class="btn btn-block btn-info btn-xs"
+                                          <button type="button" class="btn btn-block btn-primary btn-xs"
                                                   onclick="location.href='{{ url('/users/'.$user->id.'/edit') }}'">Editar
                                           </button>
                                           <button type="button" class="btn btn-block btn-danger btn-xs"
