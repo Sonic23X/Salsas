@@ -7,6 +7,7 @@ use App\Entities\Store;
 use App\Entities\Salsa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 
 class StoreOrderController extends Controller
 {
@@ -42,9 +43,10 @@ class StoreOrderController extends Controller
      */
     public function store(Store $store, Request $request)
     {
+
         $data = $request->validate([
             'notes' =>'',
-            'salsa.*.id' =>'',
+            'salsa.*.salsa_id' =>'',
             'salsa.*.quantity' =>'',
             'salsa.*.price' =>'required'
         ]);
@@ -56,7 +58,7 @@ class StoreOrderController extends Controller
           }
         }
 
-        $order = new  Order([
+        $order = Order::create([
             'code' => '123',
             'store_id' => $store->id,
             'seller_id' => $request->user()->id,
@@ -64,7 +66,11 @@ class StoreOrderController extends Controller
             'notes' => $data['notes'] ?? ''
         ]);
 
-        $order->salsas()->attach($data['salsa']);
+        $id_salsas= Arr::pluck( $data['salsa'], 'salsa_id');
+        $id_salsas= array_values(array_filter($id_salsas));
+        $salsas = Arr::only($data['salsa'], $id_salsas);
+      
+        $order->salsas()->attach($salsas);
         return redirect("/stores/{$store->id}/orders");
     }
 

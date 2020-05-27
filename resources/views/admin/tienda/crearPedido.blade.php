@@ -21,8 +21,8 @@
 
                     <!-- general form elements -->
                     <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title float-left"><strong>{{$store->name}}</strong></h3>
+                        <div class="card-header" style="background-color: #1cc659">
+                            <h3 class="card-title style="text-transform: uppercase" float-left"><strong>{{strtoupper($store->name)}}</strong></h3>
 
                             <button type="button" class="btn btn-primary  .btn-sm float-right"
                                       onclick="location.href='{{ url('/stores/'.$store->id.'/orders') }}'">Regresar
@@ -58,12 +58,12 @@
                                       </thead>
                                       <tbody>
                                         @forelse($salsas as $salsa)
-                                        
+
                                           <tr>
                                               <td>
                                                   <div class="form-check">
                                                       <input class="form-check-input" style="transform: scale(1.5);"
-                                                            name="salsa[{{$salsa->id}}][id]"
+                                                            name="salsa[{{$salsa->id}}][salsa_id]"
                                                             value="{{$salsa->id}}"
                                                              type="checkbox">
                                                   </div>
@@ -92,7 +92,7 @@
                                   <br>
                                   <div>
                                       <label>Notas</label>
-                                      <textarea name="note" class="form-control" rows="2" placeholder="Notas ..."></textarea>
+                                      <textarea name="notes" class="form-control" rows="2" placeholder="Notas ..."></textarea>
                                   </div>
                                   <div class="card-footer">
                                       <button type="submit" class="btn btn-primary btn-block">Aceptar</button>

@@ -133,8 +133,9 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 }
             });
-
+          });
         $('#deleteModal').on('show.bs.modal', function (event) {
+
             var button = $(event.relatedTarget) // Button that triggered the modal
             var order_id = button.data('order')
             var code = button.data('code') // Extract info from data-* attributes
