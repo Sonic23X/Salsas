@@ -24,7 +24,7 @@
                     <div class="card-body row" >
 
                       <div class="col-md-6">
-                        <p><strong>No. Pedido</strong>: {{$order->code}}</p>
+                        <p><strong>No. Pedido</strong>: {{$order->id}}</p>
                         <p><strong>Fecha</strong>: {{$order->created_at}}</p>
                         <p><strong>Vendedor</strong>: {{$order->seller->name}}</p>
                         <p><strong>Tienda</strong>: {{$order->store->name}}</p>

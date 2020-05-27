@@ -41,7 +41,7 @@
                             <tbody>
                               @forelse($store->orders as $order)
                                 <tr>
-                                  <td>{{$order->code}}</td>
+                                  <td>{{$order->id}}</td>
                                   <td>{{$order->seller->name}}</td>
                                   <td>{{$order->created_at}}</td>
                                   <td>${{$order->mount ?? 0.00}}</td>

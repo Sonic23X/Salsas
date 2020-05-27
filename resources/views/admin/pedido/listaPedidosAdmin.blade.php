@@ -37,7 +37,7 @@
                             <tbody>
                               @forelse($orders as $order)
                                 <tr>
-                                    <td>{{$order->code}}</td>
+                                    <td>{{$order->id}}</td>
                                     <td>{{$order->seller->name}}</td>
                                     <td>{{$order->store->name}} </td>
                                     <td>{{$order->created_at}}</td>
@@ -55,7 +55,7 @@
                                                 data-toggle="modal"
                                                 data-target="#deleteModal"
                                                 data-order="{{$order->id}}"
-                                                data-code="{{$order->code}}">
+                                                data-code="{{$order->id}}">
                                                 Eliminar
                                         </button>
                                     </td>
