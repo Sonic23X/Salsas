@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -45,7 +46,7 @@ class UserController extends Controller
         'rol.in' => 'Seleccione un rol válido'
       ];
 
-      $create = $request->validate(
+      $input = $request->validate(
       [
         'name' => 'required',
         'email' => 'required|email',
@@ -54,7 +55,6 @@ class UserController extends Controller
         'rol' => 'required|in:admin,vendedor,repartidor,tienda',
       ], $errorMessages);
 
-      $input = $request->all();
       $usuario = User::onlyTrashed()->where( 'email', $input['email'] )->first();
 
       if ( $usuario == null )
