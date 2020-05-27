@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
       if( $request->user()->is_delivery )
       {
-        return view('repartidor.entregas.dashrepartidor');
+        return view('repartidor.entregas.dashRepartidor');
       }
       else
       {
