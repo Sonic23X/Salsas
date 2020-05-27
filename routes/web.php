@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function()
 {
     //ruta al acceder al login
     Route::get('/', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index');
 
     //routes
     Route::resources([
@@ -35,5 +36,4 @@ Route::middleware('auth')->group(function()
     //rutas personalizadas de Entregas
     Route::get( 'deliveries/setDelivery/{store}', 'DeliveryController@create' );
     Route::get( 'stores/getQr/{id}', 'StoreController@getStoreCode' );
-    
 });

@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #1cc659">
                         <h3 class="card-title">Listado de Salsas</h3>
                         <button type="button" class="btn btn-primary .btn-sm float-right"
                                 onclick="location.href='{{ url('/salsas/create') }}'">Registrar Salsa
@@ -26,7 +26,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="tblListaSalsa" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -42,7 +42,7 @@
                                   <td>{{ $salsa->description }}</td>
                                   <td>${{ $salsa->price }}</td>
                                   <td>
-                                      <button type="button" class="btn btn-block btn-info btn-xs"
+                                      <button type="button" class="btn btn-block btn-primary btn-xs"
                                               onclick="location.href='{{ url('/salsas/'.$salsa->id.'/edit') }}'">Editar
                                       </button>
                                       <button type="button" class="btn btn-block btn-danger btn-xs"
@@ -112,7 +112,7 @@
 @section('script')
     <script type="text/javascript">
 
-    $('#example2').DataTable({
+    $('#tblListaSalsa').DataTable({
     "paging": true,
     "lengthChange": false,
     "searching": true,

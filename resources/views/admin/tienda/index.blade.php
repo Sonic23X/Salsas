@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #1cc659">
                         <h3 class="card-title">Listado de Tiendas</h3>
                         <button type="button" class="btn btn-primary .btn-sm float-right"
                                 onclick="location.href='{{ url('/stores/create') }}'">Nueva tienda
@@ -14,7 +14,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" name="example2" class="table table-bordered table-striped">
+                        <table id="tblTienda" name="tblTienda" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Dueño</th>
@@ -36,17 +36,17 @@
                                     </td>
                                     <td>{{ $tienda->phone }}</td>
                                     <td>
-                                      <a href="{{ url('/stores/getQr') }}/{{ $tienda->id }}" class="btn btn-info ml-5 mt-5">
+                                      <a href="{{ url('/stores/getQr') }}/{{ $tienda->id }}" class="btn btn-primary ml-5 mt-5">
                                         Descargar código QR
                                       </a>
                                     </td>
                                     <td>
                                         <button type="button"
-                                                class="btn btn-block btn-info btn-xs"
+                                                class="btn btn-block btn-primary btn-xs"
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/orders') }}'">
                                                 Pedidos
                                         </button>
-                                        <button type="button" class="btn btn-block btn-info btn-xs"
+                                        <button type="button" class="btn btn-block btn-primary btn-xs"
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">
                                             Editar
                                         </button>
@@ -122,7 +122,7 @@
     <!-- page script -->
     <script type="text/javascript">
 
-        $('#example2').DataTable({
+        $('#tblTienda').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -130,6 +130,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
         });
 
     </script>

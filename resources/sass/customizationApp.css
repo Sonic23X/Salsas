@@ -1,0 +1,4 @@
+
+.layout-navbar-fixed .wrapper .sidebar-custom .brand-link:not([class*="navbar"]) {
+    background-color: #1d1711 !important;
+}
