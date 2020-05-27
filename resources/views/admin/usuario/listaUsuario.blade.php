@@ -25,7 +25,7 @@
           <div class="row">
               <div class="col-12">
                   <div class="card">
-                      <div class="card-header">
+                      <div class="card-header" style="background-color: #1cc659">
                           <h3 class="card-title">Listado de Usuarios</h3>
                           <button type="button" class="btn btn-primary .btn-sm float-right"
                                   onclick="location.href='{{ url('/users/create') }}'">Nuevo Usuario
@@ -33,7 +33,7 @@
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
-                          <table id="example2" class="table table-bordered table-striped">
+                          <table id="tblListaUsuario" class="table table-bordered table-striped">
                               <thead>
                               <tr>
                                   <th>Usuario</th>
@@ -49,7 +49,7 @@
                                       <td>{{ $user->email }}</td>
                                       <td>{{ $user->rol }}</td>
                                       <td>
-                                          <button type="button" class="btn btn-block btn-info btn-xs"
+                                          <button type="button" class="btn btn-block btn-primary btn-xs"
                                                   onclick="location.href='{{ url('/users/'.$user->id.'/edit') }}'">Editar
                                           </button>
                                           <button type="button" class="btn btn-block btn-danger btn-xs"
@@ -128,7 +128,7 @@
 
     <script type="text/javascript">
 
-        $('#example2').DataTable({
+        $('#tblListaUsuario').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -136,6 +136,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
         });
 
     </script>

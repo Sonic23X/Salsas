@@ -22,7 +22,7 @@
 
                       <!-- general form elements -->
                       <div class="card card-primary">
-                          <div class="card-header">
+                          <div class="card-header" style="background-color: #1cc659">
                               <h3 class="card-title float-left">Nuevo Usuario</h3>
 
                               <button type="button" class="btn btn-primary  .btn-sm float-right"
@@ -88,9 +88,9 @@
                                           <div class="form-group">
                                               <label>Tipo de Usuario</label>
                                               <select class="form-control" name="rol">
-                                                  <option value="repartidor">Repartidor</option>
                                                   <option value="admin">Administrador</option>
                                                   <option value="vendedor">Vendedor</option>
+                                                  <option value="repartidor">Repartidor</option>
                                                   <option value="tienda">Tienda</option>
                                               </select>
                                           </div>

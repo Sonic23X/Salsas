@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function()
 {
     //ruta al acceder al login
     Route::get('/', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index');
 
     //routes
     Route::resources([

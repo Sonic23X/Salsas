@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DAN-SA</title>
 
     <!-- FavIcon -->
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('img/logo2.svg') }}">
 
     <!-- Laravel Css -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -48,28 +48,21 @@
         </ul>
       </nav>
 
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1d1711 !important;">
         <!-- Logo -->
         <a href="#" class="brand-link">
-          <img src="{{ asset('img/favicon.ico') }}" alt="Logo" class="brand-image img-circle elevation-3"
-               style="opacity: .8">
-          <span class="brand-text font-weight-light">Salsas</span>
+          <img src="{{ asset('img/logo2.svg') }}" alt="Logo" class="brand-image img-circle elevation-3"
+               style="opacity: .8; width: 50px">
+          <span class="brand-text font-weight-light">DAN-SA</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-              <img src="{{ asset('img/profile.svg') }}" class="img-circle elevation-2" alt="User">
-            </div>
-            <div class="info">
-              <a href="#" class="d-block">User</a>
-            </div>
-          </div>
+
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
-                <a href="{{ url('/dashboard') }}" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}">
+                <a href="{{ url('/dashboard') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }} {{ (request()->is('dashboard')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -98,7 +91,7 @@
               @endif
               @if( !request()->user()->is_delivery )
               <li class="nav-item">
-                <a href="{{ url('/orders') }}" class="nav-link">
+                <a href="{{ url('/orders') }}" class="nav-link {{ (request()->is('orders*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-clipboard"></i>
                   <p>
                     Pedidos
@@ -108,7 +101,7 @@
               @endif
               @if( !request()->user()->is_delivery )
               <li class="nav-item">
-                <a href="{{ url('/deliveries') }}" class="nav-link">
+                <a href="{{ url('/deliveries') }}" class="nav-link {{ (request()->is('deliveries*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-truck"></i>
                   <p>
                     Entregas
@@ -137,9 +130,9 @@
 
       <footer class="main-footer">
         <div class="float-right d-none d-sm-inline">
-          Anything you want
+
         </div>
-          <strong>Copyright &copy; 2014-2019 All rights reserved.</strong>
+          <strong>Copyright DAN-SA&copy; 2020</strong>
       </footer>
 
     </div>
