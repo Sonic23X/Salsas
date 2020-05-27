@@ -13,7 +13,7 @@
     <!-- Laravel Css -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @yield('styles')
-    
+
   </head>
   <body class="hold-transition sidebar-mini">
 
@@ -48,7 +48,7 @@
         </ul>
       </nav>
 
-      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1d1711 !important;">
         <!-- Logo -->
         <a href="#" class="brand-link">
           <img src="{{ asset('img/favicon.ico') }}" alt="Logo" class="brand-image img-circle elevation-3"

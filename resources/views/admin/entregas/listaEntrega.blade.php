@@ -52,7 +52,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-striped">
+                        <table id="tblListaEntrega" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>Pedido</th>
@@ -100,7 +100,7 @@
     <!-- page script -->
     <script type="text/javascript">
 
-        $('#example2').DataTable({
+        $('#tblListaEntrega').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": true,
@@ -108,6 +108,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
         });
 
     </script>
