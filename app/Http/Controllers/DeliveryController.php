@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Delivery;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeliveryPost;
 use App\Entities\Store;
+use App\Entities\Order;
+use App\Entities\Salsa;
+use App\Entities\Delivery;
+use Auth;
 
 class DeliveryController extends Controller
 {
@@ -29,10 +33,9 @@ class DeliveryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( $store )
+    public function create(  )
     {
-      $store = Store::findOrFail( $store );
-      return view('repartidor.entregas.registrarEntrega', compact( 'store' ));
+
     }
 
     /**
@@ -41,9 +44,21 @@ class DeliveryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DeliveryPost $request)
+    public function store(Request $request)
     {
-        //
+      $create = $request->validate([
+        'order_id' => 'required',
+        'total' => 'required',
+        'mount_received' => 'required',
+        'note' => 'required'
+      ]);
+
+      $create['delivery_man'] = Auth::user()->id;
+      $create['delivery_date'] = Carbon::now()->toTimeString();
+
+      Delivery::create( $create );
+
+      return \Redirect::to('/dashboard');
     }
 
     /**
@@ -54,7 +69,7 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-        //
+
     }
 
     /**
@@ -89,5 +104,14 @@ class DeliveryController extends Controller
     public function destroy(Delivery $delivery)
     {
         //
+    }
+
+    public function setDelivery( $storeId )
+    {
+      $store = Store::findOrFail( $storeId );
+      $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
+      $order->load( 'salsas' );
+
+      return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
     }
 }
