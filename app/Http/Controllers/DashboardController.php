@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Entities\Delivery;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -15,7 +17,10 @@ class DashboardController extends Controller
     {
       if( $request->user()->is_delivery )
       {
-        return view('repartidor.entregas.dashRepartidor');
+        $entregas = Delivery::where( 'delivery_man', Auth::user()->id )->count();
+        $dinero = Delivery::where( 'delivery_man', Auth::user()->id )->sum( 'mount_received' );
+
+        return view('repartidor.entregas.dashRepartidor', compact( 'entregas', 'dinero' ));
       }
       else
       {

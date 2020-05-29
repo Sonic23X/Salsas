@@ -19,7 +19,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ 6 }}</h3>
+                        <h3>{{ $entregas }}</h3>
 
                         <p>Entregadas Hechas</p>
                     </div>
@@ -29,7 +29,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>${{ '' }} </h3>
+                        <h3>${{ $dinero }} </h3>
 
                         <p>Dinero Recibido</p>
                     </div>
