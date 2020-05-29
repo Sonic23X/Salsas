@@ -60,7 +60,7 @@ class DeliveryController extends Controller
       //recorremos las salsas
       while ( $request->has( 'salsa_' . $i ) )
       {
-        $total += ( $request[ 'salsa_' . $i ] * $request[ 'price_' . $i ] );
+        $total += ( $request[ 'count_' . $i ] * $request[ 'price_' . $i ] );
         $salsa = [ 'salsa_id' => $request[ 'count_' . $i ],
                    'quantity' => $request[ 'count_' . $i ],
                    'price' => $request[ 'price_' . $i ] ];
