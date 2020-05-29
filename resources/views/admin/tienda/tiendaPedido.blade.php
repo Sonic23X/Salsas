@@ -49,6 +49,11 @@
 
                                     <td>
                                         <button type="button"
+                                                class="btn btn-block btn-primary btn-xs"
+                                                onclick='location.href="{{url("/orders/{$order->id}")}}"'>
+                                                Detalle
+                                        </button>
+                                        <button type="button"
                                                 class="btn btn-block btn-danger btn-xs"   data-toggle="modal"
                                                   data-target="#deleteModal"
                                                   data-order="{{$order->id}}"
