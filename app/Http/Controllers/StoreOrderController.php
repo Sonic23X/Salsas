@@ -30,7 +30,7 @@ class StoreOrderController extends Controller
      */
     public function create(Store $store)
     {
-        $salsas=Salsa::all();
+        $salsas=Salsa::where('active', 1)->get();
         return view('admin.tienda.crearPedido',
                 compact('store','salsas'));
     }
@@ -69,7 +69,7 @@ class StoreOrderController extends Controller
         $id_salsas= Arr::pluck( $data['salsa'], 'salsa_id');
         $id_salsas= array_values(array_filter($id_salsas));
         $salsas = Arr::only($data['salsa'], $id_salsas);
-      
+
         $order->salsas()->attach($salsas);
         return redirect("/stores/{$store->id}/orders");
     }

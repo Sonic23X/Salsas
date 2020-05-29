@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Order;
+use App\Entities\Salsa;
+use App\Entities\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
@@ -27,7 +30,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+      $stores=Store::all();
+      $salsas=Salsa::where('active', 1)->get();
+      return view('admin.tienda.crearPedido',
+              compact('salsas','stores'));
     }
 
     /**
@@ -38,6 +44,36 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+      $data = $request->validate([
+          'store'=>'required',
+          'notes' =>'',
+          'salsa.*.salsa_id' =>'',
+          'salsa.*.quantity' =>'',
+          'salsa.*.price' =>'required'
+      ]);
+
+      $sum=0;
+      foreach ($data['salsa'] as $key => $value) {
+        if($value['quantity']){
+          $sum =+ $value['price'] * $value['quantity'];
+        }
+      }
+
+      $order = Order::create([
+          'code' => '123',
+          'store_id' => $data['store'],
+          'seller_id' => $request->user()->id,
+          'mount' => $sum,
+          'notes' => $data['notes'] ?? ''
+      ]);
+
+      $id_salsas= Arr::pluck( $data['salsa'], 'salsa_id');
+      $id_salsas= array_values(array_filter($id_salsas));
+      $salsas = Arr::only($data['salsa'], $id_salsas);
+
+      $order->salsas()->attach($salsas);
+      return redirect("/orders");
+
 
     }
 
@@ -73,7 +109,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-      
+
     }
 
     /**
