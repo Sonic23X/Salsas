@@ -46,18 +46,42 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
+
       $create = $request->validate([
         'order_id' => 'required',
-        'total' => 'required',
         'mount_received' => 'required',
-        'note' => 'required'
+        'note' => ''
       ]);
 
+      $total = 0;
+      $i = 1;
+      $salsas = [];
+
+      //recorremos las salsas
+      while ( $request->has( 'salsa_' . $i ) )
+      {
+        $total += ( $request[ 'salsa_' . $i ] * $request[ 'price_' . $i ] );
+        $salsa = [ 'salsa_id' => $request[ 'count_' . $i ],
+                   'quantity' => $request[ 'count_' . $i ],
+                   'price' => $request[ 'price_' . $i ] ];
+        array_push( $salsas, $salsa );
+        $i++;
+      }
+
+      if ( $create[ 'mount_received' ] < $total )
+        return redirect()->back()->withErrors( [ 'error' => 'El monto ingresado es menor al monto total del pedido' ]);
+
+      $create['total'] = $total;
+      $create['note'] = ( $create['note'] == null ) ? ' ' : $create['note'];
       $create['delivery_man'] = Auth::user()->id;
-      $create['delivery_date'] = Carbon::now()->toTimeString();
+      $create['delivery_date'] = Carbon::now()->toDateString();
 
-      Delivery::create( $create );
+      $envio = Delivery::create( $create );
 
+      //guardamos los detalles
+      $envio->salsas()->attach( $salsas );
+
+      //redireccionamos
       return \Redirect::to('/dashboard');
     }
 
