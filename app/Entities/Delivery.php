@@ -9,6 +9,18 @@ class Delivery extends Model
 {
      protected $table = 'deliveries';
 
+     protected $dates = ['deleted_at'];
+
+     /**
+      * The attributes that are mass assignable.
+      *
+      * @var array
+      */
+     protected $fillable = [
+         'order_id', 'delivery_man', 'delivery_date',
+         'mount_received', 'total', 'note'
+     ];
+
      public function man(){
           return $this->belongsTo('App\User','delivery_man','id');
      }
