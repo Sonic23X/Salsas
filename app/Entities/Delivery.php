@@ -49,4 +49,9 @@ class Delivery extends Model
 
          return $sum->sum();
      }
+
+     public function store( )
+     {
+       
+     }
 }

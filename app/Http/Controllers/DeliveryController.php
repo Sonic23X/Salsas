@@ -93,7 +93,8 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-
+      $order = Order::find($delivery->order_id);
+      return view( 'admin.entregas.detalleEntregaAdmin', compact( 'order', 'delivery' ) );
     }
 
     /**

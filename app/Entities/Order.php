@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class Order extends Model
 {
@@ -37,4 +38,5 @@ class Order extends Model
   public function seller(){
        return $this->belongsTo('App\User','seller_id');
   }
+
 }

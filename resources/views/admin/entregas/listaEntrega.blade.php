@@ -61,6 +61,7 @@
                                 <th>Monto Recibido</th>
                                 <th>Total de Entrega</th>
                                 <th>Notas</th>
+                                <th>Acción</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,6 +73,13 @@
                                     <td>${{$delivery->mount_received ?? 0.00}}</td>
                                     <td>${{$delivery->total ?? 0.00}}</td>
                                     <td>{{$delivery->note}}</td>
+                                    <td>
+                                      <button type="button"
+                                              class="btn btn-block btn-primary btn-xs"
+                                              onclick='location.href="{{url("/deliveries/{$delivery->id}")}}"'>
+                                              Detalles
+                                      </button>
+                                    </td>
                                 </tr>
                               @empty
                               @endforelse
@@ -84,6 +92,7 @@
                                 <th>Monto Recibido</th>
                                 <th>Total de Entrega</th>
                                 <th>Notas</th>
+                                <th>Acción</th>
                             </tr>
                             </tfoot>
                         </table>
