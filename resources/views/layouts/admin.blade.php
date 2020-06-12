@@ -79,7 +79,7 @@
                 </a>
               </li>
               @endif
-              @if( !request()->user()->is_delivery )
+              @if( request()->user()->is_admin )
               <li class="nav-item">
                 <a href="{{ url('/stores') }}" class="nav-link {{ (request()->is('stores*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-store"></i>
@@ -89,7 +89,7 @@
                 </a>
               </li>
               @endif
-              @if( !request()->user()->is_delivery )
+              @if( request()->user()->is_admin )
               <li class="nav-item">
                 <a href="{{ url('/orders') }}" class="nav-link {{ (request()->is('orders*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-clipboard"></i>
@@ -99,7 +99,7 @@
                 </a>
               </li>
               @endif
-              @if( !request()->user()->is_delivery )
+              @if( request()->user()->is_admin )
               <li class="nav-item">
                 <a href="{{ url('/deliveries') }}" class="nav-link {{ (request()->is('deliveries*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-truck"></i>
@@ -109,12 +109,22 @@
                 </a>
               </li>
               @endif
-              @if( !request()->user()->is_delivery )
+              @if( request()->user()->is_admin )
               <li class="nav-item">
                 <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-pepper-hot"></i>
                   <p>
                     Productos
+                  </p>
+                </a>
+              </li>
+              @endif
+              @if( request()->user()->is_store )
+              <li class="nav-item">
+                <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-pepper-hot"></i>
+                  <p>
+                    Nuevo Pedido
                   </p>
                 </a>
               </li>

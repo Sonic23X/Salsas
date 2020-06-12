@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entities\Delivery;
+use App\Entities\Order;
+use App\Entities\Store;
 use Auth;
 
 class DashboardController extends Controller
@@ -22,7 +24,17 @@ class DashboardController extends Controller
 
         return view('repartidor.entregas.dashRepartidor', compact( 'entregas', 'dinero' ));
       }
-      else
+      else if ( $request->user()->is_store )
+      {
+        $store = Store::where( 'user_id', Auth::user()->id )->first( );
+        $orders = Order::where( 'store_id', 1 )->get( );
+        return view( 'tienda.dashboardStore', compact( 'store', 'orders' ) );
+      }
+      else if ( $request->user()->is_seller )
+      {
+
+      }
+      else if ( $request->user()->is_admin )
       {
         return view('dashboard');
       }
