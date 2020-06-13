@@ -27,12 +27,12 @@ class DashboardController extends Controller
       else if ( $request->user()->is_store )
       {
         $store = Store::where( 'user_id', Auth::user()->id )->first( );
-        $orders = Order::where( 'store_id', 1 )->get( );
+        $orders = Order::where( 'store_id', $store->id )->get( );
         return view( 'tienda.dashboardStore', compact( 'store', 'orders' ) );
       }
       else if ( $request->user()->is_seller )
       {
-
+        return view( 'vendedor.dashboardVendedor' );
       }
       else if ( $request->user()->is_admin )
       {

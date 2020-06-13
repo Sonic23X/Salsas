@@ -49,6 +49,7 @@
                                       <td>{{ $user->email }}</td>
                                       <td>{{ $user->rol }}</td>
                                       <td>
+                                        @if ( request()->user()->is_admin )
                                           <button type="button" class="btn btn-block btn-primary btn-xs"
                                                   onclick="location.href='{{ url('/users/'.$user->id.'/edit') }}'">Editar
                                           </button>
@@ -57,6 +58,7 @@
                                                   data-whatever="{{$user->id}}"
                                                   data-target="#modal-danger">Eliminar
                                           </button>
+                                        @endif
                                       </td>
                                   </tr>
                                 @empty

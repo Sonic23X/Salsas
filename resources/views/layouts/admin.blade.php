@@ -69,7 +69,7 @@
                   </p>
                 </a>
               </li>
-              @if( request()->user()->is_admin )
+              @if( request()->user()->is_admin || request()->user()->is_seller )
               <li class="nav-item">
                 <a href="{{ url('/users') }}" class="nav-link {{ (request()->is('users*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-users"></i>
@@ -79,7 +79,7 @@
                 </a>
               </li>
               @endif
-              @if( request()->user()->is_admin )
+              @if( request()->user()->is_admin || request()->user()->is_seller )
               <li class="nav-item">
                 <a href="{{ url('/stores') }}" class="nav-link {{ (request()->is('stores*')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-store"></i>
@@ -115,16 +115,6 @@
                   <i class="nav-icon fas fa-pepper-hot"></i>
                   <p>
                     Productos
-                  </p>
-                </a>
-              </li>
-              @endif
-              @if( request()->user()->is_store )
-              <li class="nav-item">
-                <a href="{{ url('/salsas') }}" class="nav-link {{ (request()->is('salsas*')) ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-pepper-hot"></i>
-                  <p>
-                    Nuevo Pedido
                   </p>
                 </a>
               </li>

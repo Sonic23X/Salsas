@@ -50,11 +50,13 @@
                                                 onclick="location.href='{{ url('/stores/'.$tienda->id.'/edit') }}'">
                                             Editar
                                         </button>
-                                        <button type="button" class="btn btn-block btn-danger btn-xs"
-                                                data-toggle="modal"
-                                                data-whatever="{{$tienda->id}}"
-                                                data-target="#modal-danger">Eliminar
-                                        </button>
+                                        @if( request()->user()->is_admin )
+                                          <button type="button" class="btn btn-block btn-danger btn-xs"
+                                                  data-toggle="modal"
+                                                  data-whatever="{{$tienda->id}}"
+                                                  data-target="#modal-danger">Eliminar
+                                          </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @empty
