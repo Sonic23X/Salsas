@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Salsa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class SalsaController extends Controller
 {
@@ -15,8 +16,11 @@ class SalsaController extends Controller
      */
     public function index()
     {
-      $salsas = Salsa::all();
-      return view('admin.salsas.listaSalsa', compact('salsas'));
+      if(Auth::user()->is_admin){
+          $salsas = Salsa::all();
+          return view('admin.salsas.listaSalsa', compact('salsas'));
+      }
+        return response(view('errors.403'),403);
     }
 
     /**
@@ -26,7 +30,10 @@ class SalsaController extends Controller
      */
     public function create()
     {
+      if(Auth::user()->is_admin){
         return view('admin.salsas.crearSalsa');
+      }
+        return response(view('errors.403'),403);
     }
 
     /**
@@ -37,6 +44,7 @@ class SalsaController extends Controller
      */
     public function store(Request $request)
     {
+      if(Auth::user()->is_admin){
         $errorMessages =
         [
           'name.required' => 'Ingrese el nombre del producto',
@@ -60,6 +68,8 @@ class SalsaController extends Controller
         $salsa->save();
 
         return redirect('/salsas');
+      }
+        return response(view('errors.403'),403);
     }
 
     /**
@@ -81,7 +91,10 @@ class SalsaController extends Controller
      */
     public function edit(Salsa $salsa)
     {
+      if(Auth::user()->is_admin){
         return view('admin.salsas.editarSalsa', compact('salsa'));
+      }
+        return response(view('errors.403'),403);
     }
 
     /**
@@ -93,6 +106,7 @@ class SalsaController extends Controller
      */
     public function update(Request $request, $id)
     {
+      if(Auth::user()->is_admin){
         $errorMessages =
         [
           'name.required' => 'Ingrese el nombre del producto',
@@ -113,6 +127,8 @@ class SalsaController extends Controller
 
 
         return redirect('/salsas');
+      }
+        return response(view('errors.403'),403);
     }
 
     /**
@@ -123,7 +139,11 @@ class SalsaController extends Controller
      */
     public function destroy($salsa)
     {
+      if(Auth::user()->is_admin){
         Salsa::find($salsa)->delete();
         return redirect('/salsas')->with('message', 'El producto se borró correctamente!');
+      }
+        return response(view('errors.403'),403);
+
     }
 }
