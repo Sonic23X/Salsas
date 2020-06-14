@@ -50838,4 +50838,6 @@ body.swal2-toast-column .swal2-toast .swal2-validation-message {
 }
 #contentlayout{
     background: url("../img/bgdash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
