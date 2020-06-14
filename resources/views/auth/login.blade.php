@@ -14,13 +14,14 @@
   <!-- Laravel Css -->
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="overflow: hidden;">
+
 <div class="login-box">
   <div class="login-logo">
-    <img src="{{ asset('img/favicon.ico') }}" alt="logo"><b>{{ config('app.name', 'Laravel') }}</b>
+    <img src="{{ asset('img/logoOne.svg') }}" alt="logo"><b style="display: none">{{ config('app.name', 'Laravel') }}</b>
   </div>
   <!-- /.login-logo -->
-  <div class="card">
+  <div>
     <div class="card-body login-card-body">
       <form method="post" action="{{ route('login') }}">
         @csrf
@@ -72,7 +73,7 @@
 
       @if (Route::has('password.request'))
         <p class="mb-1">
-          <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+          <a style="color: #227C2D;" href="{{ route('password.request') }}">Olvidé mi contraseña</a>
         </p>
       @endif
     </div>

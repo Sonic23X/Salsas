@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Dan-Sa Salsa') }}</title>
 
     <!-- FavIcon -->
-    <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+    <link rel="icon" href="{{ asset('img/logoTwo.svg') }}">
 
     <!-- Laravel Css -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -49,9 +49,10 @@
       <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1d1711 !important;">
         <!-- Logo -->
         <a href="#" class="brand-link">
-          <img src="{{ asset('img/favicon.ico') }}" alt="Logo" class="brand-image img-circle elevation-3"
+          <img src="{{ asset('img/logoTwo.svg') }}" alt="Logo" class="brand-image "
                style="opacity: .8">
-          <span class="brand-text font-weight-light">Salsas</span>
+            <br/>
+            <br/>
         </a>
 
         <!-- Sidebar -->
@@ -121,7 +122,7 @@
         </div>
       </aside>
 
-      <div class="content-wrapper">
+      <div class="content-wrapper" id="contentlayout">
         @yield('content')
       </div>
 
