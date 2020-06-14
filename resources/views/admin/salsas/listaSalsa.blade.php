@@ -43,11 +43,6 @@
                                   <td>{{ $salsa->price }}</td>
                                   <td>
 
-                                      <button type="button" class="btn btn-block btn-info btn-xs">Activar</button>
-                                      {{-- al presionar el botón debe cambiar a "desactivar" y la clase debe ser
-                                      btn btn-block btn-secondary btn-xs--}}
-
-
                                       <button type="button" class="btn btn-block btn-info btn-xs"
                                               onclick="location.href='{{ url('/salsas/'.$salsa->id.'/edit') }}'">Editar
                                       </button>
