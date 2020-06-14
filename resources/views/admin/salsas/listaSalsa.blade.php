@@ -42,7 +42,6 @@
                                   <td>{{ $salsa->description }}</td>
                                   <td>${{ $salsa->price }}</td>
                                   <td>
-                                      <button type="button" class="btn btn-block btn-primary btn-xs">Activar</button>
                                       <button type="button" class="btn btn-block btn-primary btn-xs"
                                               onclick="location.href='{{ url('/salsas/'.$salsa->id.'/edit') }}'">Editar
                                       </button>

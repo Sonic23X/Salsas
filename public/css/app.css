@@ -20207,6 +20207,8 @@ html.maximized-card {
   -ms-flex-align: center;
   align-items: center;
   background: url("../img/chilis.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
