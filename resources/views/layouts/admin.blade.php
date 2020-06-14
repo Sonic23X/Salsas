@@ -124,7 +124,7 @@
         </div>
       </aside>
 
-      <div class="content-wrapper">
+      <div class="content-wrapper" id="contentlayout">
         @yield('content')
       </div>
 

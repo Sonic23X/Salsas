@@ -11768,7 +11768,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   margin-left: .8rem;
   margin-right: .5rem;
   margin-top: -3px;
-  max-height: 33px;
+  max-height: 75px;
   width: auto;
 }
 
@@ -11776,7 +11776,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
   float: left;
   line-height: .8;
   margin-top: -.1rem;
-  max-height: 33px;
+  max-height: 55px;
   width: auto;
 }
 
@@ -20206,7 +20206,7 @@ html.maximized-card {
 .register-page {
   -ms-flex-align: center;
   align-items: center;
-  background: #e9ecef;
+  background: url("../img/chilis.jpg");
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -20231,7 +20231,7 @@ html.maximized-card {
 
 .login-card-body,
 .register-card-body {
-  background: #ffffff;
+  background: transparent;
   border-top: 0;
   color: #666;
   padding: 20px;
@@ -50827,4 +50827,15 @@ body.swal2-toast-column .swal2-toast .swal2-validation-message {
   max-width: 350px;
   border-radius: 0.25rem;
   background-color: rgba(255, 255, 255, 0.85);
+}
+
+#videoBackground{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+#contentlayout{
+    background: url("../img/bgdash.jpg");
 }
