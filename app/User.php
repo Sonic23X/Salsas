@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
   		return $this->attributes['rol'] == 'tienda';
   	}
+
+    public function stores()
+    {
+        return \App\Entities\Store::where('user_id',$this->id)->get();
+    }
 }

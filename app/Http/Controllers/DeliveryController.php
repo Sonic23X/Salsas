@@ -20,12 +20,19 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        $deliveries = Delivery::all();
-        $salsas = Delivery::getDeliveredSalsas();
-        $mount = Delivery::getMountReceived();
+      if(Auth::user()->is_seller
+        or Auth::user()->is_admin
+        or Auth::user()->is_delivery)
+          {
+            $deliveries = Delivery::all();
+            $salsas = Delivery::getDeliveredSalsas();
+            $mount = Delivery::getMountReceived();
 
-        return view('admin.entregas.listaEntrega',
-                  compact('deliveries','salsas','mount'));
+            return view('admin.entregas.listaEntrega',
+                      compact('deliveries','salsas','mount'));
+
+          }
+            return response(view('errors.403'),403);
     }
 
     /**
@@ -46,6 +53,11 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
+
+      if(Auth::user()->is_seller
+        or Auth::user()->is_admin
+        or Auth::user()->is_delivery)
+          {
 
       $create = $request->validate([
         'order_id' => 'required',
@@ -83,6 +95,9 @@ class DeliveryController extends Controller
 
       //redireccionamos
       return \Redirect::to('/dashboard');
+
+    }
+      return response(view('errors.403'),403);
     }
 
     /**
@@ -93,8 +108,15 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-      $order = Order::find($delivery->order_id);
-      return view( 'admin.entregas.detalleEntregaAdmin', compact( 'order', 'delivery' ) );
+      if(Auth::user()->is_seller
+        or Auth::user()->is_admin
+        or Auth::user()->is_delivery)
+          {
+            $order = Order::find($delivery->order_id);
+            return view( 'admin.entregas.detalleEntregaAdmin', compact( 'order', 'delivery' ) );
+          }
+            return response(view('errors.403'),403);
+
     }
 
     /**
@@ -133,10 +155,17 @@ class DeliveryController extends Controller
 
     public function setDelivery( $storeId )
     {
-      $store = Store::findOrFail( $storeId );
-      $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
-      $order->load( 'salsas' );
 
-      return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
+      if(Auth::user()->is_seller
+        or Auth::user()->is_admin
+        or Auth::user()->is_delivery)
+          {
+          $store = Store::findOrFail( $storeId );
+          $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
+          $order->load( 'salsas' );
+
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
+        }
+          return response(view('errors.403'),403);
     }
 }
