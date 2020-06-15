@@ -33,7 +33,7 @@
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>${{ $order->mount ?? 0.00 }}</td>
-                            <td>{{ ( $order->notes == '' ) ? 'N/A' : $orders->notes  }}</td>
+                            <td>{{ ( $order->notes == '' ) ? 'N/A' : $order->notes  }}</td>
                           </tr>
                         @empty
                         @endforelse
