@@ -58,6 +58,7 @@
                                 <th>Pedido</th>
                                 <th>Repartidor</th>
                                 <th>Fecha Entrega</th>
+                                <th>Tipo de entrega</th>
                                 <th>Monto Recibido</th>
                                 <th>Total de Entrega</th>
                                 <th>Notas</th>
@@ -70,6 +71,7 @@
                                     <td>{{$delivery->id}}</td>
                                     <td>{{$delivery->man->name}}</td>
                                     <td>{{$delivery->created_at}}</td>
+                                    <td>{{ ( $delivery->consicion == 1 ) ? 'Concisión' : 'Venta regular' }}</td>
                                     <td>${{$delivery->mount_received ?? 0.00}}</td>
                                     <td>${{$delivery->total ?? 0.00}}</td>
                                     <td>{{$delivery->note}}</td>
@@ -89,6 +91,7 @@
                                 <th>Pedido</th>
                                 <th>Repartidor</th>
                                 <th>Fecha Entrega</th>
+                                <th>Tipo de entrega</th>
                                 <th>Monto Recibido</th>
                                 <th>Total de Entrega</th>
                                 <th>Notas</th>

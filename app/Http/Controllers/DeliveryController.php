@@ -62,7 +62,8 @@ class DeliveryController extends Controller
       $create = $request->validate([
         'order_id' => 'required',
         'mount_received' => 'required',
-        'note' => ''
+        'consicion' => 'required',
+        'note' => '',
       ]);
 
       $total = 0;
@@ -80,7 +81,7 @@ class DeliveryController extends Controller
         $i++;
       }
 
-      if ( $create[ 'mount_received' ] < $total )
+      if ( $create[ 'mount_received' ] < $total && $create[ 'consicion' ] == '0' )
         return redirect()->back()->withErrors( [ 'error' => 'El monto ingresado es menor al monto total del pedido' ]);
 
       $create['total'] = $total;

@@ -79,11 +79,20 @@
                         </table>
                         <hr class="mt-5" >
                         <div class="row">
-                          <div class="col-sm-12">
+                          <div class="col-sm-9">
                               <div class="form-group">
                                   <label>Monto recibido</label>
                                   <input type="number" name="mount_received" class="form-control" required>
                               </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>¿Venta concisionada?</label>
+                                <select class="form-control" name="consicion">
+                                    <option value="0">No</option>
+                                    <option value="1">Sí</option>
+                                </select>
+                            </div>
                           </div>
                         </div>
                         <div class="row">
