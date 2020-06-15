@@ -18,7 +18,7 @@ class Delivery extends Model
       */
      protected $fillable = [
          'order_id', 'delivery_man', 'delivery_date',
-         'mount_received', 'total', 'note'
+         'mount_received', 'total', 'note', 'consicion'
      ];
 
      public function man(){
@@ -52,6 +52,6 @@ class Delivery extends Model
 
      public function store( )
      {
-       
+
      }
 }
