@@ -8,6 +8,7 @@ use App\Entities\Salsa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class StoreOrderController extends Controller
 {
@@ -71,7 +72,11 @@ class StoreOrderController extends Controller
         $salsas = Arr::only($data['salsa'], $id_salsas);
 
         $order->salsas()->attach($salsas);
-        return redirect("/stores/{$store->id}/orders");
+
+        if ( Auth::user()->is_store )
+          return redirect("/dashboard");
+        else
+          return redirect("/stores/{$store->id}/orders");
     }
 
     /**
