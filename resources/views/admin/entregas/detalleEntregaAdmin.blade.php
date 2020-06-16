@@ -24,20 +24,24 @@
                     <div class="card-body row" >
 
                       <div class="col-md-6">
+                        @if ( isset( $order ) )
                         <p><strong>No. Pedido entregado</strong>: {{$order->id}}</p>
+                        @endif
                         <p><strong>Fecha de entrega</strong>: {{$delivery->delivery_date}}</p>
                         <p><strong>Repartidor</strong>: {{ $delivery->man->name }}</p>
-                        <p><strong>Tienda</strong>: {{$order->store->name}}</p>
+                        <p><strong>Tienda</strong>: {{$store->name}}</p>
+                        @if ( isset( $order ) )
                         <p><strong>Total estimado</strong>: ${{$order->mount ?? 0.00}}</p>
+                        @endif
                         <p><strong>Total</strong>: ${{ $delivery->total ?? 0.00}}</p>
+                        <p><strong>Tipo de venta</strong>: {{ ( $delivery->concesion == 1 ) ? 'Concesión' : 'Regular' }}</p>
                       </div>
                       <div class="col-md-6">
                         <p><strong>Notas</strong>: {{$delivery->notes}}</p>
                       </div>
                     </div>
 
-
-
+                    @if ( isset( $order ) )
                     <div class="card-body table-responsive p-0" style="height: 300px;">
                         <table class="table table-head-fixed text-nowrap">
                             <thead>
@@ -53,7 +57,7 @@
                               @forelse($delivery->salsas as $salsa)
                                 <tr>
                                     <td>{{ $salsa->name }}</td>
-                                    <td>{{ $order->salsas[$loop->iteration - 1 ]->pivot->quantity }}</td>
+                                    <td>{{ $delivery->salsas[$loop->iteration - 1 ]->pivot->quantity }}</td>
                                     <td>{{ $salsa->pivot->quantity }}</td>
                                     <td>${{ $salsa->pivot->price ?? 0.00 }}</td>
                                     <td>${{ $salsa->pivot->price * $salsa->pivot->quantity }}</td>
@@ -65,13 +69,47 @@
                             <tr>
                                 <th>TOTAL</th>
                                 <th></th>
-                                <th>{{ $delivery->getDeliveredSalsas() }}</th>
+                                <th></th>
                                 <th></th>
                                 <th>${{ $delivery->total() }}</th>
                             </tr>
                             </tfoot>
                         </table>
                     </div>
+                    @else
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Salsa</th>
+                                <th>Cantidad entregada</th>
+                                <th>c/u</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                              @forelse($delivery->salsas as $salsa)
+                                <tr>
+                                    <td>{{ $salsa->name }}</td>
+                                    <td>{{ $salsa->pivot->quantity }}</td>
+                                    <td>${{ $salsa->pivot->price ?? 0.00 }}</td>
+                                    <td>${{ $salsa->pivot->price * $salsa->pivot->quantity }}</td>
+                                </tr>
+                              @empty
+                              @endforelse
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>TOTAL</th>
+                                <th></th>
+                                <th></th>
+                                <th>${{ $delivery->total() }}</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    @endif
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

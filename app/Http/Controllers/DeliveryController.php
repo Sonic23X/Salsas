@@ -115,7 +115,8 @@ class DeliveryController extends Controller
         or Auth::user()->is_delivery)
           {
             $order = Order::find($delivery->order_id);
-            return view( 'admin.entregas.detalleEntregaAdmin', compact( 'order', 'delivery' ) );
+            $store = Store::find( $delivery->store_id );
+            return view( 'admin.entregas.detalleEntregaAdmin', compact( 'order', 'delivery', 'store' ) );
           }
             return response(view('errors.403'),403);
 
