@@ -170,17 +170,11 @@ class DeliveryController extends Controller
         $delivery = Delivery::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
 
 
-        if ( $order == null && $delivery == null )
+        if ( empty($order)  && empty($delivery) )
         {
           //debemos retornar las salsas ya que no existe información previa
           $salsas = Salsa::all();
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
-        }
-        else if ( $delivery->concesion == 1 )
-        {
-          //fue una venta concesionada
-          $delivery->load( 'salsas' );
-          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'delivery' ));
         }
         else if ( $order != null )
         {
@@ -188,6 +182,13 @@ class DeliveryController extends Controller
           $order->load( 'salsas' );
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
         }
+        else if ( $delivery->concesion == 1 )
+        {
+          //fue una venta concesionada
+          $delivery->load( 'salsas' );
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'delivery' ));
+        }
+
       }
           return response(view('errors.403'),403);
     }
