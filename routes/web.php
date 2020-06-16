@@ -37,5 +37,6 @@ Route::middleware('auth')->group(function()
     Route::get( 'deliveries/setDelivery/{store}', 'DeliveryController@setDelivery' );
     Route::get( 'stores/getQr/{id}', 'StoreController@getStoreCode' );
     Route::post( 'deliveries/concesion', 'DeliveryController@storeConcesion' );
+    Route::post( 'deliveries/salsa', 'DeliveryController@storeSalsas' );
 
 });

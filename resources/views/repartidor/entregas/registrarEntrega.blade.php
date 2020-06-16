@@ -110,8 +110,82 @@
                     </div>
                   @endif
                   @if ( isset($salsas) )
-                    <div class="">
-                      asd
+                  <div class="card-body text-center">
+                    @if (session('errors'))
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                      <form role="form" id="quickForm" action="{{ url('/deliveries/salsa') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="store_id" value=" {{ $store->id }} ">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Tipo de Salsa</th>
+                              <th scope="col">c/u</th>
+                              <th scope="col">Candidad a entregar</th>
+                              <th scope="col">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              @foreach($salsas as $salsa)
+                                <tr>
+                                    <td>{{$salsa->name}}</td>
+                                    <td>${{$salsa->price ?? 0.00}}</td>
+                                    <td>
+                                      <input type="hidden" name="salsa_{{ $loop->iteration }}" value="{{ $salsa->id }}">
+                                      <input type="number" id="count_{{ $loop->iteration }}" name="count_{{ $loop->iteration }}" class="form-control"
+                                            onkeyup="calculate( {{ $salsa->price }}, {{ $loop->iteration }} )" required>
+                                      <input type="hidden" id="price_{{ $loop->iteration }}" name="price_{{ $loop->iteration }}" value="{{ $salsa->price }}">
+                                    </td>
+                                    <td><span id="total_{{ $loop->iteration }}"></span></td>
+                                </tr>
+                              @endforeach
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td colspan="col"> <strong>Total</strong> </td>
+                              <td colspan="col"></td>
+                              <td colspan="col"></td>
+                              <td colspan="col"><span id="sumTotal"></span></td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                        <hr class="mt-5" >
+                        <div class="row">
+                          <div class="col-sm-9">
+                              <div class="form-group">
+                                  <label>Monto recibido</label>
+                                  <input type="number" name="mount_received" class="form-control" required>
+                              </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>¿Entrega concisionada?</label>
+                                <select class="form-control" name="concesion">
+                                    <option value="0">No</option>
+                                    <option value="1">Sí</option>
+                                </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                              <div class="form-group">
+                                  <label>Nota</label>
+                                  <textarea name="note" class="form-control" rows="2"></textarea>
+                              </div>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Registrar Entrega</button>
+                      </form>
                     </div>
                   @endif
                   @if ( isset($delivery) )
