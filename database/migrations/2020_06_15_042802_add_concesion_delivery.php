@@ -15,7 +15,7 @@ class AddConcesionDelivery extends Migration
     {
       Schema::table('deliveries', function (Blueprint $table)
       {
-        //$table->boolean( 'concesion' )->default( false );
+        $table->boolean( 'concesion' )->default( false );
       });
     }
 
