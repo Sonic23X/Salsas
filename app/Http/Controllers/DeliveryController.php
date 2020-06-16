@@ -62,7 +62,7 @@ class DeliveryController extends Controller
       $create = $request->validate([
         'order_id' => 'required',
         'mount_received' => 'required',
-        'consicion' => 'required',
+        'consecion' => 'required',
         'note' => '',
       ]);
 
@@ -81,7 +81,7 @@ class DeliveryController extends Controller
         $i++;
       }
 
-      if ( $create[ 'mount_received' ] < $total && $create[ 'consicion' ] == '0' )
+      if ( $create[ 'mount_received' ] < $total && $create[ 'concesion' ] == '0' )
         return redirect()->back()->withErrors( [ 'error' => 'El monto ingresado es menor al monto total del pedido' ]);
 
       $create['total'] = $total;
@@ -157,16 +157,88 @@ class DeliveryController extends Controller
     public function setDelivery( $storeId )
     {
 
-      if(Auth::user()->is_seller
+      if (
+        Auth::user()->is_seller
         or Auth::user()->is_admin
-        or Auth::user()->is_delivery)
-          {
-          $store = Store::findOrFail( $storeId );
-          $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
-          $order->load( 'salsas' );
+        or Auth::user()->is_delivery )
+      {
+        //buscamos que exista la tienda
+        $store = Store::findOrFail( $storeId );
 
+        //validamos si existe una orden o una entrega
+        $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
+        $order->load( 'salsas' );
+        $delivery = Delivery::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
+        $delivery->load( 'salsas' );
+
+        if ( $order == null && $delivery == null )
+        {
+          //debemos retornar las salsas ya que no existe información previa
+          $salsas = Salsa::all();
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
+        }
+        else if ( $delivery->concesion == 1 )
+        {
+          //fue una venta concesionada
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'delivery' ));
+        }
+        else if ( $order != null )
+        {
+          //validamos que exista la orden
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
         }
+      }
           return response(view('errors.403'),403);
+    }
+
+    public function storeConcesion(Request $request)
+    {
+      if ( Auth::user()->is_seller or Auth::user()->is_admin or Auth::user()->is_delivery )
+      {
+        $create = $request->validate([
+          'store_id' => 'required',
+          'mount_received' => 'required',
+          'concesion' => 'required',
+          'note' => '',
+        ]);
+
+        $total = 0;
+        $i = 1;
+        $salsas = [];
+
+        //recorremos las salsas
+        while ( $request->has( 'salsa_' . $i ) )
+        {
+          $total += ( ( $request[ 'quantity_' . $i ] - $request[ 'count_' . $i ] ) * $request[ 'price_' . $i ] );
+          $salsa = [ 'salsa_id' => $request[ 'count_' . $i ],
+                     'quantity' => $request[ 'drop_' . $i ],
+                     'price' => $request[ 'price_' . $i ] ];
+          array_push( $salsas, $salsa );
+          $i++;
+        }
+
+        if ( $create[ 'mount_received' ] < $total )
+          return redirect()->back()->withErrors( [ 'error' => 'El monto ingresado es menor al monto total del pedido' ]);
+
+        $create['total'] = $total;
+        $create['note'] = ( $create['note'] == null ) ? ' ' : $create['note'];
+        $create['delivery_man'] = Auth::user()->id;
+        $create['delivery_date'] = Carbon::now()->toDateString();
+
+        $envio = Delivery::create( $create );
+
+        //guardamos los detalles
+        $envio->salsas()->attach( $salsas );
+
+        //redireccionamos
+        return \Redirect::to('/dashboard');
+      }
+
+      return response( view( 'errors.403' ), 403);
+    }
+
+    public function storeSalsas(Request $request)
+    {
+
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddConsicionDelivery extends Migration
+class AddConcesionDelivery extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class AddConsicionDelivery extends Migration
     {
       Schema::table('deliveries', function (Blueprint $table)
       {
-        $table->boolean( 'consicion' )->default( false );
+        //$table->boolean( 'concesion' )->default( false );
       });
     }
 

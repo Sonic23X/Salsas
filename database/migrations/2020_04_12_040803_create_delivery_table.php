@@ -15,7 +15,7 @@ class CreateDeliveryTable extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('order_id')->nulleable();
             $table->unsignedBigInteger('delivery_man');
             $table->date('delivery_date');
             $table->decimal('mount_received', 8, 2);
