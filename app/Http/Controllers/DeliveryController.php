@@ -60,9 +60,10 @@ class DeliveryController extends Controller
           {
 
       $create = $request->validate([
+        'store_id' => 'required',
         'order_id' => 'required',
         'mount_received' => 'required',
-        'consecion' => 'required',
+        'concesion' => 'required',
         'note' => '',
       ]);
 
@@ -176,7 +177,7 @@ class DeliveryController extends Controller
           $salsas = Salsa::all();
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
         }
-        else if ( $order != null )
+        else if ( !empty($order) )
         {
           //validamos que exista la orden
           $order->load( 'salsas' );
