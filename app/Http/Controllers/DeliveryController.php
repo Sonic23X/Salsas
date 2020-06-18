@@ -172,7 +172,7 @@ class DeliveryController extends Controller
         $delivery = Delivery::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
 
 
-        if ( empty($order)  && empty($delivery) )
+        if ( empty($order)  && ( empty($delivery) || $delivery->concesion == 0 ) )
         {
           //debemos retornar las salsas ya que no existe información previa
           $salsas = Salsa::all();
