@@ -24,9 +24,7 @@ class CreateDeliveryTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('delivery_man')->references('id')->on('users');
-
         });
     }
 

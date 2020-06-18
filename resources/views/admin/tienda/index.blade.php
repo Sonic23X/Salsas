@@ -28,7 +28,7 @@
                             <tbody>
                             @forelse ($tiendas as $tienda)
                                 <tr>
-                                    <td>{{ $tienda->user()->name }}</td>
+                                    <td>{{ $tienda->owner()->name }}</td>
                                     <td>{{ $tienda->name }}</td>
                                     <td>
                                         {{ $tienda->street }} {{ $tienda->number }}, {{ $tienda->suburb }}
