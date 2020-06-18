@@ -178,7 +178,7 @@ class DeliveryController extends Controller
           $salsas = Salsa::all();
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
         }
-        else if ( $delivery->concesion == 1 )
+        else if ( !empty( $delivery ) && $delivery->concesion == 1 )
         {
           //fue una venta concesionada
           $delivery->load( 'salsas' );
