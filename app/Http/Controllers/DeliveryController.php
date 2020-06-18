@@ -175,7 +175,7 @@ class DeliveryController extends Controller
         if ( empty($order)  && ( empty($delivery) || $delivery->concesion == 0 ) )
         {
           //debemos retornar las salsas ya que no existe información previa
-          $salsas = Salsa::all();
+          $salsas = Salsa::where( 'active', 1 );
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
         }
         else if ( !empty( $delivery ) && $delivery->concesion == 1 )
