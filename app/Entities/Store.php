@@ -32,17 +32,19 @@ class Store extends Model
   ];
 
   //relaciones
-  public function orders(){
+  public function orders()
+  {
        return $this->hasMany('App\Entities\Order');
   }
 
-  public function owner(){
+  public function owner()
+  {
        return $this->belongsTo('App\User');
   }
 
-  public function user()
+  public function user( )
   {
-      return User::find($this->user_id)->select('name')->first();
+      return User::where( 'id', $this->user_id )->select( 'name' )->first();
   }
 
 
