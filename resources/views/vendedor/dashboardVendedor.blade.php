@@ -22,22 +22,22 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm">
-                      <button type="button" class="btn btn-block btn-primary">
+                      <a href="{{ url('/users/create') }}" class="btn btn-block btn-primary">
                         <i class="fas fa-user-plus"></i>
                         Registrar usuario
-                      </button>
+                      </a>
                     </div>
                     <div class="col-sm">
-                      <button type="button" class="btn btn-block btn-primary">
+                      <a href="{{ url('/stores/create') }}" class="btn btn-block btn-primary">
                         <i class="fas fa-store-alt"></i>
                         Registrar tienda
-                      </button>
+                      </a>
                     </div>
                     <div class="col-sm">
-                      <button type="button" class="btn btn-block btn-primary">
+                      <a href="{{ url('/orders/create') }}" class="btn btn-block btn-primary">
                         <i class="far fa-clipboard"></i>
                         Registrar pedido
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>

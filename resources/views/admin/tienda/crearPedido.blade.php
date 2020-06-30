@@ -52,9 +52,16 @@
                                           onclick="location.href='{{ url('/stores/'.$store->id.'/orders') }}'">Regresar
                                 </button>
                             @else
+                              @if ( request()->user()->is_admin )
                                 <button type="button" class="btn btn-primary  .btn-sm float-right"
                                           onclick="location.href='{{ url('/orders') }}'">Regresar
                                 </button>
+                              @else
+                              <button type="button" class="btn btn-primary  .btn-sm float-right"
+                                        onclick="location.href='{{ url('/dashboard') }}'">Regresar
+                              </button>
+                              @endif
+
                             @endif
 
 
