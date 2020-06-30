@@ -39,7 +39,9 @@
                       @endif
                       <form role="form" id="quickForm" action="{{ url('/deliveries') }}" method="post">
                         @csrf
-                        <input type="hidden" name="order_id" value=" {{ $order->id }} ">
+                        @if ( $byOrder )
+                          <input type="hidden" name="order_id" value=" {{ $order->id }} ">
+                        @endif
                         <input type="hidden" name="store_id" value=" {{ $store->id }} ">
                         <table class="table">
                           <thead>
@@ -110,7 +112,7 @@
                     </div>
                   @endif
                   @if ( isset($salsas) )
-                  <div class="card-body text-center">
+                    <div class="card-body text-center">
                     @if (session('errors'))
                         <div class="alert alert-danger" role="alert">
                             <ul>

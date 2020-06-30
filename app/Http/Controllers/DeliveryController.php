@@ -61,7 +61,7 @@ class DeliveryController extends Controller
 
       $create = $request->validate([
         'store_id' => 'required',
-        'order_id' => 'required',
+        'order_id' => '',
         'mount_received' => 'required',
         'concesion' => 'required',
         'note' => '',
@@ -171,12 +171,21 @@ class DeliveryController extends Controller
         $order = Order::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
         $delivery = Delivery::where( 'store_id', $storeId )->orderByDesc( 'id' )->limit( 1 )->first();
 
-
-        if ( empty($order)  && ( empty($delivery) || $delivery->concesion == 0 ) )
+        if ( empty($order) && empty($delivery) )
         {
           //debemos retornar las salsas ya que no existe información previa
           $salsas = Salsa::where( 'active', 1 )->get( );
           return view('repartidor.entregas.registrarEntrega', compact( 'store', 'salsas' ));
+        }
+        else if ( !empty( $delivery ) && $delivery->concesion == 0 )
+        {
+          //fue una venta no concesionada
+          //reintegramos el nombre de la variable,
+          //para reutilizar el formulario cuando existe una orden
+          $order = $delivery;
+          $order->load( 'salsas' );
+          $byOrder = false;
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order', 'byOrder' ));
         }
         else if ( !empty( $delivery ) && $delivery->concesion == 1 )
         {
@@ -188,7 +197,8 @@ class DeliveryController extends Controller
         {
           //validamos que exista la orden
           $order->load( 'salsas' );
-          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order' ));
+          $byOrder = true;
+          return view('repartidor.entregas.registrarEntrega', compact( 'store', 'order', 'byOrder' ));
         }
 
       }
@@ -282,6 +292,6 @@ class DeliveryController extends Controller
 
         //redireccionamos
         return \Redirect::to('/dashboard');
+      }
     }
-  }
 }

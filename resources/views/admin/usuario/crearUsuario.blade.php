@@ -88,10 +88,12 @@
                                           <div class="form-group">
                                               <label>Tipo de Usuario</label>
                                               <select class="form-control" name="rol">
-                                                  <option value="admin">Administrador</option>
-                                                  <option value="vendedor">Vendedor</option>
-                                                  <option value="repartidor">Repartidor</option>
-                                                  <option value="tienda">Tienda</option>
+                                                @if ( request()->user()->is_admin )
+                                                <option value="admin">Administrador</option>
+                                                <option value="vendedor">Vendedor</option>
+                                                <option value="repartidor">Repartidor</option>
+                                                @endif
+                                                <option value="tienda">Tienda</option>
                                               </select>
                                           </div>
                                       </div>
