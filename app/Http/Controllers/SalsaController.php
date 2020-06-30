@@ -107,6 +107,7 @@ class SalsaController extends Controller
     public function update(Request $request, $id)
     {
       if(Auth::user()->is_admin){
+
         $errorMessages =
         [
           'name.required' => 'Ingrese el nombre del producto',
@@ -119,7 +120,8 @@ class SalsaController extends Controller
         $validatedData = $request->validate([
               'name' => ['required'],
               'description' => ['required'],
-              'price' => ['required', 'numeric', 'min:1', 'max:999']
+              'price' => ['required', 'numeric', 'min:1', 'max:999'],
+              'active' => ''
         ], $errorMessages);
 
         $validatedData['active'] = isset($validatedData['active']) ? true : 0;
