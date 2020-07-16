@@ -125,7 +125,7 @@
                                         <div class="form-group">
                                             <label>Estado</label>
                                             <input type="text" name="state" class="form-control"
-                                                   placeholder="Ingrese Estado">
+                                                   placeholder="Ingrese Estado" value="Hidalgo">
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
@@ -165,13 +165,8 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function () {
-            /*$.validator.setDefaults({
-                submitHandler: function () {
-                    alert("Correctamente registrado");
-                    window.location.href = "listausuarios.html";
-                }
-            });*/
+        $(document).ready(function ()
+        {
             $('#quickForm').validate({
                 rules: {
                     owner: {
@@ -184,20 +179,21 @@
                         required: true,
                     },
                     number: {
-                        required: true,
+                        required: false,
                     },
                     suburb: {
-                        required: true,
+                        required: false,
                     },
                     state: {
                         required: true
                     },
                     postal: {
-                        required: true,
+                        required: false,
                     },
                     phone: {
-                        required: true,
+                        required: false,
                         minlength: 7,
+                        maxlength: 10,
                     },
                 },
                 messages: {

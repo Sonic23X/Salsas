@@ -79,6 +79,7 @@
             }
             else
             {
+              console.log( res );
               alert("Error al escanear el QR. Intente de nuevo");
             }
           };

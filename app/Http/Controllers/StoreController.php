@@ -45,11 +45,11 @@ class StoreController extends Controller
         'owner' => 'required|exists:users,id',
         'name' => 'required|string',
         'street' => 'required|string',
-        'number' => 'required|numeric',
-        'suburb' => 'required|string',
+        'number' => '',
+        'suburb' => '',
         'state' => 'required',
-        'postal' => 'required|numeric',
-        'phone' => 'required|numeric',
+        'postal' => '',
+        'phone' => '',
       ]);
 
       //buscamos al usuario
